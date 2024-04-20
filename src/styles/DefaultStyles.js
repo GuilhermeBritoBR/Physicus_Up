@@ -11,9 +11,12 @@ export const DefaultStyles = StyleSheet.create({
   Header: {
     flex: 0.3,
     backgroundColor: "#000000",
+    width: "100%",
+    flexDirection:'row',
+    alignItems: 'center',
     alignItems: "center",
     justifyContent: "center",
-    width: "100%",
+    
   },
   content: {
     backgroundColor: "#000000cc",
@@ -26,6 +29,10 @@ export const DefaultStyles = StyleSheet.create({
     color: "#ffffff",
     fontSize: 24,
   },
+  Icon:{
+    width:25,
+    height:25,
+  }
 });
 
 export const widgetDefaultComponent = StyleSheet.create({
@@ -40,6 +47,9 @@ export const widgetDefaultComponent = StyleSheet.create({
   titleWidgetText: {
     fontSize: 16,
     color: "#ffffff",
+    textAlign: 'center',
+    flexDirection: 'column',
+    flex: 1,
   },
   titleWidgetView: {
     flex: 0.2,
@@ -49,5 +59,12 @@ export const widgetDefaultComponent = StyleSheet.create({
   },
   dataWidget: {
     fontSize: 24,
+    textAlign: 'center',
+  },
+  CaixaInfo: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
   },
 });

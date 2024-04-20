@@ -7,7 +7,10 @@ import HeaderComponent from "../components/HeaderComponent";
 import FooterComponent from "../components/FooterComponent";
 import WidgetDefaultComponent from "../components/WidgetDefaultComponent";
 
+
+//titleWidget,backgroundColor,data,RITMOEXERCICIO,ESFROÇO,TEMPO,KMPESO, -> PROPS DOS WIDGETS
 export default function HomePage() {
+  const data = "10/20/2024";
   return (
     <View style={DefaultStyles.container}>
       <HeaderComponent />
@@ -16,8 +19,14 @@ export default function HomePage() {
           <WidgetDefaultComponent
             backgroundColor="#1db954"
             titleWidget="Corrida no final da tarde"
-            data={"Distância"}
+            data={data}
+            RITMOEXERCICIO={"ritmo"}
+            TEMPO={"tempo"}
+            KMPESO={"KM/PESO"}
+            ESFROÇO={"ESFORÇO"}
+           
           />
+         
         </ScrollView>
       </View>
       <FooterComponent />
