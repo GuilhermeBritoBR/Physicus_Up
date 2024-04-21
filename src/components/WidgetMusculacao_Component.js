@@ -9,7 +9,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import TextComponent from "./TextComponent";
 
 
-export default function WidgetDefaultComponent({
+export default function WidgetMusculacao_Component({
   titleWidget,
   backgroundColor,
   data,
@@ -27,10 +27,10 @@ export default function WidgetDefaultComponent({
   
   return (
   <LinearGradient
-      colors={[corDegrade1, corDegrade2 ]} 
+      colors={['#ADD8E6', '#32A9D0' ]} 
       start={{ x: 0, y: 1 }}
       end={{ x: 1, y: 0 }} 
-      locations={[0.34, 0.75]}
+      locations={[0, 1]}
       style={[ widgetDefaultComponent.widgetContent,{
         flex: 1,
         flexDirection: 'row', 

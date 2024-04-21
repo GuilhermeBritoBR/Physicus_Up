@@ -7,6 +7,7 @@ export const DefaultStyles = StyleSheet.create({
     backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
+    
   },
   Header: {
     flex: 0.3,
@@ -28,6 +29,7 @@ export const DefaultStyles = StyleSheet.create({
   Text: {
     color: "#ffffff",
     fontSize: 24,
+    fontFamily: 'GothicA1-Regular',
   },
   Icon:{
     width:25,
@@ -41,8 +43,11 @@ export const widgetDefaultComponent = StyleSheet.create({
     width: 348,
     height: 198,
     margin: 10,
-    backgroundColor: "#000000",
+    backgroundColor: "transparent",
     borderRadius: 15,
+    fontFamily: 'GothicA1-Regular',
+    
+    
   },
   titleWidgetText: {
     fontSize: 16,
@@ -60,6 +65,7 @@ export const widgetDefaultComponent = StyleSheet.create({
   dataWidget: {
     fontSize: 24,
     textAlign: 'center',
+    color: '#ffffff',
   },
   CaixaInfo: {
     flex: 1,
