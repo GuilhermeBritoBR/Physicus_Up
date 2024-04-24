@@ -4,7 +4,7 @@ import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { DefaultStyles } from "../styles/DefaultStyles";
 
 //importando components
-import PesquisarComponent from "../components/PesquisarPage/PesquisarComponent";
+import PesquisarComponent from "../components/TelaPesquisar/PesquisarComponent";
 import HeaderComponent from "../components/HeaderComponent";
 import FooterComponent from "../components/FooterComponent";
 export default function SearchPage() {
