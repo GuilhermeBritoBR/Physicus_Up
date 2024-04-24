@@ -8,10 +8,23 @@ import FooterComponent from "../components/FooterComponent";
 import WidgetDefaultComponent from "../components/WidgetDefaultComponent";
 import WidgetIMC_Component from "../components/WidgetIMC_Component";
 import WidgetMusculacao_Component from "../components/WidgetMusculacao_Component";
+import ModalComponent from "../components/ModalComponent";
+
+//importando hooks
+import { useState } from "react";
+import IMC_Content from "../components/HomeComponents/IMC_Content";
 
 //titleWidget,backgroundColor,data,RITMOEXERCICIO,ESFROÇO,TEMPO,KMPESO, -> PROPS DOS WIDGETS
 export default function HomePage() {
   const data = "10/05/2024";
+  const [boleana, setBoleana] = useState(false);
+  const reverse = () => {
+    if (boleana === false) {
+      setBoleana(true);
+    } else {
+      setBoleana(false);
+    }
+  };
   return (
     <View style={DefaultStyles.container}>
       <HeaderComponent />
@@ -28,13 +41,10 @@ export default function HomePage() {
               corDegrade1={"#1db954"}
               corDegrade2={"#309f57"}
             />
-            
-            <View>
-              
-            </View>
 
+            <View></View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setBoleana(true)}>
             <WidgetIMC_Component
               titleCenter={"IMC"}
               corDegrade1={"#B3B3B3"}
@@ -53,6 +63,18 @@ export default function HomePage() {
               descriçaoCenter={"Preencha os dados"}
             />
           </TouchableOpacity>
+          <ModalComponent vidro={boleana} open={boleana}>
+            <View
+              style={{
+                width: "100%",
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <IMC_Content />
+            </View>
+          </ModalComponent>
         </ScrollView>
       </View>
       <FooterComponent />

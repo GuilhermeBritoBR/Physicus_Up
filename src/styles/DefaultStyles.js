@@ -19,7 +19,7 @@ export const DefaultStyles = StyleSheet.create({
     justifyContent: "center",
   },
   content: {
-    backgroundColor: "#000000cc",
+    backgroundColor: "#121212",
     flex: 2,
     alignItems: "center",
     justifyContent: "center",

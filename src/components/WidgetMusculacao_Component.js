@@ -23,7 +23,7 @@ export default function WidgetMusculacao_Component({
 }) {
   return (
     <LinearGradient
-      colors={["#ADD8E6", "#32A9D0"]}
+      colors={["#fdb573", "#d86800"]}
       start={{ x: 0, y: 1 }}
       end={{ x: 1, y: 0 }}
       locations={[0, 1]}
