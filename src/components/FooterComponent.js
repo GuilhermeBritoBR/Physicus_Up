@@ -7,27 +7,30 @@ import IconComponent from "./IconComponent";
 
 export default function FooterComponent() {
   return (
-    <View style={[DefaultStyles.Header,]}>
-      <TouchableOpacity style={[Footer.iconHomeView,{flex:1}]}>
-      <View style={[Footer.iconHomeView,{flex:1}]}>
+    <View style={[DefaultStyles.Header]}>
+      <TouchableOpacity style={[Footer.iconHomeView, { flex: 1 }]}>
+        <View style={[Footer.iconHomeView, { flex: 1 }]}>
           <IconComponent
-          style={DefaultStyles.Icon}
-          archive={require("../assets/home.png")}/>
-      </View>
+            style={DefaultStyles.Icon}
+            archive={require("../assets/home.png")}
+          />
+        </View>
       </TouchableOpacity>
-      <TouchableOpacity style={[Footer.iconHomeView,{flex:1}]}>
-      <View style={[Footer.iconHomeView,{flex:1}]}>
+      <TouchableOpacity style={[Footer.iconHomeView, { flex: 1 }]}>
+        <View style={[Footer.iconHomeView, { flex: 1 }]}>
           <IconComponent
-          style={DefaultStyles.Icon}
-          archive={require("../assets/search.png")}/>
-      </View>
+            style={DefaultStyles.Icon}
+            archive={require("../assets/search.png")}
+          />
+        </View>
       </TouchableOpacity>
-      <TouchableOpacity style={[Footer.iconHomeView,{flex:1}]}>
-      <View style={[Footer.iconHomeView,{flex:1}]}>
+      <TouchableOpacity style={[Footer.iconHomeView, { flex: 1 }]}>
+        <View style={[Footer.iconHomeView, { flex: 1 }]}>
           <IconComponent
-          style={[DefaultStyles.Icon,{width: 25, height: 20}]}
-          archive={require("../assets/arrow.png")}/>
-      </View>
+            style={[DefaultStyles.Icon, { width: 25, height: 20 }]}
+            archive={require("../assets/arrow.png")}
+          />
+        </View>
       </TouchableOpacity>
     </View>
   );

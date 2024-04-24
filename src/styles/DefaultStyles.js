@@ -7,17 +7,15 @@ export const DefaultStyles = StyleSheet.create({
     backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
-    
   },
   Header: {
     flex: 0.3,
     backgroundColor: "#000000",
     width: "100%",
-    flexDirection:'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     alignItems: "center",
     justifyContent: "center",
-    
   },
   content: {
     backgroundColor: "#000000cc",
@@ -29,12 +27,11 @@ export const DefaultStyles = StyleSheet.create({
   Text: {
     color: "#ffffff",
     fontSize: 24,
-    fontFamily: 'GothicA1-Regular',
   },
-  Icon:{
-    width:25,
-    height:25,
-  }
+  Icon: {
+    width: 25,
+    height: 25,
+  },
 });
 
 export const widgetDefaultComponent = StyleSheet.create({
@@ -45,15 +42,13 @@ export const widgetDefaultComponent = StyleSheet.create({
     margin: 10,
     backgroundColor: "transparent",
     borderRadius: 15,
-    fontFamily: 'GothicA1-Regular',
-    
-    
+    fontFamily: "GothicA1-Regular",
   },
   titleWidgetText: {
     fontSize: 16,
     color: "#ffffff",
-    textAlign: 'center',
-    flexDirection: 'column',
+    textAlign: "center",
+    flexDirection: "column",
     flex: 1,
   },
   titleWidgetView: {
@@ -64,13 +59,13 @@ export const widgetDefaultComponent = StyleSheet.create({
   },
   dataWidget: {
     fontSize: 24,
-    textAlign: 'center',
-    color: '#ffffff',
+    textAlign: "center",
+    color: "#ffffff",
   },
   CaixaInfo: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
   },
 });
