@@ -1,7 +1,7 @@
 //importando páginas
 import HomePage from "./src/pages/HomePage";
 import SearchPage from "./src/pages/SearchPage";
-import AnalyticsPage from "./src/pages/HomePage";
+import AnalyticsPage from "./src/pages/AnalyticsPage";
 
 //importanto rotas stack
 import { NavigationContainer } from "@react-navigation/native";

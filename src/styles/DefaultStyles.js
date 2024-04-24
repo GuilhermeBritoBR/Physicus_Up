@@ -7,6 +7,7 @@ export const DefaultStyles = StyleSheet.create({
     backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
+    width: "100%",
   },
   Header: {
     flex: 0.3,

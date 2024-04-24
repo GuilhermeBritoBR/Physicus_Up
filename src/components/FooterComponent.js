@@ -15,7 +15,7 @@ export default function FooterComponent() {
   return (
     <View style={[DefaultStyles.Header]}>
       <TouchableOpacity
-        onPress={() => navigation.navigate("Analytics")}
+        onPress={() => navigation.navigate("HomePage")}
         style={[Footer.iconHomeView, { flex: 1 }]}
       >
         <View style={[Footer.iconHomeView, { flex: 1 }]}>
@@ -25,7 +25,10 @@ export default function FooterComponent() {
           />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={[Footer.iconHomeView, { flex: 1 }]}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Search")}
+        style={[Footer.iconHomeView, { flex: 1 }]}
+      >
         <View style={[Footer.iconHomeView, { flex: 1 }]}>
           <IconComponent
             style={DefaultStyles.Icon}
@@ -33,7 +36,10 @@ export default function FooterComponent() {
           />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={[Footer.iconHomeView, { flex: 1 }]}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Analytics")}
+        style={[Footer.iconHomeView, { flex: 1 }]}
+      >
         <View style={[Footer.iconHomeView, { flex: 1 }]}>
           <IconComponent
             style={[DefaultStyles.Icon, { width: 25, height: 20 }]}
