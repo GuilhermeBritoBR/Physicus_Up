@@ -1,5 +1,5 @@
 import { TouchableOpacity, Text } from "react-native";
-
+//É a aplicação dos botões padrão
 export default function Button_Component({ Button_title, color_button }) {
   return (
     <TouchableOpacity
