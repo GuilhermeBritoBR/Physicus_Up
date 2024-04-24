@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { DefaultStyles } from "../styles/DefaultStyles";
 import { Footer } from "../styles/Footer";
 import IconComponent from "./IconComponent";
-
+//é o rodapé da aplicação, ele possui 3 opções que te direcionam para 3 páginas
 export default function FooterComponent() {
   return (
     <View style={[DefaultStyles.Header]}>
