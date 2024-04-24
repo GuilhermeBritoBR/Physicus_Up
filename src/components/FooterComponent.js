@@ -8,6 +8,7 @@ import IconComponent from "./IconComponent";
 //importando rota STACK
 import { useNavigation } from "@react-navigation/native";
 
+//é o rodapé da aplicação, ele possui 3 opções que te direcionam para 3 páginas
 export default function FooterComponent() {
   const navigation = useNavigation();
 

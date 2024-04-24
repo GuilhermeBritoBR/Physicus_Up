@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
-
+//Componente props das camadas
 export default function PesquisarComponent({ props_Text_Component }) {
   return (
     <View style={styles.PC}>
-      <Text style={{color: '#ffffff'}}>{props_Text_Component}</Text>
+      <Text style={{ color: "#ffffff" }}>{props_Text_Component}</Text>
     </View>
   );
 }
