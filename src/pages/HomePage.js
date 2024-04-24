@@ -28,6 +28,11 @@ export default function HomePage() {
               corDegrade1={"#1db954"}
               corDegrade2={"#309f57"}
             />
+            
+            <View>
+              
+            </View>
+
           </TouchableOpacity>
           <TouchableOpacity>
             <WidgetIMC_Component

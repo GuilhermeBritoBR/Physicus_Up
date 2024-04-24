@@ -1,5 +1,4 @@
 import { TouchableOpacity, Text } from "react-native";
-
 export default function Button_Component({ Button_title, color_button }) {
   return (
     <TouchableOpacity

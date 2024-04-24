@@ -1,5 +1,5 @@
 import { TextInput } from "react-native";
-
+//É a caixa de texto(input)
 export default function Input_box_Component({
   placeholder_propiedade,
   onChangeText_propiedade,
