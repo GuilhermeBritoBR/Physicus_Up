@@ -2,18 +2,20 @@ import { View, Text, TouchableOpacity } from "react-native";
 
 //importantdo HOOKS
 import { useState } from "react";
-import TextComponent from "../TextComponent";
 //Importando Styles
 import { DefaultStyles } from "../../styles/DefaultStyles";
 
 //importando components
 import Input_box_Component from "../Input_Box_Component";
 import Button_Component from "../Button_Component";
+import TextComponent from "../TextComponent";
+
 
 export default function IMC_Content({xDoModal}) {
-  const [altura, setAltura] = useState(null);
-  const [peso, setPeso] = useState(null);
-  const [situation, setSituation] = useState(null)
+  const [altura, setAltura] = useState("");
+  const [peso, setPeso] = useState("");
+  const [situation, setSituation] = useState("")
+  
   const imc = ((peso / ((altura/100)*(altura/100))).toFixed(2));
   function situacao(){
     if( imc < 17){
@@ -74,10 +76,8 @@ export default function IMC_Content({xDoModal}) {
       <Text style={{color: 'white'}}>Seu IMC: {imc}</Text>
       <Text style={{color: 'white'}}>{situation}</Text>
 
-      <Button_Component Pressionamento={situacao} Button_title={"Calcular"} />
-      <TouchableOpacity onPress={xDoModal}>
-       <Text>Close modal</Text> 
-      </TouchableOpacity>
+      <Button_Component fundo_buttom={"#1db954"} colorText_buttom={"#ffffff"} Pressionamento={situacao} Button_title={"Calcular"} />
+      <Button_Component Pressionamento={xDoModal} Button_title={"Fechar"} colorText_buttom={"#ffffff"} fundo_buttom={"#000000"}/>       
     </View>
   );
 }

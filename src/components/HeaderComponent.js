@@ -1,4 +1,4 @@
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Modal } from "react-native";
 
 //importando estilizações padroẽs da aplicação
 import { DefaultStyles } from "../styles/DefaultStyles";
@@ -7,8 +7,18 @@ import { Header } from "../styles/Header";
 //importando componentes
 import IconComponent from "./IconComponent";
 import TextComponent from "./TextComponent";
+
+//importando modal do header
+import Add_Content from "./HomeComponents/Add_Content";
+import ModalComponent from "./ModalComponent";
+
+//importando HOOKS
+import { useState } from "react";
+
 //cabeçalho da aplicação, ele tem a função de mostrar seu perfil, adicionar o treino e mostrar o título da aplicação
 export default function HeaderComponent() {
+  const [add, setAdd] = useState(false);
+
   return (
     <View style={[DefaultStyles.Header, { width: "100%", flex: 0.4 }]}>
       <TouchableOpacity
@@ -27,6 +37,7 @@ export default function HeaderComponent() {
       <View style={[Header.TitleHeader, { flex: 1.2 }]}>
         <TextComponent
           title={"Physicus Up"}
+        
           styleText={[
             DefaultStyles.Text,
             {
@@ -39,7 +50,7 @@ export default function HeaderComponent() {
           ]}
         />
       </View>
-      <TouchableOpacity style={[Header.addView, { flex: 0.9 }]}>
+      <TouchableOpacity onPress={() => setAdd(true)} style={[Header.addView, { flex: 0.9 }]}>
         <View style={[Header.addView, { flex: 0.9 }]}>
           <IconComponent
             archive={require("../assets/add.png")}
@@ -47,6 +58,16 @@ export default function HeaderComponent() {
           />
         </View>
       </TouchableOpacity>
+      <ModalComponent vidro={add} open={add}>
+        <View style={{flex:1, width: '100%'}}>
+        <TouchableOpacity style={{flex:0.8}} onPress={() => setAdd(false)}>
+        <View style={{flex:0.8, width: '100%'}}></View>
+        </TouchableOpacity>
+        
+        <View style={{flex: 0.2, }}
+        ><Add_Content/></View>
+        </View>
+      </ModalComponent>
     </View>
   );
 }

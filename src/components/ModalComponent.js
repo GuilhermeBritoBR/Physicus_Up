@@ -1,9 +1,9 @@
 import { Modal } from "react-native";
 
-export default function ModalComponent({ open, children, vidro }) {
+export default function ModalComponent({ open, children, close, vidro }) {
   return (
     <Modal
-      onRequestClose={vidro}
+      onRequestClose={close}
       transparent={vidro}
       visible={open}
       animationType="fade"

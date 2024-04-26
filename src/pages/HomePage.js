@@ -18,17 +18,14 @@ import IMC_Content from "../components/HomeComponents/IMC_Content";
 export default function HomePage() {
   const data = "10/05/2024";
   const [boleana, setBoleana] = useState(false);
-  const reverse = () => {
-    if (boleana === false) {
-      setBoleana(true);
-    } else {
-      setBoleana(false);
-    }
-  };
+ 
+  function closeModal(){
+    setBoleana(false);
+  }
   return (
     <View style={DefaultStyles.container}>
       <HeaderComponent />
-      <View style={DefaultStyles.content}>
+      <View style={[DefaultStyles.content,{width: '100%'}]}>
         <ScrollView>
           <TouchableOpacity>
             <WidgetDefaultComponent
@@ -72,7 +69,8 @@ export default function HomePage() {
                 alignItems: "center",
               }}
             >
-              <IMC_Content xDoModal={boleana} />
+            
+              <IMC_Content xDoModal={closeModal} />
             </View>
           </ModalComponent>
         </ScrollView>

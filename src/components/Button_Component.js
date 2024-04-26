@@ -1,22 +1,22 @@
 import { TouchableOpacity, Text } from "react-native";
-export default function Button_Component({ Button_title, color_button, Pressionamento }) {
+export default function Button_Component({ Button_title, fundo_buttom,colorText_buttom, Pressionamento }) {
   return (
     <TouchableOpacity
     onPress={Pressionamento}
-      style={{
+      style={[{
         height: 48,
         width: 120,
-        color: color_button,
-        backgroundColor: "#000000",
+        backgroundColor: fundo_buttom,
         justifyContent: "center",
         alignItems: "center",
         border: "solid",
         borderWidth: 1,
         borderColor: "#000000cc",
         borderRadius: 15,
-      }}
+        margin: 5,
+      }]}
     >
-      <Text style={{ color: "#ffffff" }}>{Button_title}</Text>
+      <Text style={{color: colorText_buttom}}>{Button_title}</Text>
     </TouchableOpacity>
   );
 }

@@ -6,13 +6,13 @@ export default function Input_box_Component({
 }) {
   return (
     <TextInput
-      style={{
+      style={[{
         height: 48,
         width: 120,
         backgroundColor: "#ffffff",
         borderRadius: 15,
         margin: 10,
-      }}
+      }]}
       placeholder={placeholder_propiedade}
       onChangeText={ onChangeText_propiedade }
     />

@@ -4,7 +4,7 @@ export default function PesquisarComponent({ props_Text_Component, On_press }) {
   return (
     <TouchableOpacity style={styles.PC} onPress={On_press}>
       <View style={[styles.PC]}>
-        <Text style={{ color: "#ffffff" }}>{props_Text_Component}</Text>
+        <Text style={{ color: "#ffffff" , fontSize: 18}}>{props_Text_Component}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -13,7 +13,7 @@ export default function PesquisarComponent({ props_Text_Component, On_press }) {
 const styles = StyleSheet.create({
   PC: {
     flexDirection: "row",
-    backgroundColor: "#000000",
+    backgroundColor: "#121212",
     alignItems: "center",
     justifyContent: "center",
     borderColor: "white",

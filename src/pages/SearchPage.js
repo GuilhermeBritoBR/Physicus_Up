@@ -6,13 +6,16 @@ import HeaderComponent from "../components/HeaderComponent";
 import FooterComponent from "../components/FooterComponent";
 //importando styles Default Styles
 import { DefaultStyles } from "../styles/DefaultStyles";
+//importando navigation
+import { useNavigation } from "@react-navigation/native";
 export default function SearchPage() {
+  const Navigation = useNavigation();
   return (
     <View style={DefaultStyles.container}>
       <HeaderComponent />
       <View style={[DefaultStyles.content, { backgroundColor: "#121212" }]}>
         <ScrollView>
-          <PesquisarComponent props_Text_Component={"Calcular ritmo"} />
+          <PesquisarComponent  On_press={() => Navigation.navigate("RitmoPage")  }props_Text_Component={"Calcular ritmo"} />
 
           <PesquisarComponent props_Text_Component={"Calcular IMC"} />
           <PesquisarComponent props_Text_Component={"Conferir Peso Ideal"} />

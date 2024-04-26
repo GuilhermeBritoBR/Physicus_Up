@@ -8,7 +8,7 @@ export default function AnalyticsPage() {
   return (
     <View style={DefaultStyles.container}>
       <HeaderComponent />
-      <View style={DefaultStyles.content}>
+      <View style={[DefaultStyles.content,{flex: 3}]}>
         <ScrollView>
           <BlockDefaultComponent
             titleCenter={"Desempenho"}

@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 export const DefaultStyles = StyleSheet.create({
   container: {
     flex: 3,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#121212",
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
@@ -33,6 +33,10 @@ export const DefaultStyles = StyleSheet.create({
     width: 25,
     height: 25,
   },
+  IconAddPage:{
+    height: 256,
+    width: 256,
+  }
 });
 
 export const widgetDefaultComponent = StyleSheet.create({
