@@ -72,7 +72,7 @@ export default function HomePage() {
                 alignItems: "center",
               }}
             >
-              <IMC_Content />
+              <IMC_Content xDoModal={boleana} />
             </View>
           </ModalComponent>
         </ScrollView>

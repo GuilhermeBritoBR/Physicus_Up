@@ -14,7 +14,7 @@ export default function Input_box_Component({
         margin: 10,
       }}
       placeholder={placeholder_propiedade}
-      onChangeText={{ onChangeText_propiedade }}
+      onChangeText={ onChangeText_propiedade }
     />
   );
 }
