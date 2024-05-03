@@ -73,4 +73,7 @@ export const widgetDefaultComponent = StyleSheet.create({
     alignItems: "center",
     textAlign: "center",
   },
+  
+
+  
 });
