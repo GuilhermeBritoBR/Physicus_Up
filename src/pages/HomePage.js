@@ -1,3 +1,4 @@
+import React from "react";
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 
 //importando estilizações padroẽs da aplicação
@@ -9,24 +10,50 @@ import WidgetDefaultComponent from "../components/WidgetDefaultComponent";
 import WidgetIMC_Component from "../components/WidgetIMC_Component";
 import WidgetMusculacao_Component from "../components/WidgetMusculacao_Component";
 import ModalComponent from "../components/ModalComponent";
+import IMC_Content from "../components/HomeComponents/IMC_Content";
 
 //importando hooks
 import { useState } from "react";
-import IMC_Content from "../components/HomeComponents/IMC_Content";
+import { useEffect } from "react";
+//importando async storage
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { RefreshControl } from "react-native";
 
 //titleWidget,backgroundColor,data,RITMOEXERCICIO,ESFROÇO,TEMPO,KMPESO, -> PROPS DOS WIDGETS
 export default function HomePage() {
   const data = "10/05/2024";
   const [boleana, setBoleana] = useState(false);
- 
-  function closeModal(){
+  const [imc, setImc] = useState("");
+  const [desc, setDesc] = useState("");
+  const [refresh, setRefresh] = useState(false);
+
+  useEffect(() => {}, [Search()]);
+
+  function closeModal() {
     setBoleana(false);
+    Search();
+    onRefresh();
   }
+  async function Search() {
+    setImc(await AsyncStorage.getItem("Imc_user"));
+    setDesc(await AsyncStorage.getItem("Imc_situation"));
+  }
+  const onRefresh = React.useCallback(() => {
+    setRefresh(true);
+    setTimeout(() => {
+      setRefresh(false);
+    }, 3000);
+  }, []);
+
   return (
     <View style={DefaultStyles.container}>
       <HeaderComponent />
-      <View style={[DefaultStyles.content,{width: '100%'}]}>
-        <ScrollView>
+      <View style={[DefaultStyles.content, { width: "100%" }]}>
+        <ScrollView
+          refreshControl={
+            <RefreshControl refreshing={refresh}>{onRefresh}</RefreshControl>
+          }
+        >
           <TouchableOpacity>
             <WidgetDefaultComponent
               titleWidget="Corrida no final da tarde"
@@ -38,15 +65,13 @@ export default function HomePage() {
               corDegrade1={"#1db954"}
               corDegrade2={"#309f57"}
             />
-
-            <View></View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setBoleana(true)}>
             <WidgetIMC_Component
-              titleCenter={"IMC"}
+              titleCenter={imc}
               corDegrade1={"#B3B3B3"}
               corDegrade2={"#535353"}
-              descriçaoCenter={"Preencha os dados"}
+              descriçaoCenter={desc}
             />
           </TouchableOpacity>
           <TouchableOpacity>
@@ -69,7 +94,6 @@ export default function HomePage() {
                 alignItems: "center",
               }}
             >
-            
               <IMC_Content xDoModal={closeModal} />
             </View>
           </ModalComponent>
