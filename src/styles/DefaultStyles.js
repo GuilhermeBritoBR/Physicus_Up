@@ -33,10 +33,29 @@ export const DefaultStyles = StyleSheet.create({
     width: 25,
     height: 25,
   },
-  IconAddPage:{
+  IconAddPage: {
     height: 256,
     width: 256,
-  }
+  },
+  Button: {
+    height: 48,
+    width: 120,
+    backgroundColor: "#ffffff",
+    borderRadius: 15,
+    margin: 10,
+  },
+  Touch: {
+    height: 48,
+    width: 120,
+    backgroundColor: fundo_buttom,
+    justifyContent: "center",
+    alignItems: "center",
+    border: "solid",
+    borderWidth: 1,
+    borderColor: "#000000cc",
+    borderRadius: 15,
+    margin: 5,
+  },
 });
 
 export const widgetDefaultComponent = StyleSheet.create({
@@ -73,7 +92,4 @@ export const widgetDefaultComponent = StyleSheet.create({
     alignItems: "center",
     textAlign: "center",
   },
-  
-
-  
 });

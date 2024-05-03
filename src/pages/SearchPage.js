@@ -15,12 +15,13 @@ export default function SearchPage() {
       <HeaderComponent />
       <View style={[DefaultStyles.content, { backgroundColor: "#121212" }]}>
         <ScrollView>
-          <PesquisarComponent  On_press={() => Navigation.navigate("RitmoPage")  }props_Text_Component={"Calcular ritmo"} />
+          <PesquisarComponent
+            On_press={() => Navigation.navigate("RitmoPage")}
+            props_Text_Component={"Calcular ritmo"}
+          />
 
-          <PesquisarComponent props_Text_Component={"Calcular IMC"} />
           <PesquisarComponent props_Text_Component={"Conferir Peso Ideal"} />
-          <PesquisarComponent props_Text_Component={"Recordes"} />
-          <PesquisarComponent props_Text_Component={"Calcular ritmo"} />
+          <PesquisarComponent props_Text_Component={"Adicionar Recorde"} />
         </ScrollView>
       </View>
       <FooterComponent />

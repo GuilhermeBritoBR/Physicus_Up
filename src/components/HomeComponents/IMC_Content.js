@@ -19,31 +19,32 @@ export default function IMC_Content({ xDoModal }) {
   const [situation, setSituation] = useState("");
   const [imc, setImc] = useState("");
 
-  async function situacao() {
-    if (peso === "" && altura === "") {
-      console.log("error!");
-      alert("Preencha os campos!");
+  const calc_imc = () => {
+    const calcImc = (peso / ((altura / 100) * (altura / 100))).toFixed(2);
+
+    if (calcImc < 18.5) {
+      setImc(calcImc);
+      setSituation("Abaixo do peso.");
+    } else if (calcImc >= 18.5 && calcImc < 24.9) {
+      setImc(calcImc);
+      setSituation("Peso normal.");
+    } else if (calcImc >= 25 && calcImc < 29.9) {
+      setImc(calcImc);
+      setSituation("Sobrepeso.");
+    } else if (calcImc >= 30 && calcImc < 34.9) {
+      setImc(calcImc);
+      setSituation("Obesidade grau I.");
+    } else if (calcImc >= 35 && calcImc < 39.9) {
+      setImc(calcImc);
+      setSituation("Obesdade grau II.");
     } else {
-      setImc((peso / ((altura / 100) * (altura / 100))).toFixed(2));
-      console.log(imc);
-      if (imc > 0 && imc < 17) {
-        setSituation("MUITO ABAIXO DO PESO");
-      } else if (imc >= 17 && imc <= 18.99) {
-        setSituation("ABAIXO DO PESO");
-      } else if (imc >= 18.99 && imc <= 24.99) {
-        setSituation("PESO NORMAL");
-      } else if (imc >= 24.99 && imc <= 29.99) {
-        setSituation("ACIMA DO PESO");
-      } else if (imc >= 29.99 && imc <= 34.99) {
-        setSituation("OBESIDADE GRAU I");
-      } else if (imc >= 34.99 && imc <= 39.99) {
-        setSituation("OBESIDADE GRAU II");
-      } else if (imc >= 40) {
-        setSituation("OBESIDADE GRAU III");
-      }
-      await AsyncStorage.setItem("Imc_user", imc);
-      await AsyncStorage.setItem("Imc_situation", situation);
+      setImc(calcImc);
+      setSituation("Obesidade grau III.");
     }
+  };
+  async function SaveData() {
+    await AsyncStorage.setItem("Imc_user", imc);
+    await AsyncStorage.setItem("Imc_situation", situation);
   }
 
   return (
@@ -82,8 +83,14 @@ export default function IMC_Content({ xDoModal }) {
       <Button_Component
         fundo_buttom={"#1db954"}
         colorText_buttom={"#ffffff"}
-        Pressionamento={situacao}
+        Pressionamento={calc_imc}
         Button_title={"Calcular"}
+      />
+      <Button_Component
+        fundo_buttom={"#1db954"}
+        colorText_buttom={"#ffffff"}
+        Pressionamento={SaveData}
+        Button_title={"Salvar"}
       />
       <Button_Component
         Pressionamento={xDoModal}

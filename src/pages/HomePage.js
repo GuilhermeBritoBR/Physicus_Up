@@ -13,11 +13,12 @@ import ModalComponent from "../components/ModalComponent";
 import IMC_Content from "../components/HomeComponents/IMC_Content";
 
 //importando hooks
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 //importando async storage
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RefreshControl } from "react-native";
+import Cadastro_content from "../components/HomeComponents/Cadastro_content";
+import UserHome_Component from "../components/HomeComponents/UserHome_Component";
 
 //titleWidget,backgroundColor,data,RITMOEXERCICIO,ESFROÇO,TEMPO,KMPESO, -> PROPS DOS WIDGETS
 export default function HomePage() {
@@ -26,6 +27,7 @@ export default function HomePage() {
   const [imc, setImc] = useState("");
   const [desc, setDesc] = useState("");
   const [refresh, setRefresh] = useState(false);
+  const [nome, setNome] = useState("");
 
   useEffect(() => {}, [Search()]);
 
@@ -44,60 +46,24 @@ export default function HomePage() {
       setRefresh(false);
     }, 3000);
   }, []);
-
   return (
     <View style={DefaultStyles.container}>
       <HeaderComponent />
       <View style={[DefaultStyles.content, { width: "100%" }]}>
-        <ScrollView
-          refreshControl={
-            <RefreshControl refreshing={refresh}>{onRefresh}</RefreshControl>
-          }
-        >
-          <TouchableOpacity>
-            <WidgetDefaultComponent
-              titleWidget="Corrida no final da tarde"
-              data={data}
-              RITMOEXERCICIO={"4'00 Min/km"}
-              TEMPO={"20:00"}
-              KMPESO={"5 KM"}
-              ESFROÇO={"Esforço: 9"}
-              corDegrade1={"#1db954"}
-              corDegrade2={"#309f57"}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => setBoleana(true)}>
-            <WidgetIMC_Component
-              titleCenter={imc}
-              corDegrade1={"#B3B3B3"}
-              corDegrade2={"#535353"}
-              descriçaoCenter={desc}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <WidgetMusculacao_Component
-              titleWidget="Musculação no final da tarde"
-              data={data}
-              RITMOEXERCICIO={"Peito"}
-              TEMPO={"01:00:00"}
-              KMPESO={"Series: 8"}
-              ESFROÇO={"Esforço: 8"}
-              descriçaoCenter={"Preencha os dados"}
-            />
-          </TouchableOpacity>
-          <ModalComponent vidro={boleana} open={boleana}>
-            <View
-              style={{
-                width: "100%",
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <IMC_Content xDoModal={closeModal} />
-            </View>
-          </ModalComponent>
-        </ScrollView>
+        {nome === "" ? (
+          <Cadastro_content />
+        ) : (
+          <UserHome_Component
+            vidro={boleana}
+            imc={imc}
+            desc={desc}
+            refresh={refresh}
+            onRefresh={onRefresh}
+            data={data}
+            xDoModal={closeModal}
+            funçao={() => setBoleana(true)}
+          />
+        )}
       </View>
       <FooterComponent />
     </View>
