@@ -5,7 +5,17 @@ import { Picker } from "@react-native-picker/picker";
 //importando hook
 import { useState } from "react";
 import Button_Component from "../Button_Component";
-export default function Cadastro_content() {
+export default function Cadastro_content({
+  valueName,
+  valueSexo,
+  valueIdade,
+  valueSobrenome,
+  onChangeIdade,
+  onChangeName,
+  onChangeSobrenome,
+  onChangeSexo,
+  onPress,
+}) {
   const [sexo, setSexo] = useState("Sexo");
   const [idade, setIdade] = useState("");
   const [nome, setNome] = useState("");
@@ -18,16 +28,22 @@ export default function Cadastro_content() {
       <Text style={{ color: "#ffffff", fontSize: 32 }}>Cadastro</Text>
       <Input_box_Component
         placeholder_propiedade={"Seu nome.."}
-        onChangeText_propiedade={setNome}
+        onChangeText_propiedade={onChangeName}
+        horizonte={160}
+        valueTextInput={valueName}
       />
       <Input_box_Component
         placeholder_propiedade={"Seu sobrenome.."}
-        onChangeText_propiedade={setSobrenome}
+        onChangeText_propiedade={onChangeSobrenome}
+        horizonte={160}
+        valueTextInput={valueSobrenome}
       />
       <Input_box_Component
         placeholder_propiedade={"Sua idade.."}
         teclado={"numeric"}
-        onChangeText_propiedade={setIdade}
+        onChangeText_propiedade={onChangeIdade}
+        horizonte={160}
+        valueTextInput={valueIdade}
       />
       <View
         style={{
@@ -39,13 +55,16 @@ export default function Cadastro_content() {
           backgroundColor: "white",
           margin: 10,
           height: 48,
+          width: 160,
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Picker
-          selectedValue={sexo}
+          selectedValue={valueSexo}
           style={{
-            width: 120,
-            height: 48,
+            width: 160,
+            height: 30,
             backgroundColor: "white",
             borderRadius: 15,
             borderColor: "#000000",
@@ -53,8 +72,10 @@ export default function Cadastro_content() {
             borderWidth: 1,
             margin: 0,
           }}
-          onValueChange={(itemValue) => setSexo(itemValue)}
+          onValueChange={(item) => onChangeSexo(item)}
         >
+          <Picker.Item label="Seu Sexo.." value="" />
+
           <Picker.Item
             style={{ fontSize: 16 }}
             label="Masculino"
@@ -67,7 +88,7 @@ export default function Cadastro_content() {
         Button_title={"Cadastrar"}
         fundo_buttom={"#1db954"}
         colorText_buttom={"#ffffff"}
-        Pressionamento={saveUserData}
+        Pressionamento={onPress}
       />
     </View>
   );

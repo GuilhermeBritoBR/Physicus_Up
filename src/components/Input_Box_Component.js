@@ -5,14 +5,16 @@ export default function Input_box_Component({
   placeholder_propiedade,
   onChangeText_propiedade,
   teclado,
-  height,
+  horizonte,
+  valueTextInput,
 }) {
   return (
     <TextInput
-      style={[DefaultStyles.Button]}
+      style={[DefaultStyles.Button, { width: horizonte }]}
       placeholder={placeholder_propiedade}
       onChangeText={onChangeText_propiedade}
       keyboardType={teclado}
+      value={valueTextInput}
     />
   );
 }

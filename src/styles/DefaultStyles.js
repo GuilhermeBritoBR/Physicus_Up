@@ -47,7 +47,6 @@ export const DefaultStyles = StyleSheet.create({
   Touch: {
     height: 48,
     width: 120,
-    backgroundColor: fundo_buttom,
     justifyContent: "center",
     alignItems: "center",
     border: "solid",
