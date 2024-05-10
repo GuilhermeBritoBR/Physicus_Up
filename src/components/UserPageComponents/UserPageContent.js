@@ -49,19 +49,9 @@ export default function UserPageContent() {
           },
         ]}
       >
-        <View
-          style={[
-            UserPage.box_icon,
-            {
-              justifyContent: "center",
-              alignItems: "center",
-              margin: 20,
-              flexDirection: "column",
-            },
-          ]}
-        >
-          <Image source={require("../../../assets/favicon.png")} />
-
+        <View style={UserPage.box_icon}>
+          <Image source={require('../../../assets/favicon.png')}></Image>
+          <IconComponent archive />
           <Text style={{ fontSize: 28, color: "white" }}>
             {dados.nome}
             {" " + dados.sobrenome}

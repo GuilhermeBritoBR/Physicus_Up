@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, Modal, Text } from "react-native";
+import { View, TouchableOpacity, Modal } from "react-native";
 
 //importando estilizações padroẽs da aplicação
 import { DefaultStyles } from "../styles/DefaultStyles";
@@ -13,28 +13,40 @@ import Add_Content from "./HomeComponents/Add_Content";
 import ModalComponent from "./ModalComponent";
 
 //importando HOOKS
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 //axios
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 //cabeçalho da aplicação, ele tem a função de mostrar seu perfil, adicionar o treino e mostrar o título da aplicação
 export default function HeaderComponent() {
   useEffect(() => {
-    change_title();
+    // Função para carregar os dados ao iniciar o aplicativo
+    carregarDados();
+    ChangeTitle();
   }, []);
+
+  const carregarDados = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/dados");
+      setDadosHeader(response.data);
+    } catch (error) {
+      console.error("Erro ao carregar os dados:", error);
+    }
+  };
+  async function ChangeTitle() {
+    if (dadosHeader.nome === "") {
+      setTitleHeader("Physicus Up");
+    } else {
+      const resultado = await dadosHeader.nome;
+      setTitleHeader(resultado);
+    }
+  }
   const [add, setAdd] = useState(false);
   const Navigation = useNavigation();
   const [titleHeader, setTitleHeader] = useState("");
-  const change_title = async () => {
-    const title = await AsyncStorage.getItem("username");
-    if (title === "") {
-      setTitleHeader(await AsyncStorage.getItem("username"));
-    } else {
-      setTitleHeader("Physicus Up");
-    }
-  };
+  const [dadosHeader, setDadosHeader] = useState({});
+
   return (
     <View style={[DefaultStyles.Header, { width: "100%", flex: 0.4 }]}>
       <TouchableOpacity
@@ -52,8 +64,9 @@ export default function HeaderComponent() {
         </View>
       </TouchableOpacity>
       <View style={[Header.TitleHeader, { flex: 1.2 }]}>
-        <Text
-          style={[
+        <TextComponent
+          title={"Physicus Up"}
+          styleText={[
             DefaultStyles.Text,
             {
               fontSize: 24,
@@ -66,6 +79,7 @@ export default function HeaderComponent() {
         >
           {titleHeader}
         </Text>
+        T
       </View>
       <TouchableOpacity
         onPress={() => setAdd(true)}
