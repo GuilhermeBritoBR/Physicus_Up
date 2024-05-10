@@ -56,7 +56,9 @@ export default function HomePage() {
     try {
       const response = await axios.get("http://localhost:3000/dados");
       setDados(response.data);
-      await AsyncStorage.setItem("Username", dados.nome);
+      const nome = dados.nome;
+      console.log("ESTOUAQUI", dados.nome);
+      await AsyncStorage.setItem("Username", nome);
     } catch (error) {
       console.error("Erro ao carregar os dados:", error);
     }
@@ -98,11 +100,14 @@ export default function HomePage() {
 
   return (
     <View style={DefaultStyles.container}>
-      <HeaderComponent />
+      <HeaderComponent
+        titleHeaderPropiedade={
+          dados.nome === "" ? "Physicus Up" : `Bem vindo, ${dados.nome}`
+        }
+      />
       <View style={[DefaultStyles.content, { width: "100%" }]}>
         {dados.nome === "" ? (
           <Cadastro_content
-            title
             valueName={nome}
             valueIdade={idade}
             valueSexo={sexo}
