@@ -43,6 +43,7 @@ export const DefaultStyles = StyleSheet.create({
     backgroundColor: "#ffffff",
     borderRadius: 15,
     margin: 10,
+    fontSize: 18,
   },
   Touch: {
     height: 48,

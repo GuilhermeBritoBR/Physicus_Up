@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-
+import { LinearGradient } from "expo-linear-gradient";
 //importantdo HOOKS
 import { useState } from "react";
 //Importando Styles
@@ -25,10 +25,10 @@ export default function IMC_Content({ xDoModal }) {
     if (calcImc < 18.5) {
       setImc(calcImc);
       setSituation("Abaixo do peso.");
-    } else if (calcImc >= 18.5 && calcImc < 24.9) {
+    } else if (calcImc >= 18.5 && calcImc < 24.99) {
       setImc(calcImc);
       setSituation("Peso normal.");
-    } else if (calcImc >= 25 && calcImc < 29.9) {
+    } else if (calcImc >= 25 && calcImc < 29.99) {
       setImc(calcImc);
       setSituation("Sobrepeso.");
     } else if (calcImc >= 30 && calcImc < 34.9) {
@@ -52,8 +52,8 @@ export default function IMC_Content({ xDoModal }) {
       style={[
         DefaultStyles.content,
         {
-          flex: 0.6,
-          width: "80%",
+          flex: 1,
+          width: "100%",
           border: "solid",
           borderWidth: 1,
           borderRadius: 15,
@@ -61,43 +61,70 @@ export default function IMC_Content({ xDoModal }) {
         },
       ]}
     >
-      <View>
-        <TextComponent
-          title={"IMC"}
-          styleText={[DefaultStyles.Text, { color: "#ffffff" }]}
+      <LinearGradient
+        colors={["#000000", "#535353"]}
+        start={{ x: 0, y: 1 }}
+        end={{ x: 1, y: 0 }}
+        locations={[0, 1]}
+        style={[
+          {
+            flex: 3,
+            width: "100%",
+            borderWidth: 1,
+            borderColor: "black",
+            border: "solid",
+            borderRadius: 15,
+            backgroundColor: "#000000",
+            justifyContent: "center",
+            alignItems: "center",
+          },
+        ]}
+      >
+        <View>
+          <TextComponent
+            title={"IMC"}
+            styleText={[DefaultStyles.Text, { color: "#ffffff", fontSize: 28 }]}
+          />
+        </View>
+        <Input_box_Component
+          onChangeText_propiedade={setAltura}
+          placeholder_propiedade={"Sua altura(CM).."}
+          teclado={"numeric"}
+          altura={56}
+          horizonte={180}
         />
-      </View>
-      <Input_box_Component
-        onChangeText_propiedade={setAltura}
-        placeholder_propiedade={"Sua altura(CM).."}
-        teclado={"numeric"}
-      />
-      <Input_box_Component
-        onChangeText_propiedade={setPeso}
-        placeholder_propiedade={"Seu peso(KG).."}
-        teclado={"numeric"}
-      />
-      <Text style={{ color: "white" }}>{imc}</Text>
-      <Text style={{ color: "white" }}>{situation}</Text>
+        <Input_box_Component
+          onChangeText_propiedade={setPeso}
+          placeholder_propiedade={"Seu peso(KG).."}
+          teclado={"numeric"}
+          altura={56}
+          horizonte={180}
+        />
+        <Text style={{ color: "white", fontSize: 20 }}>{imc}</Text>
+        <Text style={{ color: "white", fontSize: 20 }}>{situation}</Text>
 
-      <Button_Component
-        fundo_buttom={"#1db954"}
-        colorText_buttom={"#ffffff"}
-        Pressionamento={calc_imc}
-        Button_title={"Calcular"}
-      />
-      <Button_Component
-        fundo_buttom={"#1db954"}
-        colorText_buttom={"#ffffff"}
-        Pressionamento={SaveData}
-        Button_title={"Salvar"}
-      />
-      <Button_Component
-        Pressionamento={xDoModal}
-        Button_title={"Fechar"}
-        colorText_buttom={"#ffffff"}
-        fundo_buttom={"#000000"}
-      />
+        <Button_Component
+          fundo_buttom={"#1db954"}
+          colorText_buttom={"#ffffff"}
+          Pressionamento={calc_imc}
+          Button_title={"Calcular"}
+          altura={56}
+        />
+        <Button_Component
+          fundo_buttom={"#1db954"}
+          colorText_buttom={"#ffffff"}
+          Pressionamento={SaveData}
+          Button_title={"Salvar"}
+          altura={56}
+        />
+        <Button_Component
+          Pressionamento={xDoModal}
+          Button_title={"Fechar"}
+          colorText_buttom={"#ffffff"}
+          fundo_buttom={"#000000"}
+          altura={56}
+        />
+      </LinearGradient>
     </View>
   );
 }

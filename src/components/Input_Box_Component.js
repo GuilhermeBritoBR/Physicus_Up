@@ -7,10 +7,11 @@ export default function Input_box_Component({
   teclado,
   horizonte,
   valueTextInput,
+  altura,
 }) {
   return (
     <TextInput
-      style={[DefaultStyles.Button, { width: horizonte }]}
+      style={[DefaultStyles.Button, { width: horizonte, height: altura }]}
       placeholder={placeholder_propiedade}
       onChangeText={onChangeText_propiedade}
       keyboardType={teclado}
