@@ -11,6 +11,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 //async storage
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import WidgetDefaultComponent from "../WidgetDefaultComponent";
+import PesquisarComponent from "../SearchComponents/PesquisarComponent";
 export default function UserPageContent() {
   const [dados, setDados] = useState({});
   const [imc, setImc] = useState("");
@@ -49,27 +51,15 @@ export default function UserPageContent() {
           },
         ]}
       >
-        <View style={UserPage.box_icon}>
-          <Image source={require('../../../assets/favicon.png')}></Image>
-          <IconComponent archive />
-          <Text style={{ fontSize: 28, color: "white" }}>
-            {dados.nome}
-            {" " + dados.sobrenome}
-          </Text>
-        </View>
+        <View style={{ flex: 1 }}>
+          <PesquisarComponent
+            props_Text_Component={dados.nome + " " + dados.sobrenome}
+          />
+          <PesquisarComponent props_Text_Component={`IMC: ${imc}`} />
 
-        <View style={UserPage.container}>
-          <Text style={{ fontSize: 24, color: "white" }}>
-            {`Idade: ${dados.idade}`}
-          </Text>
-          <Text style={{ fontSize: 24, color: "white" }}>{`IMC: ${imc}`}</Text>
-          <Text
-            style={{ fontSize: 24, color: "white" }}
-          >{`Situação: ${situation}`}</Text>
-
-          <Text
-            style={{ fontSize: 24, color: "white" }}
-          >{`Sexo: ${dados.sexo}`}</Text>
+          <PesquisarComponent props_Text_Component={`Situação: ${situation}`} />
+          <PesquisarComponent props_Text_Component={`Sexo: ${dados.sexo}`} />
+          <PesquisarComponent props_Text_Component={`Idade: ${dados.idade}`} />
         </View>
       </LinearGradient>
     </View>
