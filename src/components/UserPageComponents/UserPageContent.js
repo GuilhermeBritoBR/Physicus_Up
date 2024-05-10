@@ -50,7 +50,7 @@ export default function UserPageContent() {
         ]}
       >
         <View style={UserPage.box_icon}>
-          <Image source={require('../../../assets/favicon.png')}
+          <Image source={require('../../../assets/favicon.png')}></Image>
           <IconComponent archive />
           <Text style={{ fontSize: 28, color: "white" }}>
             {dados.nome}
