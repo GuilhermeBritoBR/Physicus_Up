@@ -1,4 +1,5 @@
 <h1>Physicus Up</h1>
+<img src="./assets/favicon.png"/>
 <h2>Colaboradores: Guilherme Brito, Davi Nogueira e Nicolas Cardozo</h2>
 <h2>Instruções de instalação!</h2>
 <ul>
