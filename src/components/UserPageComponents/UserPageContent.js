@@ -31,7 +31,7 @@ export default function UserPageContent() {
     }
   }
   return (
-    <View style={[DefaultStyles.content, { width: "100%" }]}>
+    <View style={[DefaultStyles.content, { width: "100%", }]}>
       <LinearGradient
         colors={["#000000", "#535353"]}
         start={{ x: 0, y: 1 }}
@@ -51,11 +51,18 @@ export default function UserPageContent() {
           },
         ]}
       >
+        <View>
+          <Image
+            source={require("../../assets/imagem/brito.jpg")} 
+            style={{width: 100, height: 100, borderRadius: 360, marginTop: 7,}}
+          />
+          <Text style={{color: "white", textAlign:"center" }}>Brito suricato</Text>
+        </View>
+
         <View style={{ flex: 1 }}>
           <PesquisarComponent
             props_Text_Component={dados.nome + " " + dados.sobrenome}
           />
-          <PesquisarComponent props_Text_Component={`IMC: ${imc}`} />
 
           <PesquisarComponent props_Text_Component={`Situação: ${situation}`} />
           <PesquisarComponent props_Text_Component={`Sexo: ${dados.sexo}`} />

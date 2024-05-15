@@ -9,6 +9,13 @@ export const DefaultStyles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
   },
+  PageUser: {
+    tintColor: "#fffffff",
+    resizeMode: "contain",
+    height: 50,
+    width: 50,
+  },
+
   Header: {
     flex: 0.3,
     backgroundColor: "#000000",

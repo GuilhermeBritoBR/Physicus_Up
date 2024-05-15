@@ -8,6 +8,7 @@ import IconComponent from "../components/IconComponent";
 import HeaderComponent from "../components/HeaderComponent";
 import UserPageContent from "../components/UserPageComponents/UserPageContent";
 
+
 export default function UserPage() {
   return (
     <View style={DefaultStyles.container}>
