@@ -51,12 +51,38 @@ export default function UserPageContent() {
           },
         ]}
       >
+<<<<<<< Updated upstream
         <View>
           <Image
             source={require("../../assets/imagem/brito.jpg")} 
             style={{width: 100, height: 100, borderRadius: 360, marginTop: 7,}}
           />
           <Text style={{color: "white", textAlign:"center" }}>Brito suricato</Text>
+=======
+<<<<<<< HEAD
+        <View style={UserPage.box_icon}>
+          <Image source={require('../../../assets/favicon.png')}></Image>
+          <IconComponent archive />
+=======
+        <View
+          style={[
+            UserPage.box_icon,
+            {
+              justifyContent: "center",
+              alignItems: "center",
+              margin: 20,
+              flexDirection: "column",
+            },
+          ]}
+        >
+          <Image source={require("../../../assets/favicon.png")} />
+
+>>>>>>> 9e7361f525b5fb076ea7480a31a4b2164662fbf8
+          <Text style={{ fontSize: 28, color: "white" }}>
+            {dados.nome}
+            {" " + dados.sobrenome}
+          </Text>
+>>>>>>> Stashed changes
         </View>
 
         <View style={{ flex: 1 }}>
