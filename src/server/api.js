@@ -8,8 +8,8 @@ const app = express();
 //conexão myslq
 const db = mysql.createConnection({
   host: "localhost",
-  user: "phpmyadmin",
-  password: "flamengo",
+  user: "root",
+  password: "",
   database: "physicus_up",
 });
 db.connect((err) => {

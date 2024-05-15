@@ -31,7 +31,7 @@ export default function UserPageContent() {
     }
   }
   return (
-    <View style={[DefaultStyles.content, { width: "100%", }]}>
+    <View style={[DefaultStyles.content, { width: "100%" }]}>
       <LinearGradient
         colors={["#000000", "#535353"]}
         start={{ x: 0, y: 1 }}
@@ -51,6 +51,7 @@ export default function UserPageContent() {
           },
         ]}
       >
+<<<<<<< HEAD
 <<<<<<< Updated upstream
         <View>
           <Image
@@ -85,10 +86,13 @@ export default function UserPageContent() {
 >>>>>>> Stashed changes
         </View>
 
+=======
+>>>>>>> parent of 45e01b8 (update userpage)
         <View style={{ flex: 1 }}>
           <PesquisarComponent
             props_Text_Component={dados.nome + " " + dados.sobrenome}
           />
+          <PesquisarComponent props_Text_Component={`IMC: ${imc}`} />
 
           <PesquisarComponent props_Text_Component={`Situação: ${situation}`} />
           <PesquisarComponent props_Text_Component={`Sexo: ${dados.sexo}`} />

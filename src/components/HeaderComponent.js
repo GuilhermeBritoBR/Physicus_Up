@@ -17,23 +17,6 @@ import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 //axios
 import axios from "axios";
-<<<<<<< Updated upstream
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-//cabeçalho da aplicação, ele tem a função de mostrar seu perfil, adicionar o treino e mostrar o título da aplicação
-export default function HeaderComponent({ titleHeaderPropiedade }) {
-  useEffect(() => {
-    loadTitle();
-  }, []);
-  const [add, setAdd] = useState(false);
-  const Navigation = useNavigation();
-  const [titleHeader, setTitleHeader] = useState("");
-  async function loadTitle() {
-    const nome_local = await AsyncStorage.getItem("Username");
-    setTitleHeader(nome_local);
-    console.log(titleHeader);
-  }
-=======
 
 //cabeçalho da aplicação, ele tem a função de mostrar seu perfil, adicionar o treino e mostrar o título da aplicação
 export default function HeaderComponent() {
@@ -64,7 +47,6 @@ export default function HeaderComponent() {
   const [titleHeader, setTitleHeader] = useState("");
   const [dadosHeader, setDadosHeader] = useState({});
 
->>>>>>> Stashed changes
   return (
     <View style={[DefaultStyles.Header, { width: "100%", flex: 0.4 }]}>
       <TouchableOpacity
@@ -82,7 +64,6 @@ export default function HeaderComponent() {
         </View>
       </TouchableOpacity>
       <View style={[Header.TitleHeader, { flex: 1.2 }]}>
-<<<<<<< Updated upstream
         {titleHeader === "" ? (
           <Text
             style={[
@@ -114,7 +95,6 @@ export default function HeaderComponent() {
             Physicus Up
           </Text>
         )}
-=======
         <Text
           style={[
             DefaultStyles.Text,
@@ -129,8 +109,7 @@ export default function HeaderComponent() {
         >
           {titleHeader}
         </Text>
-        T
->>>>>>> Stashed changes
+
       </View>
       <TouchableOpacity
         onPress={() => setAdd(true)}

@@ -4,49 +4,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 //Importando Styles
 import { DefaultStyles } from "../styles/DefaultStyles";
+//importando componentes estruturais de nossa aplicação
+import FooterComponent from "../components/FooterComponent";
+import IconComponent from "../components/IconComponent";
+import HeaderComponent from "../components/HeaderComponent";
+import UserPageContent from "../components/UserPageComponents/UserPageContent";
 
-//importando components
-import Input_box_Component from "../components/Input_Box_Component";
-import Button_Component from "../components/Button_Component";
-import TextComponent from "../components/TextComponent";
-
-//Importando ASYNC STORAGE
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-export default function IMC_Content({ xDoModal }) {
-  const [altura, setAltura] = useState("");
-  const [peso, setPeso] = useState("");
-  const [situation, setSituation] = useState("");
-  const [imc, setImc] = useState("");
-
-  const calc_imc = () => {
-    const calcImc = (peso / ((altura / 100) * (altura / 100))).toFixed(2);
-
-    if (calcImc < 18.5) {
-      setImc(calcImc);
-      setSituation("Abaixo do peso.");
-    } else if (calcImc >= 18.5 && calcImc < 24.99) {
-      setImc(calcImc);
-      setSituation("Peso normal.");
-    } else if (calcImc >= 25 && calcImc < 29.99) {
-      setImc(calcImc);
-      setSituation("Sobrepeso.");
-    } else if (calcImc >= 30 && calcImc < 34.9) {
-      setImc(calcImc);
-      setSituation("Obesidade grau I.");
-    } else if (calcImc >= 35 && calcImc < 39.9) {
-      setImc(calcImc);
-      setSituation("Obesdade grau II.");
-    } else {
-      setImc(calcImc);
-      setSituation("Obesidade grau III.");
-    }
-  };
-  async function SaveData() {
-    await AsyncStorage.setItem("Imc_user", imc);
-    await AsyncStorage.setItem("Imc_situation", situation);
-  }
-
+export default function UserPage() {
   return (
     <View
       style={[
@@ -86,27 +50,13 @@ export default function IMC_Content({ xDoModal }) {
             styleText={[DefaultStyles.Text, { color: "#ffffff", fontSize: 28 }]}
           />
         </View>
-        <Input_box_Component
-          onChangeText_propiedade={setAltura}
-          placeholder_propiedade={"Nome:.."}
-          teclado={"numeric"}
-          altura={56}
-          horizonte={180}
-        />
-        <Input_box_Component
-          onChangeText_propiedade={setPeso}
-          placeholder_propiedade={"Idade:.."}
-          teclado={"numeric"}
-          altura={56}
-          horizonte={180}
-        />
-        <Input_box_Component
-          onChangeText_propiedade={setPeso}
-          placeholder_propiedade={"Sexo:.."}
-          teclado={"numeric"}
-          altura={56}
-          horizonte={180}
-        />
+        <View>
+          <Image
+            source={require("../../assets/imagem/brito.jpg")} 
+            style={{width: 100, height: 100, borderRadius: 360, marginTop: 7,}}
+          />
+          <Text style={{color: "white", textAlign:"center" }}>Brito suricato</Text>
+        </View>
         <Text style={{ color: "white", fontSize: 20 }}>{imc}</Text>
         <Text style={{ color: "white", fontSize: 20 }}>{situation}</Text>
 
