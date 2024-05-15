@@ -5,6 +5,7 @@ import AnalyticsPage from "./src/pages/AnalyticsPage";
 import MusculationPage from "./src/pages/MusculationPage";
 import UserPage from "./src/pages/UserPage";
 import RecordsPage from "./src/pages/RecordsPage";
+import RunningPage from "./src/pages/RunningPage";
 
 //importanto rotas stack
 import { NavigationContainer } from "@react-navigation/native";
@@ -26,6 +27,7 @@ export default function App() {
         <Stack.Screen name="MusculationPage" component={MusculationPage} />
         <Stack.Screen name="UserPage" component={UserPage} />
         <Stack.Screen name="RecordsPage" component={RecordsPage} />
+        <Stack.Screen name="RunningPage" component={RunningPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

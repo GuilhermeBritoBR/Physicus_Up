@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react, { useState, useEffect } from "react";
 import { View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Picker } from "@react-native-picker/picker";
@@ -11,9 +11,64 @@ import Button_Component from "../components/Button_Component";
 import HeaderComponent from "../components/HeaderComponent";
 import FooterComponent from "../components/FooterComponent";
 import TextComponent from "../components/TextComponent";
+//axios
+import axios from "axios";
 
-export default function MusculationPage() {
-  const [esforco, setEsforco] = useState("");
+export default function RunningPage() {
+  const [name, setName] = useState("");
+  const [level, setLevel] = useState("");
+  const [distance, setDistance] = useState("");
+  const [time, setTime] = useState("");
+  const [obs, setObs] = useState("");
+  const [date, setDate] = useState("");
+  //variaveis para somar
+
+  //
+  // useEffect(() => {
+  //   // Função para carregar os dados ao iniciar o aplicativo
+  //   carregarDados();
+  // }, []);
+
+  // const carregarDados = async () => {
+  //   try {
+  //     const response = await axios.get("http://localhost:3000/dados");
+  //     setDados(response.data);
+  //     const nome = dados.nome;
+  //     console.log("ESTOUAQUI", dados.nome);
+  //     await AsyncStorage.setItem("Username", nome);
+  //   } catch (error) {
+  //     console.error("Erro ao carregar os dados:", error);
+  //   }
+  // };
+  //função de enviar dados via post
+  const atualizarDados = async () => {
+    if (
+      name === "" ||
+      distance === "" ||
+      time === "" ||
+      obs === "" ||
+      level === "" ||
+      date === ""
+    ) {
+      try {
+        await axios.post("http://localhost:3000/addrun", {
+          name,
+          distance,
+          time,
+          obs,
+          level,
+          date,
+        });
+        // Recarregar os dados após a atualização
+      } catch (error) {
+        console.error("Erro ao atualizar os dados:", error);
+        alert("Erro ao atualizar os dados");
+      }
+    } else {
+      alert("Por favor, preencha todos os campos!");
+    }
+  };
+
   return (
     <View style={DefaultStyles.container}>
       <LinearGradient
@@ -49,9 +104,10 @@ export default function MusculationPage() {
           />
           <View style={{ flex: 0, flexDirection: "row" }}>
             <Input_box_Component
-              placeholder_propiedade={"Esforço"}
+              placeholder_propiedade={"Nome da atividade.."}
               horizonte={312}
               altura={56}
+              valueTextInput={name}
             />
           </View>
           <View style={{ flex: 0, flexDirection: "row" }}>
@@ -59,30 +115,26 @@ export default function MusculationPage() {
               placeholder_propiedade={"Distância (km)"}
               horizonte={312}
               altura={56}
+              teclado={"numeric"}
+              valueTextInput={distance}
             />
           </View>
           <View style={{ flex: 0, flexDirection: "row" }}>
             <Input_box_Component
-              placeholder_propiedade={"Horas"}
+              placeholder_propiedade={"Tempo"}
               horizonte={312}
               altura={56}
               teclado={"numeric"}
+              valueTextInput={time}
             />
           </View>
+
           <View style={{ flex: 0, flexDirection: "row" }}>
             <Input_box_Component
-              placeholder_propiedade={"Minutos"}
+              placeholder_propiedade={"Obs"}
               horizonte={312}
               altura={56}
-              teclado={"numeric"}
-            />
-          </View>
-          <View style={{ flex: 0, flexDirection: "row" }}>
-            <Input_box_Component
-              placeholder_propiedade={"Segundos"}
-              horizonte={312}
-              altura={56}
-              teclado={"numeric"}
+              valueTextInput={obs}
             />
           </View>
           <View style={{ flex: 0, flexDirection: "row" }}>
@@ -102,7 +154,7 @@ export default function MusculationPage() {
               }}
             >
               <Picker
-                selectedValue={esforco}
+                selectedValue={level}
                 style={{
                   width: 312,
                   height: 89,
@@ -113,7 +165,7 @@ export default function MusculationPage() {
                   borderWidth: 1,
                   margin: 0,
                 }}
-                onValueChange={(item) => setEsforco(item)}
+                onValueChange={(item) => setLevel(item)}
               >
                 <Picker.Item label="Esforço dedicado [0-10]" value="" />
                 <Picker.Item label="Fácil [1]" value="1" />
@@ -136,6 +188,7 @@ export default function MusculationPage() {
               fundo_buttom={"#1db954"}
               Button_title={"Salvar"}
               altura={56}
+              Pressionamento={() => atualizarDados()}
             />
           </View>
         </View>

@@ -8,12 +8,12 @@ export default function AnalyticsPage() {
   return (
     <View style={DefaultStyles.container}>
       <HeaderComponent />
-      <View style={[DefaultStyles.content,{flex: 3}]}>
+      <View style={[DefaultStyles.content, { flex: 3 }]}>
         <ScrollView>
           <BlockDefaultComponent
-            titleCenter={"Desempenho"}
-            corDegrade1={"#000000"}
-            corDegrade2={"#000000"}
+            titleCenter={"oi"}
+            corDegrade1={"#00B3B3B3"}
+            corDegrade2={"#00B3B3B3"}
           />
         </ScrollView>
       </View>

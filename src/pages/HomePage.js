@@ -65,7 +65,7 @@ export default function HomePage() {
   };
   const atualizarDados = async () => {
     try {
-      await axios.post("http://localhost:3000/atualizar", {
+      await axios.post("http://localhost:3000/usuario", {
         nome,
         sobrenome,
         idade,
