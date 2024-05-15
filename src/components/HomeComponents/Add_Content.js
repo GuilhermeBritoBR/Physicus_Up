@@ -13,7 +13,10 @@ export default function Add_Content() {
   const Navigation = useNavigation();
   return (
     <View style={[DefaultStyles.content]}>
-      <PesquisarComponent props_Text_Component={"Corrida de rua"} />
+      <PesquisarComponent
+        On_press={() => Navigation.navigate("RunningPage")}
+        props_Text_Component={"Corrida de rua"}
+      />
 
       <PesquisarComponent
         On_press={() => Navigation.navigate("MusculationPage")}
