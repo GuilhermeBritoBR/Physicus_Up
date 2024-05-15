@@ -14,7 +14,7 @@ import TextComponent from "../TextComponent";
 export default function BlockDefaultComponent({
   corDegrade1,
   corDegrade2,
-  titleCenter,
+  titleBlock,
   descriçaoCenter,
 }) {
   return (
@@ -36,7 +36,7 @@ export default function BlockDefaultComponent({
         <View style={[{ flex: 1 }]}>
           <TextComponent
             styleText={[widgetDefaultComponent.dataWidget, {}]}
-            title={titleCenter}
+            title={titleBlock}
           />
           <TextComponent
             styleText={[widgetDefaultComponent.dataWidget, { fontSize: 20 }]}
