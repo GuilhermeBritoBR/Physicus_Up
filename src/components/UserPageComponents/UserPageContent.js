@@ -13,6 +13,7 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import WidgetDefaultComponent from "../WidgetDefaultComponent";
 import PesquisarComponent from "../SearchComponents/PesquisarComponent";
+import FooterComponent from "../FooterComponent";
 export default function UserPageContent() {
   const [dados, setDados] = useState({});
   const [imc, setImc] = useState("");
@@ -37,7 +38,6 @@ export default function UserPageContent() {
             {
               justifyContent: "center",
               alignItems: "center",
-              margin: 20,
               flexDirection: "column",
             },
           ]}
@@ -60,6 +60,5 @@ export default function UserPageContent() {
           <PesquisarComponent props_Text_Component={`Idade: ${dados.idade}`} />
         </View>
         </View>
-   
   );
 }
