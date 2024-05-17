@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 //css
 import { DefaultStyles } from "../../styles/DefaultStyles";
@@ -31,40 +31,6 @@ export default function UserPageContent() {
     }
   }
   return (
-    <View style={[DefaultStyles.content, { width: "100%" }]}>
-      <LinearGradient
-        colors={["#000000", "#535353"]}
-        start={{ x: 0, y: 1 }}
-        end={{ x: 1, y: 0 }}
-        locations={[0, 1]}
-        style={[
-          {
-            flex: 3,
-            width: "100%",
-            borderWidth: 1,
-            borderColor: "black",
-            border: "solid",
-            borderRadius: 15,
-            backgroundColor: "#000000",
-            justifyContent: "center",
-            alignItems: "center",
-          },
-        ]}
-      >
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-        <View>
-          <Image
-            source={require("../../assets/imagem/brito.jpg")} 
-            style={{width: 100, height: 100, borderRadius: 360, marginTop: 7,}}
-          />
-          <Text style={{color: "white", textAlign:"center" }}>Brito suricato</Text>
-=======
-<<<<<<< HEAD
-        <View style={UserPage.box_icon}>
-          <Image source={require('../../../assets/favicon.png')}></Image>
-          <IconComponent archive />
-=======
         <View
           style={[
             UserPage.box_icon,
@@ -76,18 +42,13 @@ export default function UserPageContent() {
             },
           ]}
         >
-          <Image source={require("../../../assets/favicon.png")} />
 
->>>>>>> 9e7361f525b5fb076ea7480a31a4b2164662fbf8
           <Text style={{ fontSize: 28, color: "white" }}>
             {dados.nome}
             {" " + dados.sobrenome}
           </Text>
->>>>>>> Stashed changes
-        </View>
+       
 
-=======
->>>>>>> parent of 45e01b8 (update userpage)
         <View style={{ flex: 1 }}>
           <PesquisarComponent
             props_Text_Component={dados.nome + " " + dados.sobrenome}
@@ -98,7 +59,7 @@ export default function UserPageContent() {
           <PesquisarComponent props_Text_Component={`Sexo: ${dados.sexo}`} />
           <PesquisarComponent props_Text_Component={`Idade: ${dados.idade}`} />
         </View>
-      </LinearGradient>
-    </View>
+        </View>
+   
   );
 }

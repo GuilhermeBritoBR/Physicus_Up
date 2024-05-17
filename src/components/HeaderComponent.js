@@ -19,7 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
 //cabeçalho da aplicação, ele tem a função de mostrar seu perfil, adicionar o treino e mostrar o título da aplicação
-export default function HeaderComponent() {
+export default function HeaderComponent({titleHeaderPropiedade}) {
   useEffect(() => {
     // Função para carregar os dados ao iniciar o aplicativo
     carregarDados();
@@ -77,7 +77,7 @@ export default function HeaderComponent() {
               },
             ]}
           >
-            {titleHeaderPropiedade}
+            {titleHeader}
           </Text>
         ) : (
           <Text
@@ -95,20 +95,6 @@ export default function HeaderComponent() {
             Physicus Up
           </Text>
         )}
-        <Text
-          style={[
-            DefaultStyles.Text,
-            {
-              fontSize: 24,
-              textAlign: "center",
-              justifyContent: "center",
-              flexDirection: "row",
-              flex: 1,
-            },
-          ]}
-        >
-          {titleHeader}
-        </Text>
 
       </View>
       <TouchableOpacity

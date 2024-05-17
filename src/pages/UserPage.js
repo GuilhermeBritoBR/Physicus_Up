@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 //importantdo HOOKS
 import { useState } from "react";
@@ -12,19 +12,7 @@ import UserPageContent from "../components/UserPageComponents/UserPageContent";
 
 export default function UserPage() {
   return (
-    <View
-      style={[
-        DefaultStyles.content,
-        {
-          flex: 1,
-          width: "100%",
-          border: "solid",
-          borderWidth: 1,
-          borderRadius: 15,
-          borderColor: "#000000cc",
-        },
-      ]}
-    >
+    
       <LinearGradient
         colors={["#000000", "#535353"]}
         start={{ x: 0, y: 1 }}
@@ -44,37 +32,15 @@ export default function UserPage() {
           },
         ]}
       >
-        <View>
-          <TextComponent
-            title={"IMC"}
-            styleText={[DefaultStyles.Text, { color: "#ffffff", fontSize: 28 }]}
-          />
-        </View>
+       
         <View>
           <Image
-            source={require("../../assets/imagem/brito.jpg")} 
+            source={require("../assets/brito.jpg")} 
             style={{width: 100, height: 100, borderRadius: 360, marginTop: 7,}}
           />
           <Text style={{color: "white", textAlign:"center" }}>Brito suricato</Text>
         </View>
-        <Text style={{ color: "white", fontSize: 20 }}>{imc}</Text>
-        <Text style={{ color: "white", fontSize: 20 }}>{situation}</Text>
-
-        <Button_Component
-          fundo_buttom={"#1db954"}
-          colorText_buttom={"#ffffff"}
-          Pressionamento={SaveData}
-          Button_title={"Salvar"}
-          altura={56}
-        />
-        <Button_Component
-          Pressionamento={xDoModal}
-          Button_title={"Fechar"}
-          colorText_buttom={"#ffffff"}
-          fundo_buttom={"#000000"}
-          altura={56}
-        />
+        <UserPageContent/>  
       </LinearGradient>
-    </View>
   );
 }
