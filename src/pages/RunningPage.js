@@ -42,16 +42,22 @@ export default function RunningPage() {
   // };
   //função de enviar dados via post
   const atualizarDados = async () => {
+    console.log(name,
+      distance,
+      time,
+      obs,
+      level,
+      );
     if (
-      name === "" ||
-      distance === "" ||
-      time === "" ||
-      obs === "" ||
-      level === "" ||
-      date === ""
+      name !== "" ||
+      distance !== "" ||
+      time !== "" ||
+      obs !== "" ||
+      level !== "" ||
+      date !== ""
     ) {
       try {
-        await axios.post("http://localhost:3000/addrun", {
+        await axios.post("http://localhost:3000/api/addrun", {
           name,
           distance,
           time,
@@ -102,42 +108,46 @@ export default function RunningPage() {
             styleText={{ color: "white", fontSize: 28 }}
             title={"Adicionar Corrida"}
           />
-          <View style={{ flex: 0, flexDirection: "row" }}>
+          <View style={{ flex: 1, flexDirection: "row" }}>
             <Input_box_Component
               placeholder_propiedade={"Nome da atividade.."}
               horizonte={312}
               altura={56}
               valueTextInput={name}
+              onChangeText_propiedade={setName}
             />
           </View>
-          <View style={{ flex: 0, flexDirection: "row" }}>
+          <View style={{ flex: 1, flexDirection: "row" }}>
             <Input_box_Component
               placeholder_propiedade={"Distância (km)"}
               horizonte={312}
               altura={56}
               teclado={"numeric"}
               valueTextInput={distance}
+              onChangeText_propiedade={setDistance}
             />
           </View>
-          <View style={{ flex: 0, flexDirection: "row" }}>
+          <View style={{ flex: 1, flexDirection: "row" }}>
             <Input_box_Component
               placeholder_propiedade={"Tempo"}
               horizonte={312}
               altura={56}
               teclado={"numeric"}
               valueTextInput={time}
+              onChangeText_propiedade={setTime}
             />
           </View>
 
-          <View style={{ flex: 0, flexDirection: "row" }}>
+          <View style={{ flex: 1, flexDirection: "row" }}>
             <Input_box_Component
               placeholder_propiedade={"Obs"}
               horizonte={312}
               altura={56}
               valueTextInput={obs}
+              onChangeText_propiedade={setObs}
             />
           </View>
-          <View style={{ flex: 0, flexDirection: "row" }}>
+          <View style={{ flex: 1, flexDirection: "row" }}>
             <View
               style={{
                 overflow: "hidden",
@@ -182,7 +192,7 @@ export default function RunningPage() {
             </View>
           </View>
 
-          <View style={{ flex: 0 }}>
+          <View style={{ flex: 1 }}>
             <Button_Component
               colorText_buttom={"#ffffff"}
               fundo_buttom={"#1db954"}

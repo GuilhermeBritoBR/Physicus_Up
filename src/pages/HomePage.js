@@ -50,6 +50,7 @@ export default function HomePage() {
   useEffect(() => {
     // Função para carregar os dados ao iniciar o aplicativo
     carregarDados();
+    Search();
   }, []);
 
   const carregarDados = async () => {
