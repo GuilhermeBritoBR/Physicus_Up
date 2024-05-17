@@ -50,9 +50,7 @@ export default function UserPageContent() {
        
 
         <View style={{ flex: 1 }}>
-          <PesquisarComponent
-            props_Text_Component={dados.nome + " " + dados.sobrenome}
-          />
+         
           <PesquisarComponent props_Text_Component={`IMC: ${imc}`} />
 
           <PesquisarComponent props_Text_Component={`Situação: ${situation}`} />

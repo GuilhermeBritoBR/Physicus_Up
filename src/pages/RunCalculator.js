@@ -9,6 +9,7 @@ import { DefaultStyles } from "../styles/DefaultStyles";
 import Input_box_Component from "../components/Input_Box_Component";
 import Button_Component from "../components/Button_Component";
 import TextComponent from "../components/TextComponent";
+import FooterComponent from "../components/FooterComponent";
 
 //Importando ASYNC STORAGE
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -112,6 +113,7 @@ function pace()  {
           altura={56}
         />
       </LinearGradient>
+      <FooterComponent />
     </View>
   );
 }

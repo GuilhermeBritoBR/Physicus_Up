@@ -50,7 +50,7 @@ export default function HomePage() {
   useEffect(() => {
     // Função para carregar os dados ao iniciar o aplicativo
     carregarDados();
-    Search();
+    Search()
   }, []);
 
   const carregarDados = async () => {
@@ -106,8 +106,9 @@ export default function HomePage() {
           dados.nome === "" ? "Physicus Up" : `Bem vindo, ${dados.nome}`
         }
       />
+      {dados.nome === "" ? (
       <View style={[DefaultStyles.content, { width: "100%" }]}>
-        {dados.nome === "" ? (
+        
           <Cadastro_content
             valueName={nome}
             valueIdade={idade}
@@ -119,7 +120,10 @@ export default function HomePage() {
             onChangeSobrenome={(valueSexo) => setSobrenome(valueSexo)}
             onPress={atualizarDados}
           />
+           </View>
         ) : (
+          <View style={DefaultStyles.container}>
+          <View style={[DefaultStyles.content, { width: "100%" }]}>
           <UserHome_Component
             vidro={boleana}
             imc={imc}
@@ -130,9 +134,13 @@ export default function HomePage() {
             xDoModal={closeModal}
             funçao={() => setBoleana(true)}
           />
+          
+           </View>
+            <FooterComponent />
+            </View>
+           
         )}
-      </View>
-      <FooterComponent />
+     
     </View>
   );
 }
