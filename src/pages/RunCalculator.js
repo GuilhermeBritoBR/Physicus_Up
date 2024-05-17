@@ -20,7 +20,7 @@ export default function RunCalculator(){
     const [resultado, setResultado] = useState('');
 function pace()  {
     console.log(km, horas, minutos, segundos, resultado);
-    const tempo = parseFloat(horas * 60 + minutos + segundos / 60);
+    const tempo = (parseFloat(horas * 60) + parseFloat(minutos) + parseFloat(segundos / 60));
 		let pace = (parseFloat(tempo) / parseFloat(km));
         console.log(pace);
 		let paceMinutos = parseFloat(Math.floor(pace));
@@ -30,7 +30,7 @@ function pace()  {
 		const paceSegundos = "0" + paceSegundos;
 	} 
 
-	setResultado(`${paceMinutos}:${paceSegundos} Min/KM`);  
+	setResultado(`Ritmo de ${paceMinutos}:${paceSegundos} Min/KM`);  
 }
 
 
@@ -67,6 +67,10 @@ function pace()  {
           },
         ]}
       >
+        <TextComponent
+            styleText={{ color: "white", fontSize: 28 }}
+            title={"Calcular Ritmo de Corrida"}
+          />
         <Input_box_Component
           onChangeText_propiedade={setKm}
           placeholder_propiedade={"Distância(km)"}
