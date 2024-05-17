@@ -49,9 +49,9 @@ app.get("/dados", (req, res) => {
     res.json(jsonData);
   });
 });
-app.post("/addrun", (req, res) => {
+app.post("/api/addrun", (req, res) => {
   const SQL =
-    "INSERT INTO run (name, distance, time, obs, date) VALUES (?,?,?,?,?)";
+    "INSERT INTO tabela (name, distance, time, obs, date) VALUES (?,?,?,?,?)";
   const [name, distance, time, obs, date] = req.body;
   if (err) {
     console.log(`Erro na escrita do treino de corrida ${err}`);
@@ -61,7 +61,7 @@ app.post("/addrun", (req, res) => {
         console.log(`Erro na escrita do treino de corrida ${err}`);
       } else {
         console.log(`Escrita do treino de corrida `);
-        res.send("ENviado com sucesso!");
+        res.send(result);
       }
     });
   }
