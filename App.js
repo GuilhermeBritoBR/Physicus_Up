@@ -10,6 +10,7 @@ import RunningPage from "./src/pages/RunningPage";
 //importanto rotas stack
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import RunCalculator from "./src/pages/RunCalculator";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
         <Stack.Screen name="UserPage" component={UserPage} />
         <Stack.Screen name="RecordsPage" component={RecordsPage} />
         <Stack.Screen name="RunningPage" component={RunningPage} />
+        <Stack.Screen name="RunCalculator" component={RunCalculator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

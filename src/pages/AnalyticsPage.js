@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View, TouchableOpacity } from "react-native";
 import { DefaultStyles } from "../styles/DefaultStyles";
 import HeaderComponent from "../components/HeaderComponent";
 import FooterComponent from "../components/FooterComponent";
@@ -18,22 +18,29 @@ export default function AnalyticsPage() {
           <Text style={{ color: "white", textAlign: "center", fontSize: 20 }}>
             Estatisticas
           </Text>
+          <TouchableOpacity>
           <BlockDefaultComponent
             titleBlock={"Evolução de tempo"}
             corDegrade1={"#B3B3B3"}
             corDegrade2={"#B3B3B3"}
           />
+          </TouchableOpacity>
 
+          <TouchableOpacity>
           <BlockDefaultComponent
             titleBlock={"Evolução de peso"}
             corDegrade1={"#B3B3B3"}
             corDegrade2={"#B3B3B3"}
           />
+        </TouchableOpacity>
+
+        <TouchableOpacity>
           <BlockDefaultComponent
             titleBlock={"Evolução de carga"}
             corDegrade1={"#B3B3B3"}
             corDegrade2={"#B3B3B3"}
           />
+          </TouchableOpacity>
         </ScrollView>
       </View>
       <FooterComponent />
