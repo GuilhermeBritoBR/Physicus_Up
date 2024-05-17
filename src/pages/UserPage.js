@@ -40,23 +40,13 @@ export default function UserPage() {
             width: 100,
             height: 100,
             borderRadius: 360,
-            marginTop: 200,
+            marginTop: 100,
             justifyContent: "center",
             alignItems: "center",
+            marginTop: 220,
           }}
         />
 
-        <Text
-          style={{
-            color: "white",
-            textAlign: "center",
-            fontSize: 20,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          Guilherme
-        </Text>
       </View>
       
       <UserPageContent />
