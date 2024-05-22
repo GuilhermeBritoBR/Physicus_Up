@@ -10,4 +10,6 @@
 <li>npx expo install @react-navigation/native</li>
 <li>npx expo install @react-native-async-storage/async-storage</li>
 <li>npx expo install @expo/metro-runtime</li>
+<li>npx expo install @react-native-community/datetimepicker</li>
+<li>npx expo install react-native-modern-datepicker</li>
 </ul>
