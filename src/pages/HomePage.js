@@ -28,6 +28,7 @@ export default function HomePage() {
   //refresh states
   const [refresh, setRefresh] = useState(false);
   //userdataBase states
+  const [widgetData, setWidgetData] = useState({});
   const [dados, setDados] = useState({});
   const [sexo, setSexo] = useState("");
   const [idade, setIdade] = useState("");
@@ -36,7 +37,6 @@ export default function HomePage() {
 
   function closeModal() {
     setBoleana(false);
-    Search();
     onRefresh();
   }
   //pega a url do servidor para atualizar os dados
@@ -50,19 +50,25 @@ export default function HomePage() {
   useEffect(() => {
     // Função para carregar os dados ao iniciar o aplicativo
     carregarDados();
-    Search()
-  }, []);
+  }, [imc, desc]);
 
   const carregarDados = async () => {
     try {
       const response = await axios.get("http://localhost:3000/dados");
+      const getImc = await axios.get("http://localhost:3000/api/get_imc");
       setDados(response.data);
+      setWidgetData(getImc.data);
+      setImc(widgetData.imc);
+      setDesc(widgetData.situation);
+      console.log(widgetData);
       const nome = dados.nome;
       console.log("ESTOUAQUI", dados.nome);
       await AsyncStorage.setItem("Username", nome);
     } catch (error) {
       console.error("Erro ao carregar os dados:", error);
     }
+    console.log(imc);
+    console.log(desc);
   };
   const atualizarDados = async () => {
     try {
@@ -84,10 +90,7 @@ export default function HomePage() {
   ////////////////////localSTORAGE///////////////////////////
   ///////////////////////////////////////////////
 
-  async function Search() {
-    setImc(await AsyncStorage.getItem("Imc_user"));
-    setDesc(await AsyncStorage.getItem("Imc_situation"));
-  }
+  
   const onRefresh = React.useCallback(() => {
     setRefresh(true);
     setTimeout(() => {
@@ -126,8 +129,12 @@ export default function HomePage() {
           <View style={[DefaultStyles.content, { width: "100%" }]}>
           <UserHome_Component
             vidro={boleana}
-            imc={imc}
-            desc={desc}
+            imc={
+              widgetData.imc === ""   ?  "IMC": widgetData.imc
+            }
+            desc={
+              widgetData.situation === ""  ?   "Calcule seu IMC!" : widgetData.situation
+            }
             refresh={refresh}
             onRefresh={onRefresh}
             data={data}

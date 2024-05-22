@@ -66,7 +66,33 @@ app.post("/api/addrun", (req, res) => {
     });
   }
 });
-
+//salvar dados do Imc em arquivo JSON tmj
+app.post('/api/save_imc', (req,res)=>{
+  const newData = req.body;
+  const jsonData = JSON.stringify(newData, null, 2);
+  fs.writeFile("ImcDataBase.json", jsonData, (err) => {
+    if (err) {
+      console.error("Erro ao atualizar o arquivo JSON:", err);
+      res.status(500).send("Erro ao atualizar o arquivo JSON");
+      return;
+    }
+    console.log("Arquivo JSON atualizado com sucesso");
+    res.send("Arquivo JSON atualizado com sucesso");
+  
+  });
+});
+//buscando dados do Imc 
+app.get("/api/get_imc", (req, res) => {
+  fs.readFile("imcDataBase.json", "utf8", (err, data) => {
+    if (err) {
+      console.error("Erro ao ler o arquivo JSON:", err);
+      res.status(500).send("Erro ao ler o arquivo JSON");
+      return;
+    }
+    const jsonData = JSON.parse(data);
+    res.json(jsonData);
+  });
+});
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor iniciado na porta ${PORT}`);

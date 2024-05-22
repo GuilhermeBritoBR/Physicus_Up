@@ -12,8 +12,24 @@ import TextComponent from "../TextComponent";
 
 //Importando ASYNC STORAGE
 import AsyncStorage from "@react-native-async-storage/async-storage";
+//importando AXIOS
+import axios from "axios";
 
 export default function IMC_Content({ xDoModal }) {
+
+  const SaveData = async () => {
+    try {
+      await axios.post("http://localhost:3000/api/save_imc", { imc,situation
+      });
+      // Recarregar os dados após a atualização
+      await AsyncStorage.setItem("Imc_user", imc);
+      await AsyncStorage.setItem("Imc_situation", situation);
+      alert("Dados atualizados com sucesso");
+    } catch (error) {
+      console.error("Erro ao atualizar os dados:", error);
+      alert("Erro ao atualizar os dados");
+    }
+  };
   const [altura, setAltura] = useState("");
   const [peso, setPeso] = useState("");
   const [situation, setSituation] = useState("");
@@ -42,10 +58,7 @@ export default function IMC_Content({ xDoModal }) {
       setSituation("Obesidade grau III.");
     }
   };
-  async function SaveData() {
-    await AsyncStorage.setItem("Imc_user", imc);
-    await AsyncStorage.setItem("Imc_situation", situation);
-  }
+  
 
   return (
     <View
