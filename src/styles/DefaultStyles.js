@@ -56,11 +56,35 @@ export const DefaultStyles = StyleSheet.create({
     borderRadius: 15,
     margin: 5,
   },
+  DatePicker: {
+    height: 48,
+    width: 120,
+    backgroundColor: "#ffffff",
+    borderRadius: 15,
+    margin: 10,
+    fontSize: 18,
+  },
+  ModalCalendar:{
+    width: '100%',
+    flex: 1,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  Calendar:{
+    width: '5 rem',
+    height: '5 rem',
+    padding: 50,
+    shadowColor: '#000000',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  }
 });
 
 export const widgetDefaultComponent = StyleSheet.create({
   widgetContent: {
-    width: 375,
+    width: 348,
     height: 198,
     margin: 10,
     backgroundColor: "transparent",

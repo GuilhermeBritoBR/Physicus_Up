@@ -2,7 +2,8 @@ import react, { useState, useEffect } from "react";
 import { View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Picker } from "@react-native-picker/picker";
-
+import { Modal } from "react-native";
+import {getToday, getFormatedDate} from 'react-native-modern-datepicker';
 //importando CSS
 import { DefaultStyles } from "../styles/DefaultStyles";
 //importando components
@@ -13,33 +14,28 @@ import FooterComponent from "../components/FooterComponent";
 import TextComponent from "../components/TextComponent";
 //axios
 import axios from "axios";
+//date picker
+import DatePicker from "react-native-modern-datepicker";
+import { TouchableOpacity } from "react-native-web";
+import ModernButtonComponent from "../components/ModernButtonComponent";
 
 export default function RunningPage() {
+
+  //trabalhando função d datePicker
+  const today = new Date();
+  const startDate = getFormatedDate(today.setDate(today.getDate()+ 1))
+  function openModal(){
+    setVisible(!visible);
+  }
   const [name, setName] = useState("");
   const [level, setLevel] = useState("");
   const [distance, setDistance] = useState("");
   const [time, setTime] = useState("");
   const [obs, setObs] = useState("");
   const [date, setDate] = useState("");
+  const [visible, setVisible] = useState(false);
   //variaveis para somar
 
-  //
-  // useEffect(() => {
-  //   // Função para carregar os dados ao iniciar o aplicativo
-  //   carregarDados();
-  // }, []);
-
-  // const carregarDados = async () => {
-  //   try {
-  //     const response = await axios.get("http://localhost:3000/dados");
-  //     setDados(response.data);
-  //     const nome = dados.nome;
-  //     console.log("ESTOUAQUI", dados.nome);
-  //     await AsyncStorage.setItem("Username", nome);
-  //   } catch (error) {
-  //     console.error("Erro ao carregar os dados:", error);
-  //   }
-  // };
   //função de enviar dados via post
   const atualizarDados = async () => {
     console.log(name,
@@ -47,6 +43,7 @@ export default function RunningPage() {
       time,
       obs,
       level,
+      date
       );
     if (
       name !== "" ||
@@ -57,24 +54,34 @@ export default function RunningPage() {
       date !== ""
     ) {
       try {
-        await axios.post("http://localhost:3000/api/addrun", {
-          name,
-          distance,
-          time,
-          obs,
-          level,
-          date,
-        });
+        console.log(`{name:"${name}", distance:${distance}, time:${time}, obs:"${obs}", level:${level}, date:"${date}"}`)
+        
+         await axios.post("http://localhost:3000/api/addrun",{
+          'name': name,
+          'distance': distance,
+            'time':time,
+           'obs': obs,
+            'level': level,
+           'date':  date,
+        },
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }
+        }
+        )
+          .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
         // Recarregar os dados após a atualização
-      } catch (error) {
-        console.error("Erro ao atualizar os dados:", error);
-        alert("Erro ao atualizar os dados");
-      }
-    } else {
-      alert("Por favor, preencha todos os campos!");
-    }
-  };
-
+      
+  }catch{
+    alert("Preencha os campos!");
+  }}}
+    
   return (
     <View style={DefaultStyles.container}>
       <LinearGradient
@@ -126,7 +133,26 @@ export default function RunningPage() {
               valueTextInput={distance}
               onChangeText_propiedade={setDistance}
             />
-          </View>
+            </View>
+            <View style={{ flex: 1, flexDirection: "row" }}>
+              <Button_Component  colorText_buttom={"#ffffff"}
+              fundo_buttom={"#1db954"}
+              Button_title={"Data"}
+              altura={56}
+              Pressionamento={() => openModal()}
+            />
+            </View>
+            <View style={{ flex: 1, flexDirection: "row" }}>
+             <Input_box_Component
+              placeholder_propiedade={"Data"}
+              horizonte={312}
+              altura={56}
+              teclado={"date"}
+              valueTextInput={date}
+              onChangeText_propiedade={setDate}
+            />
+            </View>
+        
           <View style={{ flex: 1, flexDirection: "row" }}>
             <Input_box_Component
               placeholder_propiedade={"Tempo"}
@@ -147,6 +173,15 @@ export default function RunningPage() {
               onChangeText_propiedade={setObs}
             />
           </View>
+          <Modal style={DefaultStyles.ModalCalendar} visible={visible}>
+              
+                <DatePicker mode='calendar' 
+                formart="DD/MM/YYYY"
+                minimumDate={startDate}
+                style={DefaultStyles.Calendar}
+                onDateChange={(item) => setDate(item)} selected={date} />
+            <ModernButtonComponent title={"Salvar"} press={openModal} />
+          </Modal>
           <View style={{ flex: 1, flexDirection: "row" }}>
             <View
               style={{

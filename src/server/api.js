@@ -2,9 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const cors = require("cors"); // Importe o pacote cors
-const mysql = require("mysql");
+const mysql = require("mysql2");
 //express = app
 const app = express();
+
 //conexão myslq
 const db = mysql.createConnection({
   host: "localhost",
@@ -22,7 +23,9 @@ db.connect((err) => {
 app.use(cors()); // Adicione o middleware cors
 
 app.use(bodyParser.json());
-
+app.get('/',(req,res)=>{
+  res.send('SERVER API!');
+})
 app.post("/usuario", (req, res) => {
   const newData = req.body;
   const jsonData = JSON.stringify(newData, null, 2);
@@ -50,21 +53,25 @@ app.get("/dados", (req, res) => {
   });
 });
 app.post("/api/addrun", (req, res) => {
-  const SQL =
-    "INSERT INTO tabela (name, distance, time, obs, date) VALUES (?,?,?,?,?)";
-  const [name, distance, time, obs, date] = req.body;
-  if (err) {
-    console.log(`Erro na escrita do treino de corrida ${err}`);
-  } else {
-    db.query(SQL, [name, distance, time, obs, date], (err, result) => {
-      if (err) {
-        console.log(`Erro na escrita do treino de corrida ${err}`);
-      } else {
-        console.log(`Escrita do treino de corrida `);
-        res.send(result);
-      }
-    });
-  }
+  const data = req.body;
+  const newData = JSON.parse(data);
+  const name = newData.name;
+  const distance = newData.distance;
+  const level = newData.level;
+  const time = newData.time;
+  const obs = newData.obs;
+  const date = newData.date;
+  const SQL = "INSERT INTO tabela (name, distance, level, time, obs, date) VALUES (?,?,?,?,?,?)";
+  console.log(JSON.stringify(req.body));
+  db.query(SQL,[name, distance, level, time, obs, date ],(err,result)=>{
+    if(err){
+      console.log(`erro ${err}`);
+      console.log(result);
+    }else{
+      res.send(result);
+      console.log(result);
+    }
+  })
 });
 //salvar dados do Imc em arquivo JSON tmj
 app.post('/api/save_imc', (req,res)=>{
