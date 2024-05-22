@@ -6,8 +6,6 @@ import { useState } from "react";
 import { DefaultStyles } from "../styles/DefaultStyles";
 //importando componentes estruturais de nossa aplicação
 import FooterComponent from "../components/FooterComponent";
-import IconComponent from "../components/IconComponent";
-import HeaderComponent from "../components/HeaderComponent";
 import UserPageContent from "../components/UserPageComponents/UserPageContent";
 
 export default function UserPage() {
