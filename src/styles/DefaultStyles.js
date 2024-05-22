@@ -60,8 +60,7 @@ export const DefaultStyles = StyleSheet.create({
 
 export const widgetDefaultComponent = StyleSheet.create({
   widgetContent: {
-    flex: 1,
-    width: 348,
+    width: 375,
     height: 198,
     margin: 10,
     backgroundColor: "transparent",
