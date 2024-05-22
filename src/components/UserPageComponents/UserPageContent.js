@@ -18,6 +18,8 @@ export default function UserPageContent() {
   const [dados, setDados] = useState({});
   const [imc, setImc] = useState("");
   const [situation, setSituation] = useState("");
+  const [modalidade, setModalidade] = useState("");
+  const [attsalva, setAttsave] = useState("");
   useEffect(() => {
     take_info();
   }, []);
@@ -56,6 +58,8 @@ export default function UserPageContent() {
           <PesquisarComponent props_Text_Component={`Situação: ${situation}`} />
           <PesquisarComponent props_Text_Component={`Sexo: ${dados.sexo}`} />
           <PesquisarComponent props_Text_Component={`Idade: ${dados.idade}`} />
+          <PesquisarComponent props_Text_Component={`Modalidade: ${dados.modalidade}`} />
+          <PesquisarComponent props_Text_Component={`Atividades salvas: ${dados.attsave}`} />
         </View>
         </View>
   );
