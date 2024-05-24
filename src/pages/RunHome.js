@@ -1,6 +1,7 @@
 import { Text, View } from "react-native";
 import LinearGradient from 'expo-linear-gradient';  
 import { DefaultStyles } from "../styles/DefaultStyles";
+import HeaderComponent  from '../components/HeaderComponent';
 import FooterComponent from "../components/FooterComponent";
 
 export default function RunHome() {
@@ -12,6 +13,7 @@ export default function RunHome() {
         end={{ x: 1, y: 1 }}
         style={{ flex: 1 }}
       >
+        <HeaderComponent />
         <View style={[DefaultStyles.content, { flex: 3 }]}>
           <Text style={{ color: "white", textAlign: "center", fontSize: 28 }}>
             Corrida no final da tarde
