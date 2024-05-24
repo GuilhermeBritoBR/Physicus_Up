@@ -1,7 +1,8 @@
+import React from 'react';
 import { Text, View } from "react-native";
-import LinearGradient from 'expo-linear-gradient';  
+import { LinearGradient } from 'expo-linear-gradient';  
 import { DefaultStyles } from "../styles/DefaultStyles";
-import HeaderComponent  from '../components/HeaderComponent';
+import HeaderComponent from '../components/HeaderComponent';
 import FooterComponent from "../components/FooterComponent";
 
 export default function RunHome() {
