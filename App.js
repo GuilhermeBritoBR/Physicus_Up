@@ -1,3 +1,4 @@
+import react from "react";
 //importando páginas
 import HomePage from "./src/pages/HomePage";
 import SearchPage from "./src/pages/SearchPage";
@@ -6,6 +7,7 @@ import MusculationPage from "./src/pages/MusculationPage";
 import UserPage from "./src/pages/UserPage";
 import RecordsPage from "./src/pages/RecordsPage";
 import RunningPage from "./src/pages/RunningPage";
+import RunHome from "./src/pages/RunHome";
 
 //importanto rotas stack
 import { NavigationContainer } from "@react-navigation/native";
@@ -17,7 +19,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="HomePage"
+        initialRouteName="RunHome"
         screenOptions={{
           headerShown: false,
         }}
@@ -30,6 +32,7 @@ export default function App() {
         <Stack.Screen name="RecordsPage" component={RecordsPage} />
         <Stack.Screen name="RunningPage" component={RunningPage} />
         <Stack.Screen name="RunCalculator" component={RunCalculator} />
+        <Stack.Screen name="RunHome" component={RunHome} />
       </Stack.Navigator>
     </NavigationContainer>
   );
