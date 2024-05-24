@@ -11,7 +11,10 @@ export default function RitmoFunction(distance, horas, minutos, segundos){
 	if(paceSegundos < 10) {
 		const paceSegundos = "0" + paceSegundos;
 	} 
-    
+    else if(paceSegundos === 0.99){
+        const paceSegundos = 0;
+        const paceMinutos = paceMinutos + 1;
+    }
 	const ritmo = (`Ritmo de ${paceMinutos}:${paceSegundos} Min/KM`);  
     alert(ritmo);
 }

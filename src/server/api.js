@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 var ip = `10.144.170.33`;
 //conexão myslq
 const db = mysql.createConnection({
-  host: `${ip}`,
+  host: `localhost`,
   user: "root",
   password: "",
   database: "physicus_up",
