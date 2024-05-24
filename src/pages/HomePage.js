@@ -13,7 +13,7 @@ import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Cadastro_content from "../components/HomeComponents/Cadastro_content";
 import UserHome_Component from "../components/HomeComponents/UserHome_Component";
-
+var ip = `10.144.170.33`;
 //importando AXIOS
 import axios from "axios";
 
@@ -54,8 +54,8 @@ export default function HomePage() {
 
   const carregarDados = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/dados");
-      const getImc = await axios.get("http://localhost:3000/api/get_imc");
+      const response = await axios.get(`http://${ip}:3000/dados`);
+      const getImc = await axios.get(`http://${ip}:3000/api/get_imc`);
       setDados(response.data);
       setWidgetData(getImc.data);
       setImc(widgetData.imc);
@@ -72,7 +72,7 @@ export default function HomePage() {
   };
   const atualizarDados = async () => {
     try {
-      await axios.post("http://localhost:3000/usuario", {
+      await axios.post(`http://${ip}:3000/usuario`, {
         nome,
         sobrenome,
         idade,

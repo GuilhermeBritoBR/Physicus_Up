@@ -8,10 +8,10 @@ const app = express();
 //config body parser
 app.use(bodyParser.json({type: 'application/json'}));
 app.use(bodyParser.urlencoded({extended: true}));
-
+var ip = `10.144.170.33`;
 //conexão myslq
 const db = mysql.createConnection({
-  host: "localhost",
+  host: `${ip}`,
   user: "root",
   password: "",
   database: "physicus_up",

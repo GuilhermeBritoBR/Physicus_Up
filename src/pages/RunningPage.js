@@ -21,7 +21,7 @@ import { TouchableOpacity } from "react-native-web";
 import ModernButtonComponent from "../components/ModernButtonComponent";
 //importando funções
 import RitmoFunction from "../scripts/RitmoFunction";
-
+var ip = `10.144.170.33`;
 export default function RunningPage() {
 
   //trabalhando função d datePicker
@@ -59,7 +59,7 @@ export default function RunningPage() {
         level !== "" ||
         date !== ""
       ) {
-        await axios.post("http://localhost:3000/api/createDados", dados);
+        await axios.post(`http://${ip}:3000/api/createDados`, dados);
         alert("Atividade salva com sucesso!");
         RitmoFunction(distance,hours,minutes,seconds);
       } else {
@@ -72,6 +72,7 @@ export default function RunningPage() {
     
   return (
     <View style={DefaultStyles.container}>
+      <HeaderComponent/>
       <LinearGradient
         colors={["#000000", "#535353"]}
         start={{ x: 0, y: 1 }}
@@ -100,7 +101,7 @@ export default function RunningPage() {
           }}
         >
           <TextComponent
-            styleText={{ color: "white", fontSize: 28 }}
+            styleText={{ color: "white", fontSize: 28 ,}}
             title={"Adicionar Corrida"}
           />
           <View style={{ flex: 1, flexDirection: "row" }}>

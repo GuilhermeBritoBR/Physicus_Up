@@ -14,12 +14,12 @@ import TextComponent from "../TextComponent";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 //importando AXIOS
 import axios from "axios";
-
+var ip = `10.144.170.33`;
 export default function IMC_Content({ xDoModal }) {
 
   const SaveData = async () => {
     try {
-      await axios.post("http://localhost:3000/api/save_imc", { imc,situation
+      await axios.post(`http://${ip}:3000/api/save_imc`, { imc,situation
       });
       // Recarregar os dados após a atualização
       await AsyncStorage.setItem("Imc_user", imc);
