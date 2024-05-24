@@ -15,7 +15,6 @@ const db = mysql.createConnection({
   user: "root",
   password: "",
   database: "physicus_up",
-  port: 3306,
 });
 db.connect((err) => {
   if (err) {
@@ -56,21 +55,19 @@ app.get("/dados", (req, res) => {
     res.json(jsonData);
   });
 });
-app.post("/addrun", (req, res) => {
-  const [name, distance, level, time, obs, date] = req.body;
- 
-  const query = "INSERT INTO tabela (name, distance, level, time, obs, date) VALUES (?,?,?,?,?,?)";
-  console.log(JSON.stringify(req.body));
-  console.log(`${[name, distance, level, time, obs, date ]}`);
-  db.query(query,[name, distance, level, time, obs, date ],(err,result)=>{
-    if(err){
-      console.log(`erro ${err}`);
-      console.log(result);
-    }else{
+app.post("/api/createDados", (req, res) => {
+  const { name, distance, level, time, obs, date } = req.body;
+  const query =
+    "INSERT INTO tabela (name, distance, level, time, obs, date) VALUES (?,?,?,?,?,?)";
+  db.query(query, [name, distance, level, time, obs, date], (err, result) => {
+    if (err) {
+      console.error("Erro ao criar usuário:", err);
+      res.status(500).send("Erro ao criar usuário");
+    } else {
+      console.log("Usuário criado com sucesso");
       res.send(result);
-      console.log(result);
     }
-  })
+  });
 });
 //salvar dados do Imc em arquivo JSON tmj
 app.post('/api/save_imc', (req,res)=>{
@@ -99,6 +96,21 @@ app.get("/api/get_imc", (req, res) => {
     res.json(jsonData);
   });
 });
+//update trainning
+app.post('/data_trainning',(res,req)=>{
+  const newData = req.body;
+  const jsonData = JSON.stringify(newData, null, 2);
+  fs.writeFile("DataBaseTrainning.json", jsonData, (err) => {
+    if (err) {
+      console.error("Erro ao atualizar o arquivo JSON:", err);
+      res.status(500).send("Erro ao atualizar o arquivo JSON");
+      return;
+    }
+    console.log("Arquivo JSON atualizado com sucesso");
+    res.send("Arquivo JSON atualizado com sucesso");
+  
+  });
+})
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor iniciado na porta ${PORT}`);

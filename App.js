@@ -15,11 +15,14 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import RunCalculator from "./src/pages/RunCalculator";
 const Stack = createNativeStackNavigator();
 
+//functions
+import UserStatics from "./src/scripts/UserStatics";
+
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="RunHome"
+        initialRouteName="HomePage"
         screenOptions={{
           headerShown: false,
         }}
@@ -33,6 +36,7 @@ export default function App() {
         <Stack.Screen name="RunningPage" component={RunningPage} />
         <Stack.Screen name="RunCalculator" component={RunCalculator} />
         <Stack.Screen name="RunHome" component={RunHome} />
+        <Stack.Screen name="UserStatics" component={UserStatics}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -12,12 +12,15 @@ import Button_Component from "../components/Button_Component";
 import HeaderComponent from "../components/HeaderComponent";
 import FooterComponent from "../components/FooterComponent";
 import TextComponent from "../components/TextComponent";
+import Little_Input_box_Component from "../components/LittleInputBoxComponent";
 //axios
 import axios from "axios";
 //date picker
 import DatePicker from "react-native-modern-datepicker";
 import { TouchableOpacity } from "react-native-web";
 import ModernButtonComponent from "../components/ModernButtonComponent";
+//importando funções
+import RitmoFunction from "../scripts/RitmoFunction";
 
 export default function RunningPage() {
 
@@ -35,48 +38,37 @@ export default function RunningPage() {
   const [date, setDate] = useState("");
   const [visible, setVisible] = useState(false);
   //variaveis para somar
-
+  
+  const [seconds, setSeconds] = useState("");
+  const [minutes, setMinutes] = useState("");
+  const [hours, setHours] = useState("");
+  
   //função de enviar dados via post
-  const atualizarDados = async () => {
-    console.log(name,
-      distance,
-      time,
-      obs,
-      level,
-      date
-      );
-    if (
-      name !== "" ||
-      distance !== "" ||
-      time !== "" ||
-      obs !== "" ||
-      level !== "" ||
-      date !== ""
-    ) {
-      try {
-        console.log(`{name:"${name}", distance:${distance}, time:${time}, obs:"${obs}", level:${level}, date:"${date}"}`)
-          
-        
-         await axios.post("https://localhost:3306/addrun",{
-          "name": name,
-          "distance": distance,
-          "time":time,
-          "obs": obs,
-          "level": level,
-          "date":  date,
-        },
-        )
-          .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-        // Recarregar os dados após a atualização
-      
-  }catch{
-    alert("Preencha os campos!");
-  }}}
+  useEffect(()=>{
+    setTime((hours*60)+(minutes)+(seconds/60));
+  },[hours, minutes, seconds])
+  async function atualizarDados() {
+    const dados = { name, distance, time, obs, level, date };
+    
+    try {
+      if (
+        name !== "" ||
+        distance !== "" ||
+        time !== "" ||
+        obs !== "" ||
+        level !== "" ||
+        date !== ""
+      ) {
+        await axios.post("http://localhost:3000/api/createDados", dados);
+        alert("Atividade salva com sucesso!");
+        RitmoFunction(distance,hours,minutes,seconds);
+      } else {
+        alert("Preencha todos os campos!");
+      }
+    } catch (error) {
+      console.log(`Erro ao criar usuário: ${error}`);
+    }
+  }
     
   return (
     <View style={DefaultStyles.container}>
@@ -120,43 +112,53 @@ export default function RunningPage() {
               onChangeText_propiedade={setName}
             />
           </View>
-          <View style={{ flex: 1, flexDirection: "row" }}>
-            <Input_box_Component
+          <View style={{ flex: 1, flexDirection: "row",}}>
+            <Little_Input_box_Component
               placeholder_propiedade={"Distância (km)"}
-              horizonte={312}
+              horizonte={74}
               altura={56}
               teclado={"numeric"}
               valueTextInput={distance}
               onChangeText_propiedade={setDistance}
+              margin={4}
             />
+             <Little_Input_box_Component
+              placeholder_propiedade={"Horas"}
+              horizonte={74}
+              altura={56}
+              teclado={"numeric"}
+              valueTextInput={hours}
+              onChangeText_propiedade={setHours}
+              margin={4}
+            />
+            <Little_Input_box_Component
+              placeholder_propiedade={"Min"}
+              horizonte={74}
+              altura={56}
+              teclado={"numeric"}
+              valueTextInput={minutes}
+              onChangeText_propiedade={setMinutes}
+              margin={4}
+            />
+            <Little_Input_box_Component
+              placeholder_propiedade={"Segs"}
+              horizonte={74}
+              altura={56}
+              teclado={"numeric"}
+              valueTextInput={seconds}
+              onChangeText_propiedade={setSeconds}
+              margin={4}
+            />
+           
             </View>
-            <View style={{ flex: 1, flexDirection: "row" }}>
-              <Button_Component  colorText_buttom={"#ffffff"}
+           
+        
+          <View style={{ flex: 1, flexDirection: "row" }}>
+          <Button_Component  colorText_buttom={"#ffffff"}
               fundo_buttom={"#1db954"}
               Button_title={"Data"}
               altura={56}
               Pressionamento={() => openModal()}
-            />
-            </View>
-            <View style={{ flex: 1, flexDirection: "row" }}>
-             <Input_box_Component
-              placeholder_propiedade={"Data"}
-              horizonte={312}
-              altura={56}
-              teclado={"date"}
-              valueTextInput={date}
-              onChangeText_propiedade={setDate}
-            />
-            </View>
-        
-          <View style={{ flex: 1, flexDirection: "row" }}>
-            <Input_box_Component
-              placeholder_propiedade={"Tempo"}
-              horizonte={312}
-              altura={56}
-              teclado={"numeric"}
-              valueTextInput={time}
-              onChangeText_propiedade={setTime}
             />
           </View>
 
