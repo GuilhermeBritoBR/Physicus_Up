@@ -2,9 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const cors = require("cors"); // Importe o pacote cors
-const mysql = require("mysql2");
+const mysql = require("mysql");
 //express = app
 const app = express();
+//config body parser
+app.use(bodyParser.json({type: 'application/json'}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 //conexão myslq
 const db = mysql.createConnection({
@@ -12,6 +15,7 @@ const db = mysql.createConnection({
   user: "root",
   password: "",
   database: "physicus_up",
+  port: 3306,
 });
 db.connect((err) => {
   if (err) {
@@ -52,18 +56,13 @@ app.get("/dados", (req, res) => {
     res.json(jsonData);
   });
 });
-app.post("/api/addrun", (req, res) => {
-  const data = req.body;
-  const newData = JSON.parse(data);
-  const name = newData.name;
-  const distance = newData.distance;
-  const level = newData.level;
-  const time = newData.time;
-  const obs = newData.obs;
-  const date = newData.date;
-  const SQL = "INSERT INTO tabela (name, distance, level, time, obs, date) VALUES (?,?,?,?,?,?)";
+app.post("/addrun", (req, res) => {
+  const [name, distance, level, time, obs, date] = req.body;
+ 
+  const query = "INSERT INTO tabela (name, distance, level, time, obs, date) VALUES (?,?,?,?,?,?)";
   console.log(JSON.stringify(req.body));
-  db.query(SQL,[name, distance, level, time, obs, date ],(err,result)=>{
+  console.log(`${[name, distance, level, time, obs, date ]}`);
+  db.query(query,[name, distance, level, time, obs, date ],(err,result)=>{
     if(err){
       console.log(`erro ${err}`);
       console.log(result);

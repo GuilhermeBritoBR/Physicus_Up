@@ -55,20 +55,16 @@ export default function RunningPage() {
     ) {
       try {
         console.log(`{name:"${name}", distance:${distance}, time:${time}, obs:"${obs}", level:${level}, date:"${date}"}`)
+          
         
-         await axios.post("http://localhost:3000/api/addrun",{
-          'name': name,
-          'distance': distance,
-            'time':time,
-           'obs': obs,
-            'level': level,
-           'date':  date,
+         await axios.post("https://localhost:3306/addrun",{
+          "name": name,
+          "distance": distance,
+          "time":time,
+          "obs": obs,
+          "level": level,
+          "date":  date,
         },
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          }
-        }
         )
           .then(function (response) {
             console.log(response);
@@ -233,7 +229,7 @@ export default function RunningPage() {
               fundo_buttom={"#1db954"}
               Button_title={"Salvar"}
               altura={56}
-              Pressionamento={() => atualizarDados()}
+              Pressionamento={atualizarDados}
             />
           </View>
         </View>
