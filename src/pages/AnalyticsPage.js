@@ -3,10 +3,11 @@ import { DefaultStyles } from "../styles/DefaultStyles";
 import HeaderComponent from "../components/HeaderComponent";
 import FooterComponent from "../components/FooterComponent";
 import BlockDefaultComponent from "../components/AnalyticsPage/BlockDefaultComponent";
-
+import SearchFunction from "../scripts/SearchFunction";
 
 export default function AnalyticsPage() {
   
+  SearchFunction()
   return (
     <View style={DefaultStyles.container}>
       <HeaderComponent />
@@ -74,6 +75,7 @@ export default function AnalyticsPage() {
           />
           </TouchableOpacity>
         </ScrollView>
+        
       </View>
       <FooterComponent />
     </View>

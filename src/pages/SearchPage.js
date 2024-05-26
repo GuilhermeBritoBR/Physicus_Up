@@ -23,6 +23,9 @@ export default function SearchPage() {
 
           <PesquisarComponent props_Text_Component={"Conferir Peso Ideal"} />
           <PesquisarComponent props_Text_Component={"Adicionar Recorde"} />
+          <PesquisarComponent 
+          On_press={()=> Navigation.navigate("MyActitivies")}
+          props_Text_Component={"Minhas atividades"} />
         </ScrollView>
       </View>
       <FooterComponent />

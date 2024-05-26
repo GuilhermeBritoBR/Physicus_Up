@@ -14,7 +14,7 @@ import TextComponent from "../TextComponent";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 //importando AXIOS
 import axios from "axios";
-var ip = `10.144.170.33`;
+var ip = `127.0.0.1`;
 export default function IMC_Content({ xDoModal }) {
 
   const SaveData = async () => {

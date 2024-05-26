@@ -47,21 +47,21 @@ export default function MusculationPage() {
             styleText={{ color: "white", fontSize: 28 }}
             title={"Adicionar treino"}
           />
-          <View style={{ flex: 0, flexDirection: "row" }}>
+          <View style={{ flex: 1, flexDirection: "row" }}>
             <Input_box_Component
               placeholder_propiedade={"Nome da atividade"}
               horizonte={312}
               altura={56}
             />
           </View>
-          <View style={{ flex: 0, flexDirection: "row" }}>
+          <View style={{ flex: 1, flexDirection: "row" }}>
             <Input_box_Component
               placeholder_propiedade={"Tipo de treino"}
               horizonte={312}
               altura={56}
             />
           </View>
-          <View style={{ flex: 0, flexDirection: "row" }}>
+          <View style={{ flex: 1, flexDirection: "row" }}>
             <Input_box_Component
               placeholder_propiedade={"Duração(Minutos)"}
               horizonte={312}
@@ -69,7 +69,7 @@ export default function MusculationPage() {
               teclado={"numeric"}
             />
           </View>
-          <View style={{ flex: 0, flexDirection: "row" }}>
+          <View style={{ flex: 1, flexDirection: "row" }}>
             <Input_box_Component
               placeholder_propiedade={"Series"}
               horizonte={312}
@@ -77,7 +77,7 @@ export default function MusculationPage() {
               teclado={"numeric"}
             />
           </View>
-          <View style={{ flex: 0, flexDirection: "row" }}>
+          <View style={{ flex: 1, flexDirection: "row" }}>
             <View
               style={{
                 overflow: "hidden",
@@ -122,7 +122,7 @@ export default function MusculationPage() {
             </View>
           </View>
 
-          <View style={{ flex: 0 }}>
+          <View style={{ flex: 1 }}>
             <Button_Component
               colorText_buttom={"#ffffff"}
               fundo_buttom={"#1db954"}

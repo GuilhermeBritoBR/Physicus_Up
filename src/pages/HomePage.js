@@ -13,7 +13,7 @@ import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Cadastro_content from "../components/HomeComponents/Cadastro_content";
 import UserHome_Component from "../components/HomeComponents/UserHome_Component";
-var ip = `10.144.170.33`;
+var ip = `127.0.0.1`;
 //importando AXIOS
 import axios from "axios";
 
@@ -37,7 +37,7 @@ export default function HomePage() {
 
   function closeModal() {
     setBoleana(false);
-    onRefresh();
+    carregarDados();
   }
   //pega a url do servidor para atualizar os dados
   ///////////////////////////////////////////////

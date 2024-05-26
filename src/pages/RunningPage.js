@@ -21,7 +21,7 @@ import { TouchableOpacity } from "react-native-web";
 import ModernButtonComponent from "../components/ModernButtonComponent";
 //importando funções
 import RitmoFunction from "../scripts/RitmoFunction";
-var ip = `10.144.170.33`;
+var ip = `127.0.0.1`;
 export default function RunningPage() {
 
   //trabalhando função d datePicker

@@ -8,13 +8,14 @@ const app = express();
 //config body parser
 app.use(bodyParser.json({type: 'application/json'}));
 app.use(bodyParser.urlencoded({extended: true}));
-var ip = `10.144.170.33`;
+var ip = `127.0.0.1`;
 //conexão myslq
 const db = mysql.createConnection({
-  host: `localhost`,
+  host: `${ip}`,
   user: "root",
   password: "",
   database: "physicus_up",
+  port: 3000
 });
 db.connect((err) => {
   if (err) {
@@ -111,6 +112,22 @@ app.post('/data_trainning',(res,req)=>{
   
   });
 })
+app.get('/physicusup/meustreinos',(req,res)=>{
+    db.query('SELECT name , distance, time, level, FROM tabela', (err, result) => {
+        if (err){
+        console.log(err);
+        res.send(err);
+        return;
+        }
+        else{
+          console.log('Deu certo meus treinos');
+          res.send(result);
+        }
+    });
+  
+})
+  
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor iniciado na porta ${PORT}`);
