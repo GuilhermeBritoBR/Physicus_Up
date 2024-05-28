@@ -13,31 +13,46 @@ const Item = ({title}) => (
     </View>
   );
     export default function My_actitivies(){
-        useEffect(()=>{
-            Get_data();
-        },[data])
-        const [data, setData] = useState({});
-        async function Get_data(){
-            //
-            try{
-            const response = await axios.get(`http://${ip}:3000/physicusup/meustreinos`);
-            setData(response.data);
-            console.log("deu certo, pelo menos até agora");
-            console.log(data.level);
-
-            }
-            catch(error){
-                console.error("erro na coleta");
-            }
-            //
-        } 
+        //constantes
+            const [treinos, setTreinos] = useState([]);
+            const [loading, setLoading] = useState(true);
+            //monitorar mudança e coleta de dados
+            useEffect(() => {
+                axios.get(`http://localhost:3000/physicusup/meustreinos`)
+                    .then(response => {
+                        setTreinos(response.data);
+                        setLoading(false);
+                        console.log(treinos.distance);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        setLoading(false);
+                    });
+            }, []);
+        
+        //texto para quando estiver carregando
+        if (loading) {
+            return (
+                <View style={DefaultStyles.container}>
+                    <Text style={{color: 'white', fontSize: 18}}>Carregando...</Text>
+                </View>
+            );
+        }
+        //
         return(
             <View style={DefaultStyles.container}>
-                <Text style={{color: 'white'}}>{data.level}</Text>
+                <Text style={{color: 'white'}}>{treinos.level}</Text>
             <FlatList
-            data={data}
-            renderItem={({item}) => <Item title={item.level} />}
-            keyExtractor={item => item.id}
+            data={treinos}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => (
+                <View>
+                        <Text style={{color: 'white', fontSize: 18}}>Nome: {item.name}</Text>
+                        <Text style={{color: 'white', fontSize: 18}}>Distância: {item.distance}</Text>
+                        <Text style={{color: 'white', fontSize: 18}}>Tempo: {item.time}</Text>
+                        <Text style={{color: 'white', fontSize: 18}}>Nível: {item.level}</Text>
+                    </View>
+            )}
           />
             </View>
         )
