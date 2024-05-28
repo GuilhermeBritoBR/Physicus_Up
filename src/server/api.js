@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 var ip = `127.0.0.1`;
 //conexão myslq
 const db = mysql.createConnection({
-  host: `${ip}`,
+  host: `localhost`,
   user: "root",
   password: "",
   database: "physicus_up",
@@ -59,7 +59,7 @@ app.get("/dados", (req, res) => {
 app.post("/api/createDados", (req, res) => {
   const { name, distance, level, time, obs, date } = req.body;
   const query =
-    "INSERT INTO tabela (name, distance, level, time, obs, date) VALUES (?,?,?,?,?,?)";
+    "INSERT INTO tabela (name, distance, level, time, obs, date) VALUES ( ?, ?, ?, ?, ?, ?)";
   db.query(query, [name, distance, level, time, obs, date], (err, result) => {
     if (err) {
       console.error("Erro ao criar usuário:", err);
@@ -121,7 +121,7 @@ app.get('/physicusup/meustreinos',(req,res)=>{
         }
         else{
           console.log('Deu certo meus treinos');
-          res.send(result);
+          res.json(result);
         }
     });
   
