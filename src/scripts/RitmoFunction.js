@@ -17,4 +17,6 @@ export default function RitmoFunction(distance, horas, minutos, segundos){
     }
 	const ritmo = (`Ritmo de ${paceMinutos}:${paceSegundos} Min/KM`);  
     alert(ritmo);
+    const send_ritmo = `${paceMinutos}"${paceSegundos} Min/KM`
+    return send_ritmo;
 }

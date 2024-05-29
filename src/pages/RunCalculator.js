@@ -27,9 +27,12 @@ function pace()  {
 		let paceMinutos = parseFloat(Math.floor(pace));
 		let paceSegundos = parseFloat(Math.round((pace - paceMinutos) * 60));
 
-	if(paceSegundos < 10) {
+	if(paceSegundos <= 10) {
 		const paceSegundos = "0" + paceSegundos;
-	} 
+	}
+  if (paceSegundos == 0){
+    const paceSegundos = "00" + paceSegundos;
+  }
 
 	setResultado(`Ritmo de ${paceMinutos}:${paceSegundos} Min/KM`);  
 }

@@ -48,7 +48,10 @@ export default function RunningPage() {
     setTime((hours*60)+(minutes)+(seconds/60));
   },[hours, minutes, seconds])
   async function atualizarDados() {
-    const dados = { name, distance, time, obs, level, date };
+    const saveRitmo = RitmoFunction(distance,hours,minutes,seconds);
+        console.log(`Console verifica ritmo: ${saveRitmo}`);
+        const pace = saveRitmo;
+    const dados = { name, distance, time, obs, level, date, pace };
     
     try {
       if (
@@ -59,9 +62,9 @@ export default function RunningPage() {
         level !== "" ||
         date !== ""
       ) {
-        await axios.post(`http://${ip}:3000/api/createDados`, dados);
+        await axios.post(`http://localhost:3000/api/createDados`, dados);
         alert("Atividade salva com sucesso!");
-        RitmoFunction(distance,hours,minutes,seconds);
+        
       } else {
         alert("Preencha todos os campos!");
       }

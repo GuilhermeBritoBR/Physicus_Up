@@ -15,8 +15,7 @@ const db = mysql.createConnection({
   user: "root",
   password: "",
   database: "physicus_up",
-  port: 3000
-});
+  });
 db.connect((err) => {
   if (err) {
     console.error("Erro ao conectar ao banco de dados:", err);
@@ -57,10 +56,10 @@ app.get("/dados", (req, res) => {
   });
 });
 app.post("/api/createDados", (req, res) => {
-  const { name, distance, level, time, obs, date } = req.body;
+  const { name, distance, level, time, obs, date, pace } = req.body;
   const query =
-    "INSERT INTO tabela (name, distance, level, time, obs, date) VALUES ( ?, ?, ?, ?, ?, ?)";
-  db.query(query, [name, distance, level, time, obs, date], (err, result) => {
+    "INSERT INTO tabela (name, distance, level, time, obs, date, pace) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+  db.query(query, [name, distance, level, time, obs, date, pace], (err, result) => {
     if (err) {
       console.error("Erro ao criar usuário:", err);
       res.status(500).send("Erro ao criar usuário");
@@ -113,7 +112,7 @@ app.post('/data_trainning',(res,req)=>{
   });
 })
 app.get('/physicusup/meustreinos',(req,res)=>{
-    db.query('SELECT name , distance, time, level, FROM tabela', (err, result) => {
+    db.query('SELECT * FROM tabela', (err, result) => {
         if (err){
         console.log(err);
         res.send(err);
