@@ -14,6 +14,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import WidgetDefaultComponent from "../WidgetDefaultComponent";
 import PesquisarComponent from "../SearchComponents/PesquisarComponent";
 import FooterComponent from "../FooterComponent";
+var ip = `127.0.0.1`;
 export default function UserPageContent() {
   const [dados, setDados] = useState({});
   const [imc, setImc] = useState("");
@@ -27,7 +28,7 @@ export default function UserPageContent() {
     setImc(await AsyncStorage.getItem("Imc_user"));
     setSituation(await AsyncStorage.getItem("Imc_situation"));
     try {
-      const response = await axios.get("http://localhost:3000/dados");
+      const response = await axios.get(`http://${ip}:3000/dados`);
       setDados(response.data);
     } catch (error) {
       console.error("Erro ao carregar os dados:", error);

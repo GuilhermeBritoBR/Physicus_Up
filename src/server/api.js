@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 var ip = `127.0.0.1`;
 //conexão myslq
 const db = mysql.createConnection({
-  host: `localhost`,
+  host: `127.0.0.1`,
   user: "root",
   password: "",
   database: "physicus_up",
@@ -124,6 +124,35 @@ app.get('/physicusup/meustreinos',(req,res)=>{
         }
     });
   
+})
+//base academia
+app.post('/api/createDadosAcademy',(req,res)=>{
+  const { name, level, time, date, series, train } = req.body;
+  const query =
+    "INSERT INTO acdemy ( name, level, time, date, series, train) VALUES ( ?, ?, ?, ?, ?, ? )";
+  db.query(query, [ name, level, time, date, series, train], (err, result) => {
+    if (err) {
+      console.error("Erro ao criar usuário:", err);
+      res.status(500).send("Erro ao criar usuário");
+    } else {
+      console.log("Academia com sucesso");
+      res.send(result);
+    }
+  });
+})
+app.get('/physicusup/meustreinosAcademy',(req,res)=>{
+  db.query('SELECT * FROM acdemy', (err, result) => {
+      if (err){
+      console.log(err);
+      res.send(err);
+      return;
+      }
+      else{
+        console.log('Deu certo meus treinos');
+        res.json(result);
+      }
+  });
+
 })
   
 

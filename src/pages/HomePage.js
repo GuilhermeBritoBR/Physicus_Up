@@ -39,12 +39,7 @@ export default function HomePage() {
     setBoleana(false);
     carregarDados();
   }
-  //pega a url do servidor para atualizar os dados
-  ///////////////////////////////////////////////
-  ///////////////////////////////////////////////
-  ///////////////API DO JSON////////////////////////////////
-  ///////////////////////////////////////////////
-  ///////////////////////////////////////////////
+
   ///////////////////////////////////////////////
 
   useEffect(() => {
@@ -72,7 +67,7 @@ export default function HomePage() {
   };
   const atualizarDados = async () => {
     try {
-      await axios.post(`http://localhost:3000/usuario`, {
+      await axios.post(`http://${ip}:3000/usuario`, {
         nome,
         sobrenome,
         idade,
