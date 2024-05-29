@@ -33,7 +33,7 @@ export default function UserPage() {
     >
       <View>
         <Image
-          source={require("../assets/brito.jpg")}
+          source={require("../assets/profile.png")}
           style={{
             width: 100,
             height: 100,
