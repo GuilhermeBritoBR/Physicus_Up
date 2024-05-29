@@ -8,8 +8,9 @@ import { DefaultStyles } from "../styles/DefaultStyles";
 import WidgetDefaultComponent from "../components/WidgetDefaultComponent";
 import FooterComponent from "../components/FooterComponent";
 import WidgetMusculacao_Component from "../components/WidgetMusculacao_Component";
+import { ip } from "../scripts/ip";
 //
-var ip = `127.0.0.1`;
+
 const Item = ({title}) => (
     <View>
       <Text style={{color: 'white'}}>{title}</Text>

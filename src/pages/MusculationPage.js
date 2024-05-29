@@ -17,7 +17,7 @@ import DatePicker from "react-native-modern-datepicker";
 import {getToday, getFormatedDate} from 'react-native-modern-datepicker';
 import ModernButtonComponent from "../components/ModernButtonComponent";
 import axios from "axios";
-var ip = `127.0.0.1`;
+import { ip } from "../scripts/ip";
 
 
 export default function MusculationPage() {

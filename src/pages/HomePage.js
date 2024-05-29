@@ -13,9 +13,9 @@ import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Cadastro_content from "../components/HomeComponents/Cadastro_content";
 import UserHome_Component from "../components/HomeComponents/UserHome_Component";
-var ip = `127.0.0.1`;
 //importando AXIOS
 import axios from "axios";
+import { ip } from "../scripts/ip";
 
 //titleWidget,backgroundColor,data,RITMOEXERCICIO,ESFROÇO,TEMPO,KMPESO, -> PROPS DOS WIDGETS
 export default function HomePage() {

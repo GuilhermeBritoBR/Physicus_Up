@@ -29,20 +29,25 @@ export default function Cadastro_content({
       <Input_box_Component
         placeholder_propiedade={"Seu nome.."}
         onChangeText_propiedade={onChangeName}
-        horizonte={160}
         valueTextInput={valueName}
+        horizonte={312}
+                altura={56}
       />
       <Input_box_Component
         placeholder_propiedade={"Seu sobrenome.."}
         onChangeText_propiedade={onChangeSobrenome}
-        horizonte={160}
+        horizonte={312}
+
+                altura={56}
         valueTextInput={valueSobrenome}
       />
       <Input_box_Component
         placeholder_propiedade={"Sua idade.."}
         teclado={"numeric"}
         onChangeText_propiedade={onChangeIdade}
-        horizonte={160}
+                        altura={56}
+                        horizonte={312}
+                
         valueTextInput={valueIdade}
       />
       <View
@@ -54,8 +59,8 @@ export default function Cadastro_content({
           borderColor: "#ffffff",
           backgroundColor: "white",
           margin: 10,
-          height: 48,
-          width: 160,
+          height: 56,
+          width: 312,
           justifyContent: "center",
           alignItems: "center",
         }}
@@ -63,8 +68,8 @@ export default function Cadastro_content({
         <Picker
           selectedValue={valueSexo}
           style={{
-            width: 160,
-            height: 30,
+            width: 312,
+            height: 35,
             backgroundColor: "white",
             borderRadius: 15,
             borderColor: "#000000",
@@ -89,6 +94,7 @@ export default function Cadastro_content({
         fundo_buttom={"#1db954"}
         colorText_buttom={"#ffffff"}
         Pressionamento={onPress}
+        altura={56}
       />
     </View>
   );

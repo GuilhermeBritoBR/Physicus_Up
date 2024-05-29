@@ -14,22 +14,25 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import WidgetDefaultComponent from "../WidgetDefaultComponent";
 import PesquisarComponent from "../SearchComponents/PesquisarComponent";
 import FooterComponent from "../FooterComponent";
-var ip = `127.0.0.1`;
+import { ip } from "../../scripts/ip";
 export default function UserPageContent() {
   const [dados, setDados] = useState({});
   const [imc, setImc] = useState("");
   const [situation, setSituation] = useState("");
   const [modalidade, setModalidade] = useState("");
   const [attsalva, setAttsave] = useState("");
+  const [base, setBase]= useState("");
   useEffect(() => {
     take_info();
-  }, []);
+  }, [imc,situation]);
   async function take_info() {
-    setImc(await AsyncStorage.getItem("Imc_user"));
-    setSituation(await AsyncStorage.getItem("Imc_situation"));
     try {
       const response = await axios.get(`http://${ip}:3000/dados`);
+      const imcresponse = await axios.get(`http://${ip}:3000/api/get_imc`);
+      setBase(imcresponse.data);
       setDados(response.data);
+      setImc(base.imc);
+      setSituation(base.situation)
     } catch (error) {
       console.error("Erro ao carregar os dados:", error);
     }
