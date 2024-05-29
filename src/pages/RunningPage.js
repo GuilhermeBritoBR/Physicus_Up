@@ -42,16 +42,22 @@ export default function RunningPage() {
   const [seconds, setSeconds] = useState("");
   const [minutes, setMinutes] = useState("");
   const [hours, setHours] = useState("");
-  
+  //exemplo lindo para a página de atividades
+  const [timeString, setTimeString] = useState("");
   //função de enviar dados via post
   useEffect(()=>{
+      setTimeString(`${hours}:${minutes}:${seconds}`)
+      console.log(timeString);
     setTime((hours*60)+(minutes)+(seconds/60));
   },[hours, minutes, seconds])
   async function atualizarDados() {
+  //
     const saveRitmo = RitmoFunction(distance,hours,minutes,seconds);
         console.log(`Console verifica ritmo: ${saveRitmo}`);
         const pace = saveRitmo;
-    const dados = { name, distance, time, obs, level, date, pace };
+        //
+    const dados = { name, distance, time, obs, level, date, pace , timeString };
+
     
     try {
       if (

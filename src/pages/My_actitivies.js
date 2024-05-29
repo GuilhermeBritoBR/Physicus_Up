@@ -19,11 +19,8 @@ const Item = ({title}) => (
             const [treinos, setTreinos] = useState([]);
             const [loading, setLoading] = useState(true);
             const [pace, setPace] = useState("");
-            const [round_minutes, setRound_minutes] = useState("");
-
-            function round_time(){
-
-            }
+            const [time, setTime] = useState("");
+            
            
             //monitorar mudança e coleta de dados
             useEffect(() => {
@@ -31,14 +28,15 @@ const Item = ({title}) => (
                     .then(response => {
                         setTreinos(response.data);
                         setLoading(false);
-                        console.log(treinos.distance);
+                    }
                         
-                    })
+            )
                     .catch(error => {
                         console.error(error);
                         setLoading(false);
                     });
             }, []);
+        
         
         //texto para quando estiver carregando
         if (loading) {
@@ -51,25 +49,20 @@ const Item = ({title}) => (
         //
         return(
             <View style={DefaultStyles.container}>
-                <Text style={{color: 'white'}}>{treinos.level}</Text>
             <View style={DefaultStyles.content}>
             <FlatList
             data={treinos}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => (
                 <View>
-                    {function Round_time(){
-                        if(item.time >= 60){
-                        const time = (item.time/60).toFixed(1)}
-                    }}
                         <WidgetDefaultComponent
                         corDegrade1={"#1db954"}
                         corDegrade2={"#309f57"}
                         titleWidget={`${item.name}`}
-                        KMPESO={`KM:${item.distance}`}
+                        KMPESO={`${item.distance}KM`}
                         RITMOEXERCICIO={`${item.pace}`}
+                        TEMPO={item.timeString}
                         ESFROÇO={`ESFORÇO:${item.level}`}
-                        
                         />
                     </View>
             )}

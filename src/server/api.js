@@ -56,10 +56,10 @@ app.get("/dados", (req, res) => {
   });
 });
 app.post("/api/createDados", (req, res) => {
-  const { name, distance, level, time, obs, date, pace } = req.body;
+  const { name, distance, level, time, obs, date, pace, timeString } = req.body;
   const query =
-    "INSERT INTO tabela (name, distance, level, time, obs, date, pace) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
-  db.query(query, [name, distance, level, time, obs, date, pace], (err, result) => {
+    "INSERT INTO tabela (name, distance, level, time, obs, date, pace, timeString) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
+  db.query(query, [name, distance, level, time, obs, date, pace, timeString], (err, result) => {
     if (err) {
       console.error("Erro ao criar usuário:", err);
       res.status(500).send("Erro ao criar usuário");
