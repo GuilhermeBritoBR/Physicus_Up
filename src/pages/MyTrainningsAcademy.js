@@ -62,6 +62,7 @@ const Item = ({title}) => (
                         KMPESO={item.series}
                         TEMPO={item.time}
                         ESFROÇO={item.level}
+                        RITMOEXERCICIO={item.train}
                         />
                     </View>
             )}
