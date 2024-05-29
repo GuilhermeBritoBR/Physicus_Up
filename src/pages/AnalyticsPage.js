@@ -7,7 +7,6 @@ import SearchFunction from "../scripts/SearchFunction";
 
 export default function AnalyticsPage() {
   
-  SearchFunction()
   return (
     <View style={DefaultStyles.container}>
       <HeaderComponent />
