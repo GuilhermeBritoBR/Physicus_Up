@@ -7,6 +7,7 @@ import SearchFunction from "../scripts/SearchFunction";
 import { DefaultStyles } from "../styles/DefaultStyles";
 import WidgetDefaultComponent from "../components/WidgetDefaultComponent";
 import FooterComponent from "../components/FooterComponent";
+import WidgetMusculacao_Component from "../components/WidgetMusculacao_Component";
 //
 var ip = `127.0.0.1`;
 const Item = ({title}) => (
@@ -14,7 +15,7 @@ const Item = ({title}) => (
       <Text style={{color: 'white'}}>{title}</Text>
     </View>
   );
-    export default function My_actitivies(){
+    export default function My_Academy_actitivies(){
         //constantes
             const [treinos, setTreinos] = useState([]);
             const [loading, setLoading] = useState(true);
@@ -24,7 +25,7 @@ const Item = ({title}) => (
            
             //monitorar mudança e coleta de dados
             useEffect(() => {
-                axios.get(`http://${ip}:3000/physicusup/meustreinos`)
+                axios.get(`http://${ip}:3000/physicusup/meustreinosAcademy`)
                     .then(response => {
                         setTreinos(response.data);
                         setLoading(false);
@@ -55,15 +56,12 @@ const Item = ({title}) => (
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => (
                 <View>
-                        <WidgetDefaultComponent
+                        <WidgetMusculacao_Component
                         data={item.date}
-                        corDegrade1={"#1db954"}
-                        corDegrade2={"#309f57"}
-                        titleWidget={`${item.name}`}
-                        KMPESO={`${item.distance} KM`}
-                        RITMOEXERCICIO={`${item.pace}`}
-                        TEMPO={item.timeString}
-                        ESFROÇO={`${item.level}`}
+                        titleWidget={item.name}
+                        KMPESO={item.series}
+                        TEMPO={item.time}
+                        ESFROÇO={item.level}
                         />
                     </View>
             )}

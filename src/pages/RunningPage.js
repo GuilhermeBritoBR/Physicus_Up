@@ -37,6 +37,7 @@ export default function RunningPage() {
   const [obs, setObs] = useState("");
   const [date, setDate] = useState("");
   const [visible, setVisible] = useState(false);
+  const [newDistance, setNewDistance] = useState("");
   //variaveis para somar
   
   const [seconds, setSeconds] = useState("");
@@ -46,13 +47,14 @@ export default function RunningPage() {
   const [timeString, setTimeString] = useState("");
   //função de enviar dados via post
   useEffect(()=>{
+    setNewDistance(distance.replace(",","."));
       setTimeString(`${hours}:${minutes}:${seconds}`)
       console.log(timeString);
     setTime((hours*60)+(minutes)+(seconds/60));
   },[hours, minutes, seconds])
   async function atualizarDados() {
   //
-    const saveRitmo = RitmoFunction(distance,hours,minutes,seconds);
+    const saveRitmo = RitmoFunction(newDistance,hours,minutes,seconds);
         console.log(`Console verifica ritmo: ${saveRitmo}`);
         const pace = saveRitmo;
         //
@@ -68,7 +70,7 @@ export default function RunningPage() {
         level !== "" ||
         date !== ""
       ) {
-        await axios.post(`http://localhost:3000/api/createDados`, dados);
+        await axios.post(`http://${ip}:3000/api/createDados`, dados);
         alert("Atividade salva com sucesso!");
         
       } else {
@@ -221,16 +223,16 @@ export default function RunningPage() {
                 onValueChange={(item) => setLevel(item)}
               >
                 <Picker.Item label="Esforço dedicado [0-10]" value="" />
-                <Picker.Item label="Fácil [1]" value="1" />
-                <Picker.Item label="Fácil [2]" value="2" />
-                <Picker.Item label="Fácil [3]" value="3" />
-                <Picker.Item label="Moderado [4]" value="4" />
-                <Picker.Item label="Moderado [5]" value="5" />
-                <Picker.Item label="Moderado [6]" value="6" />
-                <Picker.Item label="Difícil [7]" value="7" />
-                <Picker.Item label="Difícil [8]" value="8" />
-                <Picker.Item label="Difícil [9]" value="9" />
-                <Picker.Item label="Muito Difícil [10]" value="10" />
+                <Picker.Item label="Fácil [1]" value="Fácil [1]" />
+                <Picker.Item label="Fácil [2]" value="Fácil [2]" />
+                <Picker.Item label="Fácil [3]" value="Fácil [3]" />
+                <Picker.Item label="Moderado [4]" value="Moderado [4]" />
+                <Picker.Item label="Moderado [5]" value="Moderado [5]" />
+                <Picker.Item label="Moderado [6]" value="Moderado [6]" />
+                <Picker.Item label="Difícil [7]" value="Difícil [7]" />
+                <Picker.Item label="Difícil [8]" value="Difícil [8]" />
+                <Picker.Item label="Difícil [9]" value="Difícil [9]" />
+                <Picker.Item label="Muito Difícil [10]" value="Muito Difícil [10]" />
               </Picker>
             </View>
           </View>

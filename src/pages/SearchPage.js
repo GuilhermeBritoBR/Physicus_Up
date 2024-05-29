@@ -19,13 +19,13 @@ export default function SearchPage() {
             On_press={() => Navigation.navigate("RunCalculator")}
             props_Text_Component={"Calculadora de ritmo"}
           />
-          
-
-          <PesquisarComponent props_Text_Component={"Conferir Peso Ideal"} />
           <PesquisarComponent props_Text_Component={"Adicionar Recorde"} />
           <PesquisarComponent 
           On_press={()=> Navigation.navigate("MyActitivies")}
-          props_Text_Component={"Minhas atividades"} />
+          props_Text_Component={"Minhas corridas"} />
+          <PesquisarComponent 
+          On_press={()=> Navigation.navigate("MyAcademy")}
+          props_Text_Component={"Meus treinos de musculação"} />
         </ScrollView>
       </View>
       <FooterComponent />

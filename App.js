@@ -18,6 +18,7 @@ const Stack = createNativeStackNavigator();
 //functions
 import UserStatics from "./src/scripts/UserStatics";
 import My_actitivies from "./src/pages/My_actitivies";
+import My_Academy_actitivies from "./src/pages/MyTrainningsAcademy";
 
 export default function App() {
   return (
@@ -39,6 +40,8 @@ export default function App() {
         <Stack.Screen name="RunHome" component={RunHome} />
         <Stack.Screen name="UserStatics" component={UserStatics}/>
         <Stack.Screen name="MyActitivies" component={My_actitivies}/>
+        <Stack.Screen name="MyAcademy" component={My_Academy_actitivies}/>
+
       </Stack.Navigator>
     </NavigationContainer>
   );
