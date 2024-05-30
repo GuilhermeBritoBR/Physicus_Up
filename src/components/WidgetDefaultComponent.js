@@ -32,30 +32,30 @@ export default function WidgetDefaultComponent({
       end={{ x: 1, y: 0 }} 
       locations={[0.34, 0.75]}
       style={[ widgetDefaultComponent.widgetContent,{
-        flex: 5,
+        flex: 20,
         flexDirection: 'row', 
         justifyContent: 'space-between',
       }]}
     >
     <View
       style={[
-        widgetDefaultComponent.widgetContent,
+        widgetDefaultComponent.widgetContent,{flex:10}
         
       ]}
     > 
-    
+
   
-      <View style={{flex:0.2, textAlign: 'center', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-      <View style={[widgetDefaultComponent.titleWidgetText,{flex:1.2}]}>
+      <View style={{flex:1, textAlign: 'center', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+      <View style={[widgetDefaultComponent.titleWidgetText,{flex:6}]}>
         <Text style={{textAlign: 'center', color: '#ffffff'}}>{titleWidget}</Text>
       </View>
-      <View style={[widgetDefaultComponent.titleWidgetText,{flex: 1}]}>
+      <View style={[widgetDefaultComponent.titleWidgetText,{flex: 6}]}>
         <Text style={{textAlign: 'center', color: '#ffffff'}}>{data}</Text>
       </View>
       </View>
 
-      <View style={[widgetDefaultComponent.CaixaInfo]}>
-        <View style={{flexDirection: 'row'}}>
+      <View style={[widgetDefaultComponent.CaixaInfo,{flex:10}]}>
+        <View style={{flexDirection: 'row', }}>
       <View style={[widgetDefaultComponent.infoView,{flex:1, flexDirection: 'column'}]}>
         <TextComponent styleText={widgetDefaultComponent.dataWidget} title={KMPESO}/>
       </View>
@@ -63,14 +63,14 @@ export default function WidgetDefaultComponent({
         <TextComponent styleText={widgetDefaultComponent.dataWidget} title={TEMPO}/>
       </View>
       </View>
-      <View style={{flexDirection: 'row', margin: 10}}>
+        <View style={{flexDirection: 'row', }}>
       <View style={[widgetDefaultComponent.infoView,{flex:1,flexDirection: 'column'}]}>
         <TextComponent styleText={widgetDefaultComponent.dataWidget} title={ESFROÇO}/>
       </View>
       <View style={[widgetDefaultComponent.infoView,{flex:1,flexDirection: 'column'}]}>
         <TextComponent styleText={widgetDefaultComponent.dataWidget} title={RITMOEXERCICIO}/>
       </View>
-      </View>
+        </View>
       </View>
      
     </View>

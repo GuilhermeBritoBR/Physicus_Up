@@ -8,6 +8,7 @@ import { DefaultStyles } from "../styles/DefaultStyles";
 import WidgetDefaultComponent from "../components/WidgetDefaultComponent";
 import FooterComponent from "../components/FooterComponent";
 import { ip } from "../scripts/ip";
+import HeaderComponent from "../components/HeaderComponent";
 //
 const Item = ({title}) => (
     <View>
@@ -49,12 +50,12 @@ const Item = ({title}) => (
         //
         return(
             <View style={DefaultStyles.container}>
+                <HeaderComponent/>  
             <View style={DefaultStyles.content}>
             <FlatList
             data={treinos}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => (
-                <View>
                         <WidgetDefaultComponent
                         data={item.date}
                         corDegrade1={"#1db954"}
@@ -64,8 +65,8 @@ const Item = ({title}) => (
                         RITMOEXERCICIO={`${item.pace}`}
                         TEMPO={item.timeString}
                         ESFROÇO={`${item.level}`}
+                        
                         />
-                    </View>
             )}
           />
           </View>
