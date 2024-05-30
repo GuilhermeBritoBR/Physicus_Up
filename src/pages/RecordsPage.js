@@ -34,10 +34,7 @@ export default function MusculationPage() {
           },
         ]}
       >
-        <ImageBackground
-          source={require("../assets/trofeu.png")}
-          style={{ width: 500, height: 500 }}
-        >
+        
           <View
             style={{
               flex: 1,
@@ -50,14 +47,14 @@ export default function MusculationPage() {
               styleText={{ color: "white", fontSize: 28 }}
               title={"Recordes"}
             />
-            <View style={{ flex: 0, flexDirection: "row" }}>
+            <View style={{ flex: 1, flexDirection: "row" }}>
               <Input_box_Component
                 placeholder_propiedade={"Nome da atividade"}
                 horizonte={312}
                 altura={56}
               />
             </View>
-            <View style={{ flex: 0, flexDirection: "row" }}>
+            <View style={{ flex: 1, flexDirection: "row" }}>
               <Input_box_Component
                 placeholder_propiedade={"Tempo(Minutos)"}
                 horizonte={312}
@@ -65,7 +62,7 @@ export default function MusculationPage() {
                 teclado={"numeric"}
               />
             </View>
-            <View style={{ flex: 0, flexDirection: "row" }}>
+            <View style={{ flex: 1, flexDirection: "row" }}>
               <Input_box_Component
                 placeholder_propiedade={"Distância(Metros)"}
                 horizonte={312}
@@ -74,7 +71,7 @@ export default function MusculationPage() {
               />
             </View>
 
-            <View style={{ flex: 0 }}>
+            <View style={{ flex: 1 }}>
               <Button_Component
                 colorText_buttom={"#ffffff"}
                 fundo_buttom={"#1db954"}
@@ -83,7 +80,6 @@ export default function MusculationPage() {
               />
             </View>
           </View>
-        </ImageBackground>
       </LinearGradient>
       <FooterComponent />
     </View>

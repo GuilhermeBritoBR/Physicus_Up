@@ -9,6 +9,7 @@ import WidgetDefaultComponent from "../components/WidgetDefaultComponent";
 import FooterComponent from "../components/FooterComponent";
 import WidgetMusculacao_Component from "../components/WidgetMusculacao_Component";
 import { ip } from "../scripts/ip";
+import HeaderComponent from "../components/HeaderComponent";
 //
 
 const Item = ({title}) => (
@@ -52,6 +53,7 @@ const Item = ({title}) => (
         return(
             <View style={DefaultStyles.container}>
             <View style={DefaultStyles.content}>
+                <HeaderComponent/>
             <FlatList
             data={treinos}
             keyExtractor={(item, index) => index.toString()}

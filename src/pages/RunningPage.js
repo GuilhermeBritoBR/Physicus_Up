@@ -84,7 +84,6 @@ export default function RunningPage() {
     
   return (
     <View style={DefaultStyles.container}>
-      <HeaderComponent/>
       <LinearGradient
         colors={["#000000", "#535353"]}
         start={{ x: 0, y: 1 }}

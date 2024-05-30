@@ -75,12 +75,14 @@ export default function UserHome_Component({
      
         {
           (testeState === "") ? (
+            <TouchableOpacity onPress={()=> navigation.navigate("RunningPage")}>
             <WidgetRUNNING_EXAMPLE
           titleCenter={"COMECE A CORRER!"}
           corDegrade1={"#1db954"}
           corDegrade2={"#309f57"}
-          descriçaoCenter={"CLIQUE NO +"}
+          descriçaoCenter={"CLIQUE AQUI!"}
         />
+        </TouchableOpacity>
      
           ):(
  
@@ -106,10 +108,12 @@ export default function UserHome_Component({
         />
       </TouchableOpacity>
       { (testeStateAcademy ==="")? (
+         <TouchableOpacity onPress={()=> navigation.navigate("MusculationPage")}>
         <WidgetACADEMIA_EXAMPLE titleCenter={"COMECE A TREINAR MUSCULAÇÃO!"}
-        descriçaoCenter={"CLIQUE NO +"}
+        descriçaoCenter={"CLIQUE AQUI!"}
         corDegrade1={"#fdb573"}
         corDegrade2={"#d86800"}/>
+        </TouchableOpacity>
       ):
       (
         <WidgetMusculacao_Component
@@ -122,6 +126,7 @@ export default function UserHome_Component({
         />
       )
       }
+     
       <ModalComponent vidro={vidro} open={vidro}>
         <View
           style={{

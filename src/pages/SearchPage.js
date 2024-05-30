@@ -19,7 +19,9 @@ export default function SearchPage() {
             On_press={() => Navigation.navigate("RunCalculator")}
             props_Text_Component={"Calculadora de ritmo"}
           />
-          <PesquisarComponent props_Text_Component={"Adicionar Recorde"} />
+          <PesquisarComponent 
+          On_press={()=> Navigation.navigate("RecordsPage")}
+          props_Text_Component={"Adicionar Recorde"} />
           <PesquisarComponent 
           On_press={()=> Navigation.navigate("MyActitivies")}
           props_Text_Component={"Minhas corridas"} />
