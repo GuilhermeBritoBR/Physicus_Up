@@ -1,18 +1,67 @@
-import react, { useState } from "react";
+import react, { useState, useEffect } from "react";
 import { ImageBackground, View, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 //importando CSS
 import { DefaultStyles } from "../styles/DefaultStyles";
+import axios from "axios";
 //importando components
 import Input_box_Component from "../components/Input_Box_Component";
 import Button_Component from "../components/Button_Component";
 import HeaderComponent from "../components/HeaderComponent";
 import FooterComponent from "../components/FooterComponent";
 import TextComponent from "../components/TextComponent";
+import LittleinputBoxComponent from '../components/LittleInputBoxComponent'
+import RitmoFunction from "../scripts/RitmoFunction";
+import { ip } from "../scripts/ip";
 
 export default function MusculationPage() {
-  const [esforco, setEsforco] = useState("");
+  const [km, setKm]= useState('');
+  const [horas, setHoras]= useState('');
+  const [minutos, setMinutos]= useState('');
+  const [segundos, setSegundos]= useState('');
+  const [resultado, setResultado] = useState('');
+  const [name, setName] = useState("");
+  const [newDistance, setNewDistance] = useState("");
+  const[timeString,setTimeString] = useState("");
+  
+    //
+    useEffect(()=>{
+      setNewDistance(km.replace(",","."));
+        setTimeString(`${horas}:${minutos}:${segundos}`)
+        console.log(timeString);
+      
+    },[horas, minutos, segundos])
+    //
+  async function Save_Record(){
+    const saveRitmo = RitmoFunction(newDistance,horas,minutos,segundos);
+        console.log(`Console verifica ritmo: ${saveRitmo}`);
+        const pace = saveRitmo;
+        //
+    const dados = { 
+      "name":name, 
+      "distancia": newDistance, 
+      "ritmo":pace , 
+      "tempo": timeString };
+
+    
+    try {
+      if (
+        name !== "" ||
+        km !== "" ||
+        timeString !== "" 
+        
+      ) {
+        await axios.post(`http://${ip}:3000/api/saveRecorde`, dados);
+        alert("Atividade salva com sucesso!");
+        
+      } else {
+        alert("Preencha todos os campos!");
+      }
+    } catch (error) {
+      console.log(`Erro ao criar usuário: ${error}`);
+    }
+  }
   return (
     <View style={DefaultStyles.container}>
       <LinearGradient
@@ -24,10 +73,6 @@ export default function MusculationPage() {
           {
             flex: 3,
             width: "100%",
-            borderWidth: 1,
-            borderColor: "black",
-            border: "solid",
-            borderRadius: 15,
             backgroundColor: "#000000",
             justifyContent: "center",
             alignItems: "center",
@@ -47,36 +92,61 @@ export default function MusculationPage() {
               styleText={{ color: "white", fontSize: 28 }}
               title={"Recordes"}
             />
-            <View style={{ flex: 1, flexDirection: "row" }}>
+            <View style={{ flexDirection: "row" }}>
+            
               <Input_box_Component
                 placeholder_propiedade={"Nome da atividade"}
                 horizonte={312}
                 altura={56}
+                onChangeText_propiedade={setName}
+                valueTextInput={name}
               />
             </View>
-            <View style={{ flex: 1, flexDirection: "row" }}>
-              <Input_box_Component
-                placeholder_propiedade={"Tempo(Minutos)"}
-                horizonte={312}
+            <View style={{flexDirection: "row" }}>
+            <LittleinputBoxComponent
+                placeholder_propiedade={"KM"}
+                horizonte={56}
                 altura={56}
                 teclado={"numeric"}
+                onChangeText_propiedade={setKm}
+                valueTextInput={km}
               />
-            </View>
-            <View style={{ flex: 1, flexDirection: "row" }}>
-              <Input_box_Component
-                placeholder_propiedade={"Distância(Metros)"}
-                horizonte={312}
+              <LittleinputBoxComponent
+                placeholder_propiedade={"Hour"}
+                horizonte={56}
                 altura={56}
                 teclado={"numeric"}
+                onChangeText_propiedade={setHoras}
+                valueTextInput={horas}
               />
+              <LittleinputBoxComponent
+                placeholder_propiedade={"Min"}
+                horizonte={56}
+                altura={56}
+                teclado={"numeric"}
+                onChangeText_propiedade={setMinutos}
+                valueTextInput={minutos}
+              />
+              <LittleinputBoxComponent
+                placeholder_propiedade={"Seg"}
+                horizonte={56}
+                altura={56}
+                teclado={"numeric"}
+                onChangeText_propiedade={setSegundos}
+                valueTextInput={segundos}
+              />
+              
             </View>
+            
+            
 
-            <View style={{ flex: 1 }}>
+            <View style={{  }}>
               <Button_Component
                 colorText_buttom={"#ffffff"}
                 fundo_buttom={"#1db954"}
                 Button_title={"Salvar"}
                 altura={56}
+                Pressionamento={Save_Record}
               />
             </View>
           </View>

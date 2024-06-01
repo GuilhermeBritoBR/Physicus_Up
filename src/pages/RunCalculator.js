@@ -45,10 +45,7 @@ function pace()  {
         {
           flex: 1,
           width: "100%",
-          border: "solid",
-          borderWidth: 1,
-          borderRadius: 15,
-          borderColor: "#000000cc",
+         
         },
       ]}
     >

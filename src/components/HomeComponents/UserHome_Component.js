@@ -58,7 +58,8 @@ export default function UserHome_Component({
                         console.error(error);
                         setLoading(false);
                     });
-  }, [widgetRun, widgetAcademy]);
+                
+  }, [widgetRun, widgetAcademy, imc]);
   if (loading) {
     return (
         <View style={DefaultStyles.container}>

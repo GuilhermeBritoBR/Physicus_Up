@@ -52,13 +52,14 @@ const Item = ({title}) => (
         //
         return(
             <View style={DefaultStyles.container}>
-            <View style={DefaultStyles.content}>
                 <HeaderComponent/>
+            <View style={DefaultStyles.content}>
+                
             <FlatList
             data={treinos}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => (
-                <View>
+               
                         <WidgetMusculacao_Component
                         data={item.date}
                         titleWidget={item.name}
@@ -67,7 +68,7 @@ const Item = ({title}) => (
                         ESFROÇO={item.level}
                         RITMOEXERCICIO={item.train}
                         />
-                    </View>
+                   
             )}
           />
           </View>

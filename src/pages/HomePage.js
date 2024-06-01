@@ -125,10 +125,10 @@ export default function HomePage() {
           <UserHome_Component
             vidro={boleana}
             imc={
-              widgetData.imc === ""   ?  "IMC": widgetData.imc
+              widgetData.imc === ""   ?  "IMC":widgetData.imc 
             }
             desc={
-              widgetData.situation === ""  ?   "Calcule seu IMC!" : widgetData.situation
+              widgetData.situation === ""  ?  "Calcule seu IMC!"  : widgetData.situation
             }
             refresh={refresh}
             onRefresh={onRefresh}

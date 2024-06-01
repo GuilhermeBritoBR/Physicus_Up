@@ -21,7 +21,7 @@ export default function SearchPage() {
           />
           <PesquisarComponent 
           On_press={()=> Navigation.navigate("RecordsPage")}
-          props_Text_Component={"Adicionar Recorde"} />
+          props_Text_Component={"Adicionar RP de Corrida"} />
           <PesquisarComponent 
           On_press={()=> Navigation.navigate("MyActitivies")}
           props_Text_Component={"Minhas corridas"} />

@@ -22,17 +22,24 @@ export default function UserPageContent() {
   const [modalidade, setModalidade] = useState("");
   const [attsalva, setAttsave] = useState("");
   const [base, setBase]= useState("");
+  const [recorde, setRecorde] = useState("");
+  const [recBase, setRecBase] = useState("");
+  const [recLocal, setRecLocal] = useState({});
   useEffect(() => {
     take_info();
-  }, [imc,situation]);
+  }, [imc,situation, recorde]);
   async function take_info() {
     try {
       const response = await axios.get(`http://${ip}:3000/dados`);
       const imcresponse = await axios.get(`http://${ip}:3000/api/get_imc`);
+      const recordresponse = await axios.get(`http://${ip}:3000/api/get_recorde`);
+      setRecLocal(recordresponse.data);
+      setRecBase(recLocal.name);
+      setRecorde(`Recorde: ${recLocal.distancia} KM ${recLocal.tempo}`);
       setBase(imcresponse.data);
       setDados(response.data);
       setImc(base.imc);
-      setSituation(base.situation)
+      setSituation(base.situation);
     } catch (error) {
       console.error("Erro ao carregar os dados:", error);
     }
@@ -62,8 +69,13 @@ export default function UserPageContent() {
           <PesquisarComponent props_Text_Component={`Situação: ${situation}`} />
           <PesquisarComponent props_Text_Component={`Sexo: ${dados.sexo}`} />
           <PesquisarComponent props_Text_Component={`Idade: ${dados.idade}`} />
-          <PesquisarComponent props_Text_Component={`Modalidade: ${dados.modalidade}`} />
-          <PesquisarComponent props_Text_Component={`Atividades salvas: ${dados.attsave}`} />
+          {
+            (recBase === "")? (
+              <></>
+            ):(
+              <PesquisarComponent props_Text_Component={recorde} />
+            )
+          }
         </View>
         </View>
   );

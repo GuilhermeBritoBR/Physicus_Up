@@ -83,6 +83,32 @@ app.post('/api/save_imc', (req,res)=>{
   
   });
 });
+
+app.post('/api/saveRecorde', (req,res)=>{
+  const newData = req.body;
+  const jsonData = JSON.stringify(newData, null, 2);
+  fs.writeFile("RecordDataBase.json", jsonData, (err) => {
+    if (err) {
+      console.error("Erro ao atualizar o arquivo JSON:", err);
+      res.status(500).send("Erro ao atualizar o arquivo JSON");
+      return;
+    }
+    console.log("Arquivo JSON atualizado com sucesso");
+    res.send("Arquivo JSON atualizado com sucesso");
+  
+  });
+});
+app.get("/api/get_recorde", (req, res) => {
+  fs.readFile("RecordDataBase.json", "utf8", (err, data) => {
+    if (err) {
+      console.error("Erro ao ler o arquivo JSON:", err);
+      res.status(500).send("Erro ao ler o arquivo JSON");
+      return;
+    }
+    const jsonData = JSON.parse(data);
+    res.json(jsonData);
+  });
+});
 //buscando dados do Imc 
 app.get("/api/get_imc", (req, res) => {
   fs.readFile("imcDataBase.json", "utf8", (err, data) => {
