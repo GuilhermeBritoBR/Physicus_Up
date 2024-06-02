@@ -32,9 +32,10 @@ export default function WidgetDefaultComponent({
       end={{ x: 1, y: 0 }} 
       locations={[0.34, 0.75]}
       style={[ widgetDefaultComponent.widgetContent,{
-        flex: 20,
+        flex: 10,
         flexDirection: 'row', 
         justifyContent: 'space-between',
+        height:'none',
       }]}
     >
     <View

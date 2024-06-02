@@ -86,17 +86,18 @@ export default function UserHome_Component({
         </TouchableOpacity>
      
           ):(
- 
+            <>
         <WidgetDefaultComponent
-          titleWidget={widgetRun[0].name}
-          data={widgetRun[0].date}
-          RITMOEXERCICIO={widgetRun[0].pace}
-          TEMPO={widgetRun[0].timeString}
-          KMPESO={`${widgetRun[0].distance} KM`}
-          ESFROÇO={widgetRun[0].level}
+          titleWidget={widgetRun[widgetRun.length - 1].name}
+          data={widgetRun[widgetRun.length - 1].date}
+          RITMOEXERCICIO={widgetRun[widgetRun.length - 1].pace}
+          TEMPO={widgetRun[widgetRun.length - 1].timeString}
+          KMPESO={`${widgetRun[widgetRun.length - 1].distance} KM`}
+          ESFROÇO={widgetRun[widgetRun.length - 1].level}
           corDegrade1={"#1db954"}
           corDegrade2={"#309f57"}
         />
+        </>
          )}
         
       
@@ -118,12 +119,12 @@ export default function UserHome_Component({
       ):
       (
         <WidgetMusculacao_Component
-          titleWidget={widgetAcademy[0].name}
-          data={widgetAcademy[0].date}
-          RITMOEXERCICIO={widgetAcademy[0].train}
-          TEMPO={widgetAcademy[0].time}
-          KMPESO={widgetAcademy[0].series}
-          ESFROÇO={widgetAcademy[0].level}
+          titleWidget={widgetAcademy[widgetAcademy.length - 1].name}
+          data={widgetAcademy[widgetAcademy.length - 1].date}
+          RITMOEXERCICIO={widgetAcademy[widgetAcademy.length - 1].train}
+          TEMPO={widgetAcademy[widgetAcademy.length - 1].time}
+          KMPESO={widgetAcademy[widgetAcademy.length - 1].series}
+          ESFROÇO={widgetAcademy[widgetAcademy.length - 1].level}
         />
       )
       }

@@ -56,9 +56,7 @@ export default function HomePage() {
       setImc(widgetData.imc);
       setDesc(widgetData.situation);
       console.log(widgetData);
-      const nome = dados.nome;
       console.log("ESTOUAQUI", dados.nome);
-      await AsyncStorage.setItem("Username", nome);
     } catch (error) {
       console.error("Erro ao carregar os dados:", error);
     }

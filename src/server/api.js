@@ -164,7 +164,7 @@ app.post('/api/createDadosAcademy',(req,res)=>{
       res.send(result);
     }
   });
-})
+});
 app.get('/physicusup/meustreinosAcademy',(req,res)=>{
   db.query('SELECT * FROM acdemy', (err, result) => {
       if (err){
@@ -178,7 +178,40 @@ app.get('/physicusup/meustreinosAcademy',(req,res)=>{
       }
   });
 
-})
+});
+app.get('/physicusup/volume-km',(req,res)=>{
+  db.query('SELECT SUM(distance) AS volume_km FROM tabela', (err, result) => {
+    if (err){
+      return res.status(500).json({ error: err.message });
+    }
+    else{
+      res.json(result[0]);
+    }
+});
+}
+);
+app.get('/physicusup/id-total',(req,res)=>{
+  db.query('SELECT COUNT(*) AS id_total FROM tabela', (err, result) => {
+    if (err){
+      return res.status(500).json({ error: err.message });
+    }
+    else{
+      res.json(result[0]);
+    }
+});
+}
+);
+app.get('/physicusup/media',(req,res)=>{
+  db.query('SELECT AVG(distance) AS media FROM tabela', (err, result) => {
+    if (err){
+      return res.status(500).json({ error: err.message });
+    }
+    else{
+      res.json(result[0]);
+    }
+});
+}
+);
   
 
 const PORT = process.env.PORT || 3000;
