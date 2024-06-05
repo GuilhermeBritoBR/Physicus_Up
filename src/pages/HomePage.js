@@ -45,10 +45,9 @@ export default function HomePage() {
   useEffect(() => {
     // Função para carregar os dados ao iniciar o aplicativo
     carregarDados();
-  }, [boleana]);
+  }, []);
 
   const carregarDados = async () => {
-    alert("olaaaaaa")
     try {
       const response = await axios.get(`http://${ip}:3000/dados`);
       const getImc = await axios.get(`http://${ip}:3000/api/get_imc`);
