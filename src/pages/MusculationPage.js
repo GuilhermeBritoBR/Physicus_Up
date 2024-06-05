@@ -22,7 +22,7 @@ import { ip } from "../scripts/ip";
 
 export default function MusculationPage() {
   const today = new Date();
-  const startDate = getFormatedDate(today.setDate(today.getDate()+ 1))
+  const startDate = getFormatedDate(today.setDate(today.getDate()-10000))
   function openModal(){
     setVisible(!visible);
   }

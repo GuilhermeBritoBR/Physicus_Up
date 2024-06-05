@@ -11,7 +11,7 @@ import IMC_Content from "./IMC_Content";
 import WidgetRUNNING_EXAMPLE from "../WidgetRUNNING_EXAMPLE";
 import { ip } from "../../scripts/ip";
 import { useState, useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 import WidgetACADEMIA_EXAMPLE from "../WidgetACADEMIA_EXAMPLE";
 
 export default function UserHome_Component({
@@ -25,45 +25,40 @@ export default function UserHome_Component({
   funçao,
 }) 
 {
+  const focus = useIsFocused();
+  const navigation = useNavigation("");
   const [widgetRun, setWidgetRun] = useState([]);
   const [loading,setLoading] = useState(false);
   const [testeState, setTesteState] = useState("");
   //academy
   const [widgetAcademy, setWidgetAcademy] = useState([]);
   const [testeStateAcademy, setTesteStateAcademy] = useState("");
-  async function LoadData(){
-    axios.get(`http://${ip}:3000/physicusup/meustreinos`)
-                    .then(response => {
-                        setWidgetRun(response.data);
-                        setLoading(false);
-                        const name = widgetRun[0].name;
-                        setTesteState(name);
-                    }
-                        
-            )
-                    .catch(error => {
-                        console.error(error);
-                        setLoading(false);
-                    });
-                  axios.get(`http://${ip}:3000/physicusup/meustreinosAcademy`)
-                    .then(response => {
-                        setWidgetAcademy(response.data);
-                        setLoading(false);
-                        const name = widgetAcademy[0].name;
-                        setTesteStateAcademy(name);
-                    }
-                        
-            )
-                    .catch(error => {
-                        console.error(error);
-                        setLoading(false);
-                    });
-  }
-  const navigation = useNavigation("");
+
   useEffect(() => {
     LoadData();
                 
-  }, [testeState,testeStateAcademy, imc]);
+  }, [ focus  ]);
+
+  async function LoadData(){
+    try{
+      const response = await axios.get(`http://${ip}:3000/physicusup/meustreinos`);
+      const responseAcademy = await axios.get(`http://${ip}:3000/physicusup/meustreinosAcademy`);
+      setWidgetAcademy(responseAcademy.data);
+      setWidgetRun(response.data);
+      console.log(response.data)
+      setTesteState(widgetRun.name);
+      setTesteStateAcademy(widgetAcademy.name);
+      testing()
+    }catch(error){
+      console.log(`Erro ao carregar treino: ${error}`)
+    }
+  }
+
+  function testing(){
+    
+    console.log(widgetRun[widgetRun.length - 1]);
+  }
+  
   if (loading) {
     return (
         <View style={DefaultStyles.container}>

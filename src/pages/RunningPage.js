@@ -27,7 +27,7 @@ export default function RunningPage() {
 
   //trabalhando função d datePicker
   const today = new Date();
-  const startDate = getFormatedDate(today.setDate(today.getDate()+ 1))
+  const startDate = getFormatedDate(today.setDate(today.getDate()- 10000))
   function openModal(){
     setVisible(!visible);
   }
