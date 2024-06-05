@@ -16,6 +16,7 @@ import UserHome_Component from "../components/HomeComponents/UserHome_Component"
 //importando AXIOS
 import axios from "axios";
 import { ip } from "../scripts/ip";
+import { useFocusEffect, useIsFocused } from "@react-navigation/native";
 
 //titleWidget,backgroundColor,data,RITMOEXERCICIO,ESFROÇO,TEMPO,KMPESO, -> PROPS DOS WIDGETS
 export default function HomePage() {
@@ -25,6 +26,7 @@ export default function HomePage() {
   //imc local states
   const [imc, setImc] = useState("");
   const [desc, setDesc] = useState("");
+  const focus = useIsFocused();
   //refresh states
   const [refresh, setRefresh] = useState(false);
   //userdataBase states
@@ -45,7 +47,7 @@ export default function HomePage() {
   useEffect(() => {
     // Função para carregar os dados ao iniciar o aplicativo
     carregarDados();
-  }, []);
+  }, [focus]);
 
   const carregarDados = async () => {
     try {
@@ -54,6 +56,7 @@ export default function HomePage() {
       setDados(response.data);
       setWidgetData(getImc.data);
       setImc(widgetData.imc);
+      testing();
       setDesc(widgetData.situation);
       console.log(`${widgetData} do JSON e Nome do Usuário${dados.nome}`);
     } catch (error) {
@@ -61,6 +64,10 @@ export default function HomePage() {
     }
     console.log(`Dados do IMC: ${imc, desc}`);
   };
+  function testing(){
+    console.log(widgetData.imc);
+    console.log(widgetData.situation);
+  }
   const atualizarDados = async () => {
     try {
       await axios.post(`http://${ip}:3000/usuario`, {
