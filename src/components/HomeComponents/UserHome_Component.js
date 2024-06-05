@@ -127,7 +127,7 @@ export default function UserHome_Component({
           data={widgetAcademy[widgetAcademy.length - 1].date}
           RITMOEXERCICIO={widgetAcademy[widgetAcademy.length - 1].train}
           TEMPO={widgetAcademy[widgetAcademy.length - 1].time}
-          KMPESO={widgetAcademy[widgetAcademy.length - 1].series}
+          KMPESO={`${widgetAcademy[widgetAcademy.length - 1].series} Series`}
           ESFROÇO={widgetAcademy[widgetAcademy.length - 1].level}
         />
       )
