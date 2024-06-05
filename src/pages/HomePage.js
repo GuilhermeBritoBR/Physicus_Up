@@ -35,9 +35,9 @@ export default function HomePage() {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
 
-  function closeModal() {
+   function closeModal() { 
     setBoleana(false);
-    carregarDados();
+     carregarDados();
   }
 
   ///////////////////////////////////////////////
@@ -45,9 +45,10 @@ export default function HomePage() {
   useEffect(() => {
     // Função para carregar os dados ao iniciar o aplicativo
     carregarDados();
-  }, [imc, desc]);
+  }, [boleana]);
 
   const carregarDados = async () => {
+    alert("olaaaaaa")
     try {
       const response = await axios.get(`http://${ip}:3000/dados`);
       const getImc = await axios.get(`http://${ip}:3000/api/get_imc`);
@@ -55,13 +56,11 @@ export default function HomePage() {
       setWidgetData(getImc.data);
       setImc(widgetData.imc);
       setDesc(widgetData.situation);
-      console.log(widgetData);
-      console.log("ESTOUAQUI", dados.nome);
+      console.log(`${widgetData} do JSON e Nome do Usuário${dados.nome}`);
     } catch (error) {
       console.error("Erro ao carregar os dados:", error);
     }
-    console.log(imc);
-    console.log(desc);
+    console.log(`Dados do IMC: ${imc, desc}`);
   };
   const atualizarDados = async () => {
     try {

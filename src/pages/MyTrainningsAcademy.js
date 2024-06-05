@@ -63,7 +63,7 @@ const Item = ({title}) => (
                         <WidgetMusculacao_Component
                         data={item.date}
                         titleWidget={item.name}
-                        KMPESO={item.series}
+                        KMPESO={`${item.series} Series`}
                         TEMPO={item.time}
                         ESFROÇO={item.level}
                         RITMOEXERCICIO={item.train}

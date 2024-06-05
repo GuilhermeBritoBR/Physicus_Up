@@ -31,14 +31,13 @@ export default function UserHome_Component({
   //academy
   const [widgetAcademy, setWidgetAcademy] = useState([]);
   const [testeStateAcademy, setTesteStateAcademy] = useState("");
-
-  const navigation = useNavigation("");
-  useEffect(() => {
+  async function LoadData(){
     axios.get(`http://${ip}:3000/physicusup/meustreinos`)
                     .then(response => {
                         setWidgetRun(response.data);
                         setLoading(false);
-                        setTesteState(widgetRun[0].name);
+                        const name = widgetRun[0].name;
+                        setTesteState(name);
                     }
                         
             )
@@ -50,7 +49,8 @@ export default function UserHome_Component({
                     .then(response => {
                         setWidgetAcademy(response.data);
                         setLoading(false);
-                        setTesteStateAcademy(widgetAcademy[0].name);
+                        const name = widgetAcademy[0].name;
+                        setTesteStateAcademy(name);
                     }
                         
             )
@@ -58,8 +58,12 @@ export default function UserHome_Component({
                         console.error(error);
                         setLoading(false);
                     });
+  }
+  const navigation = useNavigation("");
+  useEffect(() => {
+    LoadData();
                 
-  }, [widgetRun, widgetAcademy, imc]);
+  }, [testeState,testeStateAcademy, imc]);
   if (loading) {
     return (
         <View style={DefaultStyles.container}>

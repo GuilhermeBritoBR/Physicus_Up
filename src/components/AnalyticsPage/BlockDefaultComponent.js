@@ -14,9 +14,7 @@ import TextComponent from "../TextComponent";
 export default function BlockDefaultComponent({
   corDegrade1,
   corDegrade2,
-  titleBlock,
-  descriçaoCenter,
-}) {
+ p1,p2,p3,p4}) {
   return (
     <LinearGradient
       colors={[corDegrade1, corDegrade2]}
@@ -35,11 +33,19 @@ export default function BlockDefaultComponent({
         <View style={[{ flex: 1 }]}>
           <TextComponent
             styleText={[widgetDefaultComponent.dataWidget, {}]}
-            title={titleBlock}
+            title={p1}
+          />
+          <TextComponent
+            styleText={[widgetDefaultComponent.dataWidget, {}]}
+            title={p2}
+          />
+          <TextComponent
+            styleText={[widgetDefaultComponent.dataWidget, {}]}
+            title={p3}
           />
           <TextComponent
             styleText={[widgetDefaultComponent.dataWidget, { fontSize: 20 }]}
-            title={descriçaoCenter}
+            title={p4}
           />
         </View>
         <View

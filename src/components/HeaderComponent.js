@@ -20,28 +20,7 @@ import axios from "axios";
 
 //cabeçalho da aplicação, ele tem a função de mostrar seu perfil, adicionar o treino e mostrar o título da aplicação
 export default function HeaderComponent({titleHeaderPropiedade}) {
-  useEffect(() => {
-    // Função para carregar os dados ao iniciar o aplicativo
-    carregarDados();
-    ChangeTitle();
-  }, []);
-
-  const carregarDados = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/dados");
-      setDadosHeader(response.data);
-    } catch (error) {
-      console.error("Erro ao carregar os dados:", error);
-    }
-  };
-  async function ChangeTitle() {
-    if (dadosHeader.nome === "") {
-      setTitleHeader("Physicus Up");
-    } else {
-      const resultado = await dadosHeader.nome;
-      setTitleHeader(resultado);
-    }
-  }
+  
   const [add, setAdd] = useState(false);
   const Navigation = useNavigation();
   const [titleHeader, setTitleHeader] = useState("");
@@ -64,22 +43,7 @@ export default function HeaderComponent({titleHeaderPropiedade}) {
         </View>
       </TouchableOpacity>
       <View style={[Header.TitleHeader, { flex: 1.2 }]}>
-        {titleHeader === "" ? (
-          <Text
-            style={[
-              DefaultStyles.Text,
-              {
-                fontSize: 24,
-                textAlign: "center",
-                justifyContent: "center",
-                flexDirection: "row",
-                flex: 1,
-              },
-            ]}
-          >
-            {titleHeader}
-          </Text>
-        ) : (
+     
           <Text
             style={[
               DefaultStyles.Text,
@@ -94,7 +58,7 @@ export default function HeaderComponent({titleHeaderPropiedade}) {
           >
             Physicus Up
           </Text>
-        )}
+        
 
       </View>
       <TouchableOpacity

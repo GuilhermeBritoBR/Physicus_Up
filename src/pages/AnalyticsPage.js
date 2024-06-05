@@ -93,9 +93,12 @@ export default function AnalyticsPage() {
 
           <TouchableOpacity>
           <BlockDefaultComponent
-            titleBlock={`${volume} Quilômetros registrados!`+ '     ' +
-            `${ID} Corridas salvas!`  + '                      ' +  
-          `${media.toFixed(1)} KM em média por corrida!`}
+          
+            p1={`${volume} Quilômetros registrados!`}
+            p2={`${ID} Corridas salvas!` }
+            p3={`${media.toFixed(1)} KM em média por corrida!`}
+            
+          
             
             corDegrade1={"#b3b3b3"}
             corDegrade2={"#666666"}
@@ -115,10 +118,10 @@ export default function AnalyticsPage() {
         </TouchableOpacity>
             ):(
               <WidgetDefaultComponent
-          titleWidget={recordeName}
+          ESFROÇO={recorde.name}
           TEMPO={recorde.tempo}
           RITMOEXERCICIO={recorde.ritmo}
-          KMPESO={recorde.distancia}
+          KMPESO={`${recorde.distancia} KM`}
           
           corDegrade1={"#1db954"}
           corDegrade2={"#309f57"}

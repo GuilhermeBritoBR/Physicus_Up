@@ -53,7 +53,7 @@ export default function MusculationPage() {
         
       ) {
         await axios.post(`http://${ip}:3000/api/saveRecorde`, dados);
-        alert("Atividade salva com sucesso!");
+        alert("Recorde salvo com sucesso!");
         
       } else {
         alert("Preencha todos os campos!");
@@ -103,6 +103,7 @@ export default function MusculationPage() {
               />
             </View>
             <View style={{flexDirection: "row" }}>
+<View style={{margin:4}}>
             <LittleinputBoxComponent
                 placeholder_propiedade={"KM"}
                 horizonte={56}
@@ -111,6 +112,8 @@ export default function MusculationPage() {
                 onChangeText_propiedade={setKm}
                 valueTextInput={km}
               />
+              </View>
+<View style={{margin:4}}>
               <LittleinputBoxComponent
                 placeholder_propiedade={"Hour"}
                 horizonte={56}
@@ -119,6 +122,8 @@ export default function MusculationPage() {
                 onChangeText_propiedade={setHoras}
                 valueTextInput={horas}
               />
+</View>
+              <View style={{margin:4}}>
               <LittleinputBoxComponent
                 placeholder_propiedade={"Min"}
                 horizonte={56}
@@ -127,6 +132,8 @@ export default function MusculationPage() {
                 onChangeText_propiedade={setMinutos}
                 valueTextInput={minutos}
               />
+</View>
+              <View style={{margin:4}}>
               <LittleinputBoxComponent
                 placeholder_propiedade={"Seg"}
                 horizonte={56}
@@ -135,7 +142,7 @@ export default function MusculationPage() {
                 onChangeText_propiedade={setSegundos}
                 valueTextInput={segundos}
               />
-              
+              </View>
             </View>
             
             

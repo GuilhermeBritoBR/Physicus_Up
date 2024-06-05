@@ -89,7 +89,6 @@ export const widgetDefaultComponent = StyleSheet.create({
     margin: 10,
     backgroundColor: "transparent",
     borderRadius: 15,
-    fontFamily: "GothicA1-Regular",
   },
   titleWidgetText: {
     fontSize: 16,
