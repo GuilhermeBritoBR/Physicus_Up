@@ -1,8 +1,7 @@
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
-import { RefreshControl, View } from "react-native";
+import { RefreshControl, View, Text } from "react-native";
 import axios from "axios";
-//importando
 import WidgetDefaultComponent from "../WidgetDefaultComponent";
 import WidgetIMC_Component from "../WidgetIMC_Component";
 import WidgetMusculacao_Component from "../WidgetMusculacao_Component";
@@ -13,6 +12,7 @@ import { ip } from "../../scripts/ip";
 import { useState, useEffect } from "react";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 import WidgetACADEMIA_EXAMPLE from "../WidgetACADEMIA_EXAMPLE";
+import { DefaultStyles } from "../../styles/DefaultStyles";
 
 export default function UserHome_Component({
   imc,
@@ -23,83 +23,87 @@ export default function UserHome_Component({
   data,
   xDoModal,
   funçao,
-}) 
-{
+}) {
   const focus = useIsFocused();
-  const navigation = useNavigation("");
+  const navigation = useNavigation();
   const [widgetRun, setWidgetRun] = useState([]);
-  const [loading,setLoading] = useState(false);
-  const [testeState, setTesteState] = useState("");
-  //academy
+  const [loading, setLoading] = useState(false);
   const [widgetAcademy, setWidgetAcademy] = useState([]);
+  const [testeState, setTesteState] = useState("");
   const [testeStateAcademy, setTesteStateAcademy] = useState("");
 
   useEffect(() => {
-    LoadData();
-                
-  }, [ focus  ]);
+    if (focus) {
+      LoadData();
+    }
+  }, [focus]);
 
-  async function LoadData(){
-    try{
+  useEffect(() => {
+    if (widgetRun.length > 0) {
+      setTesteState(widgetRun[widgetRun.length - 1].name || "");
+    }
+    if (widgetAcademy.length > 0) {
+      setTesteStateAcademy(widgetAcademy[widgetAcademy.length - 1].name || "");
+    }
+  }, [widgetRun, widgetAcademy]);
+
+  async function LoadData() {
+    try {
+      setLoading(true);
       const response = await axios.get(`http://${ip}:3000/physicusup/meustreinos`);
       const responseAcademy = await axios.get(`http://${ip}:3000/physicusup/meustreinosAcademy`);
-      setWidgetAcademy(responseAcademy.data);
       setWidgetRun(response.data);
-      console.log(response.data)
-      setTesteState(widgetRun.name);
-      setTesteStateAcademy(widgetAcademy.name);
-      testing();
-    }catch(error){
-      console.log(`Erro ao carregar treino: ${error}`)
+      setWidgetAcademy(responseAcademy.data);
+      console.log("Treinos de corrida:", response.data);
+      console.log("Treinos de academia:", responseAcademy.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(`Erro ao carregar treino: ${error}`);
+      setLoading(false);
     }
   }
 
-  function testing(){
-    
-    console.log(widgetRun[widgetRun.length - 1]);
-  }
-  
   if (loading) {
     return (
-        <View style={DefaultStyles.container}>
-            <Text style={{color: 'white', fontSize: 18}}>Carregando...</Text>
-        </View>
+      <View style={DefaultStyles.container}>
+        <Text style={{ color: 'white', fontSize: 18 }}>Carregando...</Text>
+      </View>
     );
-}
+  }
+
+  const lastRun = widgetRun.length > 0 ? widgetRun[widgetRun.length - 1] : null;
+  const lastAcademy = widgetAcademy.length > 0 ? widgetAcademy[widgetAcademy.length - 1] : null;
+
   return (
     <ScrollView
       refreshControl={
-        <RefreshControl refreshing={refresh}>{onRefresh}</RefreshControl>
+        <RefreshControl refreshing={refresh} onRefresh={onRefresh} />
       }
     >
-     
-        {
-          (testeState === "" || testeState === undefined) ? (
-            <TouchableOpacity onPress={()=> navigation.navigate("RunningPage")}>
-            <WidgetRUNNING_EXAMPLE
-          titleCenter={"COMECE A CORRER!"}
-          corDegrade1={"#1db954"}
-          corDegrade2={"#309f57"}
-          descriçaoCenter={"CLIQUE AQUI!"}
-        />
+      {testeState === "" ? (
+        <TouchableOpacity onPress={() => navigation.navigate("RunningPage")}>
+          <WidgetRUNNING_EXAMPLE
+            titleCenter={"COMECE A CORRER!"}
+            corDegrade1={"#1db954"}
+            corDegrade2={"#309f57"}
+            descriçaoCenter={"CLIQUE AQUI!"}
+          />
         </TouchableOpacity>
-     
-          ):(
-            <>
-        <WidgetDefaultComponent
-          titleWidget={widgetRun[widgetRun.length - 1].name}
-          data={widgetRun[widgetRun.length - 1].date}
-          RITMOEXERCICIO={widgetRun[widgetRun.length - 1].pace}
-          TEMPO={widgetRun[widgetRun.length - 1].timeString}
-          KMPESO={`${widgetRun[widgetRun.length - 1].distance} KM`}
-          ESFROÇO={widgetRun[widgetRun.length - 1].level}
-          corDegrade1={"#1db954"}
-          corDegrade2={"#309f57"}
-        />
-        </>
-         )}
-        
-      
+      ) : (
+        lastRun && (
+          <WidgetDefaultComponent
+            titleWidget={lastRun.name}
+            data={lastRun.date}
+            RITMOEXERCICIO={lastRun.pace}
+            TEMPO={lastRun.timeString}
+            KMPESO={`${lastRun.distance} KM`}
+            ESFROÇO={lastRun.level}
+            corDegrade1={"#1db954"}
+            corDegrade2={"#309f57"}
+          />
+        )
+      )}
+
       <TouchableOpacity onPress={funçao}>
         <WidgetIMC_Component
           titleCenter={imc}
@@ -108,26 +112,29 @@ export default function UserHome_Component({
           descriçaoCenter={desc}
         />
       </TouchableOpacity>
-      { (testeStateAcademy ==="" || testeStateAcademy === undefined)? (
-         <TouchableOpacity onPress={()=> navigation.navigate("MusculationPage")}>
-        <WidgetACADEMIA_EXAMPLE titleCenter={"COMECE A TREINAR MUSCULAÇÃO!"}
-        descriçaoCenter={"CLIQUE AQUI!"}
-        corDegrade1={"#fdb573"}
-        corDegrade2={"#d86800"}/>
+
+      {testeStateAcademy === "" ? (
+        <TouchableOpacity onPress={() => navigation.navigate("MusculationPage")}>
+          <WidgetACADEMIA_EXAMPLE
+            titleCenter={"COMECE A TREINAR MUSCULAÇÃO!"}
+            descriçaoCenter={"CLIQUE AQUI!"}
+            corDegrade1={"#fdb573"}
+            corDegrade2={"#d86800"}
+          />
         </TouchableOpacity>
-      ):
-      (
-        <WidgetMusculacao_Component
-          titleWidget={widgetAcademy[widgetAcademy.length - 1].name}
-          data={widgetAcademy[widgetAcademy.length - 1].date}
-          RITMOEXERCICIO={widgetAcademy[widgetAcademy.length - 1].train}
-          TEMPO={widgetAcademy[widgetAcademy.length - 1].time}
-          KMPESO={`${widgetAcademy[widgetAcademy.length - 1].series} Series`}
-          ESFROÇO={widgetAcademy[widgetAcademy.length - 1].level}
-        />
-      )
-      }
-     
+      ) : (
+        lastAcademy && (
+          <WidgetMusculacao_Component
+            titleWidget={lastAcademy.name}
+            data={lastAcademy.date}
+            RITMOEXERCICIO={lastAcademy.train}
+            TEMPO={lastAcademy.time}
+            KMPESO={`${lastAcademy.series} Series`}
+            ESFROÇO={lastAcademy.level}
+          />
+        )
+      )}
+
       <ModalComponent vidro={vidro} open={vidro}>
         <View
           style={{

@@ -36,17 +36,26 @@ export default function HomePage() {
   const [idade, setIdade] = useState("");
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
+  const [widgetRun, setWidgetRun] = useState(null);
+  const [loading,setLoading] = useState(false);
+  const [testeState, setTesteState] = useState("");
+  //academy
+  const [widgetAcademy, setWidgetAcademy] = useState([]);
+  const [testeStateAcademy, setTesteStateAcademy] = useState("");
 
    function closeModal() { 
+    carregarDados();
     setBoleana(false);
-     carregarDados();
+    
   }
 
   ///////////////////////////////////////////////
 
   useEffect(() => {
     // Função para carregar os dados ao iniciar o aplicativo
+    if(focus){
     carregarDados();
+    }
   }, [focus]);
 
   const carregarDados = async () => {
@@ -55,9 +64,8 @@ export default function HomePage() {
       const getImc = await axios.get(`http://${ip}:3000/api/get_imc`);
       setDados(response.data);
       setWidgetData(getImc.data);
-      setImc(widgetData.imc);
-      testing();
-      setDesc(widgetData.situation);
+      setImc(getImc.data.imc);
+      setDesc(getImc.data.situation);
       console.log(`${widgetData} do JSON e Nome do Usuário${dados.nome}`);
     } catch (error) {
       console.error("Erro ao carregar os dados:", error);
@@ -84,6 +92,7 @@ export default function HomePage() {
       alert("Erro ao atualizar os dados");
     }
   };
+ 
   ///////////////////////////////////////////////
   ////////////////////localSTORAGE///////////////////////////
   ///////////////////////////////////////////////
@@ -103,9 +112,7 @@ export default function HomePage() {
   return (
     <View style={DefaultStyles.container}>
       <HeaderComponent
-        titleHeaderPropiedade={
-          dados.nome === "" ? "Physicus Up" : `Bem vindo, ${dados.nome}`
-        }
+       
       />
       {dados.nome === "" ? (
       <View style={[DefaultStyles.content, { width: "100%" }]}>

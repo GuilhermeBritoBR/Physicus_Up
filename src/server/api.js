@@ -175,6 +175,7 @@ app.get('/physicusup/meustreinosAcademy',(req,res)=>{
       else{
         console.log('Deu certo meus treinos');
         res.json(result);
+        console.log('APARECEU', result)
       }
   });
 

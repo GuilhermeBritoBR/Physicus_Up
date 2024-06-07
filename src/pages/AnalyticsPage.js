@@ -91,12 +91,24 @@ export default function AnalyticsPage() {
           
         
 
+          
+            {(media === null )?(
+                   <TouchableOpacity>
+                   <BlockDefaultComponent
+               
+                 p1={`COMECE A CORRER!`}
+                 corDegrade1={"#b3b3b3"}
+                 corDegrade2={"#666666"}
+               />
+             </TouchableOpacity>
+             
+            ):(
           <TouchableOpacity>
           <BlockDefaultComponent
           
             p1={`${volume} Quilômetros registrados!`}
             p2={`${ID} Corridas salvas!` }
-            p3={`${media.toFixed(1)} KM em média por corrida!`}
+            p3={`${media} KM em média por corrida!`}
             
           
             
@@ -104,7 +116,9 @@ export default function AnalyticsPage() {
             corDegrade2={"#666666"}
           />
         </TouchableOpacity>
-
+            )
+            }
+            
         <TouchableOpacity>
           {
             (recordeName === "")? (
