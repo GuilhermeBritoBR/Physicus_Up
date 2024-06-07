@@ -48,7 +48,7 @@ export default function UserHome_Component({
       console.log(response.data)
       setTesteState(widgetRun.name);
       setTesteStateAcademy(widgetAcademy.name);
-      testing()
+      testing();
     }catch(error){
       console.log(`Erro ao carregar treino: ${error}`)
     }
@@ -74,7 +74,7 @@ export default function UserHome_Component({
     >
      
         {
-          (testeState === "") ? (
+          (testeState === "" || testeState === undefined) ? (
             <TouchableOpacity onPress={()=> navigation.navigate("RunningPage")}>
             <WidgetRUNNING_EXAMPLE
           titleCenter={"COMECE A CORRER!"}
@@ -108,7 +108,7 @@ export default function UserHome_Component({
           descriçaoCenter={desc}
         />
       </TouchableOpacity>
-      { (testeStateAcademy ==="")? (
+      { (testeStateAcademy ==="" || testeStateAcademy === undefined)? (
          <TouchableOpacity onPress={()=> navigation.navigate("MusculationPage")}>
         <WidgetACADEMIA_EXAMPLE titleCenter={"COMECE A TREINAR MUSCULAÇÃO!"}
         descriçaoCenter={"CLIQUE AQUI!"}
