@@ -72,7 +72,7 @@ export default function HeaderComponent({titleHeaderPropiedade}) {
           />
         </View>
       </TouchableOpacity>
-      <ModalComponent vidro={add} open={add}>
+      <ModalComponent transparencia={add} open={add}>
         <View style={{ flex: 1, width: "100%" }}>
           <TouchableOpacity style={{ flex: 0.8 }} onPress={() => setAdd(false)}>
             <View style={{ flex: 0.8, width: "100%" }}></View>

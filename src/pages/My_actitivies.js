@@ -43,7 +43,7 @@ export default function My_actitivies() {
   //
   return (
     <View style={DefaultStyles.container}>
-      <HeaderComponent />
+      <HeaderComponent /> 
       <View style={DefaultStyles.content}>
         <FlatList
           data={treinos}

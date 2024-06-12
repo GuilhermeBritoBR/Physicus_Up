@@ -142,13 +142,14 @@ export default function UserHome_Component({
         )
       )}
       {/* tela para preencher imc */}
-      <ModalComponent transparencia={transparencia} open={transparencia}>
+      <ModalComponent transparencia={transparencia}  open={transparencia}>
         <View
           style={{
             width: "100%",
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
+            backgroundColor: 'black',
           }}
         >
           <IMC_Content xDoModal={xDoModal} />

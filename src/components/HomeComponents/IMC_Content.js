@@ -69,6 +69,7 @@ export default function IMC_Content({ xDoModal }) {
           borderWidth: 1,
           borderRadius: 15,
           borderColor: "#000000cc",
+          backgroundColor: 'black'
         },
       ]}
     >
