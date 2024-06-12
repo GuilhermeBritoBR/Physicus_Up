@@ -17,7 +17,7 @@ import { DefaultStyles } from "../../styles/DefaultStyles";
 export default function UserHome_Component({
   imc,
   desc,
-  vidro,
+  transparencia,
   refresh,
   onRefresh,
   data,
@@ -50,8 +50,12 @@ export default function UserHome_Component({
   async function LoadData() {
     try {
       setLoading(true);
-      const response = await axios.get(`http://${ip}:3000/physicusup/meustreinos`);
-      const responseAcademy = await axios.get(`http://${ip}:3000/physicusup/meustreinosAcademy`);
+      const response = await axios.get(
+        `http://${ip}:3000/physicusup/meustreinos`
+      );
+      const responseAcademy = await axios.get(
+        `http://${ip}:3000/physicusup/meustreinosAcademy`
+      );
       setWidgetRun(response.data);
       setWidgetAcademy(responseAcademy.data);
       console.log("Treinos de corrida:", response.data);
@@ -66,13 +70,14 @@ export default function UserHome_Component({
   if (loading) {
     return (
       <View style={DefaultStyles.container}>
-        <Text style={{ color: 'white', fontSize: 18 }}>Carregando...</Text>
+        <Text style={{ color: "white", fontSize: 18 }}>Carregando...</Text>
       </View>
     );
   }
 
   const lastRun = widgetRun.length > 0 ? widgetRun[widgetRun.length - 1] : null;
-  const lastAcademy = widgetAcademy.length > 0 ? widgetAcademy[widgetAcademy.length - 1] : null;
+  const lastAcademy =
+    widgetAcademy.length > 0 ? widgetAcademy[widgetAcademy.length - 1] : null;
 
   return (
     <ScrollView
@@ -114,7 +119,9 @@ export default function UserHome_Component({
       </TouchableOpacity>
 
       {testeStateAcademy === "" ? (
-        <TouchableOpacity onPress={() => navigation.navigate("MusculationPage")}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("MusculationPage")}
+        >
           <WidgetACADEMIA_EXAMPLE
             titleCenter={"COMECE A TREINAR MUSCULAÇÃO!"}
             descriçaoCenter={"CLIQUE AQUI!"}
@@ -134,8 +141,8 @@ export default function UserHome_Component({
           />
         )
       )}
-
-      <ModalComponent vidro={vidro} open={vidro}>
+      {/* tela para preencher imc */}
+      <ModalComponent transparencia={transparencia} open={transparencia}>
         <View
           style={{
             width: "100%",

@@ -14,7 +14,11 @@ import TextComponent from "../TextComponent";
 export default function BlockDefaultComponent({
   corDegrade1,
   corDegrade2,
- p1,p2,p3,p4}) {
+  p1,
+  p2,
+  p3,
+  p4,
+}) {
   return (
     <LinearGradient
       colors={[corDegrade1, corDegrade2]}
@@ -33,32 +37,25 @@ export default function BlockDefaultComponent({
         <View style={[{ flex: 1 }]}>
           <TextComponent
             styleText={[widgetDefaultComponent.dataWidget, {}]}
-            title={p1}
+            title={p1} //parágrafo 1
           />
           <TextComponent
             styleText={[widgetDefaultComponent.dataWidget, {}]}
-            title={p2}
+            title={p2} //parágrafo 2
           />
           <TextComponent
             styleText={[widgetDefaultComponent.dataWidget, {}]}
-            title={p3}
+            title={p3} //parágrafo 3
           />
           <TextComponent
             styleText={[widgetDefaultComponent.dataWidget, { fontSize: 20 }]}
-            title={p4}
+            title={p4} //parágrafo 4
           />
         </View>
         <View
           style={{ justifyContent: "center", alignItems: "center", flex: 5 }}
         >
-          <View style={[DefaultStyles.Icon, { height: 40, width: 40 }]}>
-            {/*
-        <IconComponent
-        archive={require("../assets/imc.png")}
-        style={[DefaultStyles.Icon,{height: 40, width: 40}]}
-        />
-    */}
-          </View>
+          <View style={[DefaultStyles.Icon, { height: 40, width: 40 }]}></View>
         </View>
       </View>
     </LinearGradient>

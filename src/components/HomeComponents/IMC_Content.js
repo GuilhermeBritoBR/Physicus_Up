@@ -17,11 +17,9 @@ import axios from "axios";
 import { ip } from "../../scripts/ip";
 
 export default function IMC_Content({ xDoModal }) {
-
   const SaveData = async () => {
     try {
-      await axios.post(`http://${ip}:3000/api/save_imc`, { imc,situation
-      });
+      await axios.post(`http://${ip}:3000/api/save_imc`, { imc, situation });
       // Recarregar os dados após a atualização
       await AsyncStorage.setItem("Imc_user", imc);
       await AsyncStorage.setItem("Imc_situation", situation);
@@ -59,7 +57,6 @@ export default function IMC_Content({ xDoModal }) {
       setSituation("Obesidade grau III.");
     }
   };
-  
 
   return (
     <View
@@ -132,7 +129,7 @@ export default function IMC_Content({ xDoModal }) {
           altura={56}
         />
         <Button_Component
-          Pressionamento={xDoModal}
+          Pressionamento={xDoModal} //botão de fechar modal
           Button_title={"Fechar"}
           colorText_buttom={"#ffffff"}
           fundo_buttom={"#000000"}

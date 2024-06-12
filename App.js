@@ -23,12 +23,14 @@ import My_Academy_actitivies from "./src/pages/MyTrainningsAcademy";
 export default function App() {
   return (
     <NavigationContainer>
+      {/* elimina o cabecalho padrao */}
       <Stack.Navigator
         initialRouteName="HomePage"
         screenOptions={{
           headerShown: false,
         }}
       >
+        {/* todas as paginas da aplicacao */}
         <Stack.Screen name="HomePage" component={HomePage} />
         <Stack.Screen name="Search" component={SearchPage} />
         <Stack.Screen name="Analytics" component={AnalyticsPage} />
@@ -38,10 +40,9 @@ export default function App() {
         <Stack.Screen name="RunningPage" component={RunningPage} />
         <Stack.Screen name="RunCalculator" component={RunCalculator} />
         <Stack.Screen name="RunHome" component={RunHome} />
-        <Stack.Screen name="UserStatics" component={UserStatics}/>
-        <Stack.Screen name="MyActitivies" component={My_actitivies}/>
-        <Stack.Screen name="MyAcademy" component={My_Academy_actitivies}/>
-
+        <Stack.Screen name="UserStatics" component={UserStatics} />
+        <Stack.Screen name="MyActitivies" component={My_actitivies} />
+        <Stack.Screen name="MyAcademy" component={My_Academy_actitivies} />
       </Stack.Navigator>
     </NavigationContainer>
   );

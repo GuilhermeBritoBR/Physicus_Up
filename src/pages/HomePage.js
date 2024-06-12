@@ -37,24 +37,21 @@ export default function HomePage() {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [widgetRun, setWidgetRun] = useState(null);
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [testeState, setTesteState] = useState("");
   //academy
   const [widgetAcademy, setWidgetAcademy] = useState([]);
   const [testeStateAcademy, setTesteStateAcademy] = useState("");
 
-   function closeModal() { 
+  function closeModal() {
     carregarDados();
     setBoleana(false);
-    
   }
-
-  ///////////////////////////////////////////////
 
   useEffect(() => {
     // Função para carregar os dados ao iniciar o aplicativo
-    if(focus){
-    carregarDados();
+    if (focus) {
+      carregarDados();
     }
   }, [focus]);
 
@@ -70,9 +67,9 @@ export default function HomePage() {
     } catch (error) {
       console.error("Erro ao carregar os dados:", error);
     }
-    console.log(`Dados do IMC: ${imc, desc}`);
+    console.log(`Dados do IMC: ${(imc, desc)}`);
   };
-  function testing(){
+  function testing() {
     console.log(widgetData.imc);
     console.log(widgetData.situation);
   }
@@ -92,31 +89,20 @@ export default function HomePage() {
       alert("Erro ao atualizar os dados");
     }
   };
- 
-  ///////////////////////////////////////////////
-  ////////////////////localSTORAGE///////////////////////////
-  ///////////////////////////////////////////////
 
-  
   const onRefresh = React.useCallback(() => {
     setRefresh(true);
     setTimeout(() => {
       setRefresh(false);
     }, 3000);
   }, []);
-
-  ///////////////////////////////////////////////
-  ///////////////////////////////////////////////
-  ///////////////////////////////////////////////
-
+  //quando os dados do db estiverem vazios a tela de cadastro sera carregada, enquanto o oposto carregara a tela do feed
+  //tudo isso monitorado pelo useEffect que carrega automaticamente os dados
   return (
     <View style={DefaultStyles.container}>
-      <HeaderComponent
-       
-      />
+      <HeaderComponent />
       {dados.nome === "" ? (
-      <View style={[DefaultStyles.content, { width: "100%" }]}>
-        
+        <View style={[DefaultStyles.content, { width: "100%" }]}>
           <Cadastro_content
             valueName={nome}
             valueIdade={idade}
@@ -128,31 +114,28 @@ export default function HomePage() {
             onChangeSobrenome={(valueSexo) => setSobrenome(valueSexo)}
             onPress={atualizarDados}
           />
-           </View>
-        ) : (
-          <View style={DefaultStyles.container}>
+        </View>
+      ) : (
+        <View style={DefaultStyles.container}>
           <View style={[DefaultStyles.content, { width: "100%" }]}>
-          <UserHome_Component
-            vidro={boleana}
-            imc={
-              widgetData.imc === ""   ?  "IMC":widgetData.imc 
-            }
-            desc={
-              widgetData.situation === ""  ?  "Calcule seu IMC!"  : widgetData.situation
-            }
-            refresh={refresh}
-            onRefresh={onRefresh}
-            data={data}
-            xDoModal={closeModal}
-            funçao={() => setBoleana(true)}
-          />
-          
-           </View>
-            <FooterComponent />
-            </View>
-           
-        )}
-     
+            <UserHome_Component
+              transparencia={boleana}
+              imc={widgetData.imc === "" ? "IMC" : widgetData.imc}
+              desc={
+                widgetData.situation === ""
+                  ? "Calcule seu IMC!"
+                  : widgetData.situation
+              }
+              refresh={refresh}
+              onRefresh={onRefresh}
+              data={data}
+              xDoModal={closeModal}
+              funçao={() => setBoleana(true)}
+            />
+          </View>
+          <FooterComponent />
+        </View>
+      )}
     </View>
   );
 }

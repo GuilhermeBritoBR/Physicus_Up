@@ -1,13 +1,9 @@
 import { Modal } from "react-native";
 
-export default function ModalComponent({ open, children, close, vidro }) {
+//componente que sobrepõe as páginas da aplicação
+export default function ModalCsomponent({ open, children }) {
   return (
-    <Modal
-      onRequestClose={close}
-      transparent={vidro}
-      visible={open}
-      animationType="fade"
-    >
+    <Modal visible={open} animationType="fade">
       {children}
     </Modal>
   );
